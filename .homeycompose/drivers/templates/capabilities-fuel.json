@@ -12,8 +12,7 @@
     "measure_inspection_distance",
     "measure_inspection_days",
     "measure_oil_change_distance",
-    "measure_oil_change_days",
-    "remote_battery_charge"
+    "measure_oil_change_days"
   ],
   "capabilitiesOptions": {
     "measure_temperature": {

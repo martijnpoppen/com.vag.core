@@ -1,5 +1,5 @@
 {
-  "$extends": ["device", "settings", "capabilities-fuel", "pair"],
+  "$extends": ["device", "settings", "capabilities-hybrid", "pair"],
   "name": {
     "en": "Volkswagen - Hybrid",
     "nl": "Volkswagen - Hybride"

@@ -1,0 +1,76 @@
+{
+  "id": "com.we-volkswagen.connect",
+  "version": "0.0.10",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#000000",
+  "name": {
+    "en": "VAG Connect",
+    "nl": "VAG Connect"
+  },
+  "description": {
+    "en": "Simply stay connected",
+    "nl": "Blijf in verbinding"
+  },
+  "tags": {
+    "en": [
+      "VW",
+      "Connect",
+      "Audi",
+      "myAudi",
+      "Skoda",
+      "Skoda Connect",
+      "VW Connect",
+      "VW Connect ID",
+      "ID.3",
+      "VW Connect Go",
+      "Seat"
+    ]
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": [
+    "homey:manager:geolocation"
+  ],
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "author": {
+    "name": "Martijn Poppen",
+    "email": "vag@martijnpoppen.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Martijn Poppen",
+        "email": "vag@martijnpoppen.nl"
+      }
+    ],
+    "translators": [
+      {
+        "name": "🇬🇧 Martijn Poppen"
+      },
+      {
+        "name": "🇳🇱 Martijn Poppen"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "martijnpoppen"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://community.athom.com/t/app-vag-connect/50486"
+  },
+  "source": "https://github.com/martijnpoppen/com.we-volkswagen.connect",
+  "homeyCommunityTopicId": 50486,
+  "support": "https://community.athom.com/t/app-vag-connect/50486"
+}

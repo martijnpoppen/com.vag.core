@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Flash",
+    "nl": "Flits"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

@@ -1,0 +1,46 @@
+{
+    "platforms": ["local"],
+    "type": "number",
+    "title": {
+      "en": "Oil change",
+      "nl": "Olie verversen"
+    },
+    "units": {
+      "en": "Days",
+      "nl": "Dagen"
+    },
+    "insights": true,
+    "desc": {
+      "en": "Oil change in Days",
+      "nl": "Olie verversen in Dagen"
+    },
+    "chartType": "spline",
+    "decimals": 2,
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "icon": "assets/icons/droplet-fill.svg",
+    "$flow": {
+      "triggers": [
+        {
+          "id": "measure_oil_change_days_changed",
+          "title": {
+            "en": "Oil change (Days) has changed",
+            "nl": "Olie verversen (Dagen) is veranderd"
+          },
+          "tokens": [
+            {
+              "name": "measure_oil_change_days",
+              "title": {
+                "en": "Oil change (Days)",
+                "nl": "Olie verversen (Dagen)"
+              },
+              "type": "number",
+              "example": 99
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

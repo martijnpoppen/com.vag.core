@@ -1,0 +1,45 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Oil change",
+    "nl": "Olie verversen"
+  },
+  "units": {
+    "en": "KM",
+    "nl": "KM"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Oil change in KM",
+    "nl": "Olie verversen in KM"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/droplet-fill.svg",
+  "$flow": {
+    "triggers": [
+      {
+        "id": "measure_oil_change_distance_changed",
+        "title": {
+          "en": "Oil change (KM) has changed",
+          "nl": "Olie verversen (KM) is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "measure_oil_change_distance",
+            "title": {
+              "en": "Oil change (KM)",
+              "nl": "Olie verversen (KM)"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      }
+    ]
+  }
+}

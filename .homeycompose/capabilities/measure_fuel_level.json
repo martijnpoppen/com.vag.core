@@ -1,0 +1,45 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Fuel-level",
+    "nl": "Tankniveau"
+  },
+  "units": {
+    "en": "%",
+    "nl": "%"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Fuel-level in %",
+    "nl": "Tankniveau in %"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/moisture.svg",
+  "$flow": {
+    "triggers": [
+      {
+        "id": "measure_fuel_level_changed",
+        "title": {
+          "en": "Fuel-level has changed",
+          "nl": "Tankniveau is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "measure_fuel_level",
+            "title": {
+              "en": "Fuel-level",
+              "nl": "Tankniveau"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      }
+    ]
+  }
+}

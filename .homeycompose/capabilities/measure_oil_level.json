@@ -1,0 +1,45 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Oil-level",
+    "nl": "Olieniveau"
+  },
+  "units": {
+    "en": "%",
+    "nl": "%"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Oil-level in %",
+    "nl": "Olieniveau in %"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/droplet-half.svg",
+  "$flow": {
+    "triggers": [
+      {
+        "id": "measure_oil_level_changed",
+        "title": {
+          "en": "Oil-level has changed",
+          "nl": "Olieniveau is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "measure_oil_level",
+            "title": {
+              "en": "Oil-level",
+              "nl": "Olieniveau"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      }
+    ]
+  }
+}

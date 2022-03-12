@@ -1,0 +1,45 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Inspection",
+    "nl": "Inspectie"
+  },
+  "units": {
+    "en": "KM",
+    "nl": "KM"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Inspection in KM",
+    "nl": "Inspectie in KM"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/search.svg",
+  "$flow": {
+    "triggers": [
+      {
+        "id": "measure_inspection_distance_changed",
+        "title": {
+          "en": "The inspection (KM) has changed",
+          "nl": "De inspectie (KM) is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "measure_inspection_distance",
+            "title": {
+              "en": "inspection (KM)",
+              "nl": "Inspectie (KM)"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      }
+    ]
+  }
+}

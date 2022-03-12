@@ -1,0 +1,7 @@
+{
+  "$extends": ["device", "settings", "capabilities-ev", "pair", "electric"],
+  "name": {
+    "en": "Volkswagen - Electric",
+    "nl": "Volkswagen - Elektrisch"
+  }
+}

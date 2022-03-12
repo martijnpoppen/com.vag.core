@@ -1,0 +1,1053 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.we-volkswagen.connect",
+  "version": "0.0.10",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#000000",
+  "name": {
+    "en": "VAG Connect",
+    "nl": "VAG Connect"
+  },
+  "description": {
+    "en": "Simply stay connected",
+    "nl": "Blijf in verbinding"
+  },
+  "tags": {
+    "en": [
+      "VW",
+      "Connect",
+      "Audi",
+      "myAudi",
+      "Skoda",
+      "Skoda Connect",
+      "VW Connect",
+      "VW Connect ID",
+      "ID.3",
+      "VW Connect Go",
+      "Seat"
+    ]
+  },
+  "category": [
+    "appliances"
+  ],
+  "permissions": [
+    "homey:manager:geolocation"
+  ],
+  "images": {
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
+  },
+  "author": {
+    "name": "Martijn Poppen",
+    "email": "vag@martijnpoppen.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Martijn Poppen",
+        "email": "vag@martijnpoppen.nl"
+      }
+    ],
+    "translators": [
+      {
+        "name": "🇬🇧 Martijn Poppen"
+      },
+      {
+        "name": "🇳🇱 Martijn Poppen"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "martijnpoppen"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://community.athom.com/t/app-vag-connect/50486"
+  },
+  "source": "https://github.com/martijnpoppen/com.we-volkswagen.connect",
+  "homeyCommunityTopicId": 50486,
+  "support": "https://community.athom.com/t/app-vag-connect/50486",
+  "drivers": [
+    {
+      "class": "lock",
+      "icon": "/drivers/vw-ev/assets/icon.svg",
+      "images": {
+        "large": "/drivers/vw-ev/assets/images/large.png",
+        "small": "/drivers/vw-ev/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Car options",
+            "nl": "Auto opties"
+          },
+          "children": [
+            {
+              "id": "remote_flash",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Flash",
+                "nl": "Instelling Flits"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_flash_honk",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Flash & Honk",
+                "nl": "Instelling Flits & Honk"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "General settings",
+            "nl": "Algemene instellingen"
+          },
+          "children": [
+            {
+              "id": "update_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "nl": "Update interval"
+              },
+              "min": 3,
+              "max": 3600,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten"
+              },
+              "value": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Login settings",
+            "nl": "Login instellingen"
+          },
+          "children": [
+            {
+              "id": "username",
+              "type": "text",
+              "label": {
+                "en": "Login",
+                "nl": "Login"
+              },
+              "value": ""
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord"
+              },
+              "value": ""
+            },
+            {
+              "id": "pin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": ""
+            },
+            {
+              "id": "type",
+              "type": "label",
+              "label": {
+                "en": "Type",
+                "nl": "Type"
+              },
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "capabilities": [
+        "locked",
+        "measure_connected",
+        "measure_temperature",
+        "measure_distance_driven",
+        "measure_range",
+        "measure_is_home",
+        "measure_is_moving",
+        "measure_inspection_distance",
+        "measure_inspection_days",
+        "measure_battery"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "title": {
+            "en": "Outside temperature",
+            "nl": "Buiten temperatuur"
+          }
+        }
+      },
+      "pair": [
+        {
+          "id": "type",
+          "options": {
+            "title": {
+              "en": "Select type",
+              "nl": "Selecteer type"
+            },
+            "button": {
+              "en": "Save & next",
+              "nl": "Opslaan & volgende"
+            }
+          }
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "usernamePlaceholder": {
+              "en": "example: admin",
+              "nl": "bijvoorbeeld: admin"
+            },
+            "usernameValue": {
+              "en": "admin",
+              "nl": "admin"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "logo": "../../../assets/icon.svg"
+          }
+        },
+        {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "get_data",
+          "template": "loading",
+          "options": {
+            "text": {
+              "en": "Getting Data from server",
+              "nl": "Data ophalen van server"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "prev": "login_credentials",
+            "next": "pincode"
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "name": {
+        "en": "Volkswagen - Electric",
+        "nl": "Volkswagen - Elektrisch"
+      },
+      "id": "vw-ev"
+    },
+    {
+      "class": "lock",
+      "icon": "/drivers/vw-fuel/assets/icon.svg",
+      "images": {
+        "large": "/drivers/vw-fuel/assets/images/large.png",
+        "small": "/drivers/vw-fuel/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Car options",
+            "nl": "Auto opties"
+          },
+          "children": [
+            {
+              "id": "remote_flash",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Flash",
+                "nl": "Instelling Flits"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_flash_honk",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Flash & Honk",
+                "nl": "Instelling Flits & Honk"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "General settings",
+            "nl": "Algemene instellingen"
+          },
+          "children": [
+            {
+              "id": "update_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "nl": "Update interval"
+              },
+              "min": 3,
+              "max": 3600,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten"
+              },
+              "value": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Login settings",
+            "nl": "Login instellingen"
+          },
+          "children": [
+            {
+              "id": "username",
+              "type": "text",
+              "label": {
+                "en": "Login",
+                "nl": "Login"
+              },
+              "value": ""
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord"
+              },
+              "value": ""
+            },
+            {
+              "id": "pin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": ""
+            },
+            {
+              "id": "type",
+              "type": "label",
+              "label": {
+                "en": "Type",
+                "nl": "Type"
+              },
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "capabilities": [
+        "locked",
+        "measure_connected",
+        "measure_temperature",
+        "measure_distance_driven",
+        "measure_range",
+        "measure_fuel_level",
+        "measure_oil_level",
+        "measure_is_home",
+        "measure_is_moving",
+        "measure_inspection_distance",
+        "measure_inspection_days",
+        "measure_oil_change_distance",
+        "measure_oil_change_days",
+        "remote_battery_charge"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "title": {
+            "en": "Outside temperature",
+            "nl": "Buiten temperatuur"
+          }
+        }
+      },
+      "pair": [
+        {
+          "id": "type",
+          "options": {
+            "title": {
+              "en": "Select type",
+              "nl": "Selecteer type"
+            },
+            "button": {
+              "en": "Save & next",
+              "nl": "Opslaan & volgende"
+            }
+          }
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "usernamePlaceholder": {
+              "en": "example: admin",
+              "nl": "bijvoorbeeld: admin"
+            },
+            "usernameValue": {
+              "en": "admin",
+              "nl": "admin"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "logo": "../../../assets/icon.svg"
+          }
+        },
+        {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "get_data",
+          "template": "loading",
+          "options": {
+            "text": {
+              "en": "Getting Data from server",
+              "nl": "Data ophalen van server"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "prev": "login_credentials",
+            "next": "pincode"
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "name": {
+        "en": "Volkswagen - Fuel",
+        "nl": "Volkswagen - Brandstof"
+      },
+      "id": "vw-fuel"
+    },
+    {
+      "class": "lock",
+      "icon": "/drivers/vw-hybrid/assets/icon.svg",
+      "images": {
+        "large": "/drivers/vw-hybrid/assets/images/large.png",
+        "small": "/drivers/vw-hybrid/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Car options",
+            "nl": "Auto opties"
+          },
+          "children": [
+            {
+              "id": "remote_flash",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Flash",
+                "nl": "Instelling Flits"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_flash_honk",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Flash & Honk",
+                "nl": "Instelling Flits & Honk"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "General settings",
+            "nl": "Algemene instellingen"
+          },
+          "children": [
+            {
+              "id": "update_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "nl": "Update interval"
+              },
+              "min": 3,
+              "max": 3600,
+              "units": {
+                "en": "minutes",
+                "nl": "minuten"
+              },
+              "value": 5
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Login settings",
+            "nl": "Login instellingen"
+          },
+          "children": [
+            {
+              "id": "username",
+              "type": "text",
+              "label": {
+                "en": "Login",
+                "nl": "Login"
+              },
+              "value": ""
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password",
+                "nl": "Wachtwoord"
+              },
+              "value": ""
+            },
+            {
+              "id": "pin",
+              "type": "password",
+              "label": {
+                "en": "S-PIN",
+                "nl": "S-PIN"
+              },
+              "value": ""
+            },
+            {
+              "id": "type",
+              "type": "label",
+              "label": {
+                "en": "Type",
+                "nl": "Type"
+              },
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "capabilities": [
+        "locked",
+        "measure_connected",
+        "measure_temperature",
+        "measure_distance_driven",
+        "measure_range",
+        "measure_fuel_level",
+        "measure_oil_level",
+        "measure_is_home",
+        "measure_is_moving",
+        "measure_inspection_distance",
+        "measure_inspection_days",
+        "measure_oil_change_distance",
+        "measure_oil_change_days",
+        "remote_battery_charge"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "title": {
+            "en": "Outside temperature",
+            "nl": "Buiten temperatuur"
+          }
+        }
+      },
+      "pair": [
+        {
+          "id": "type",
+          "options": {
+            "title": {
+              "en": "Select type",
+              "nl": "Selecteer type"
+            },
+            "button": {
+              "en": "Save & next",
+              "nl": "Opslaan & volgende"
+            }
+          }
+        },
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "usernameLabel": {
+              "en": "Username",
+              "nl": "Gebruikersnaam"
+            },
+            "usernamePlaceholder": {
+              "en": "example: admin",
+              "nl": "bijvoorbeeld: admin"
+            },
+            "usernameValue": {
+              "en": "admin",
+              "nl": "admin"
+            },
+            "passwordLabel": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "passwordPlaceholder": {
+              "en": "Password",
+              "nl": "Wachtwoord"
+            },
+            "logo": "../../../assets/icon.svg"
+          }
+        },
+        {
+          "id": "loading",
+          "template": "loading"
+        },
+        {
+          "id": "get_data",
+          "template": "loading",
+          "options": {
+            "text": {
+              "en": "Getting Data from server",
+              "nl": "Data ophalen van server"
+            }
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "prev": "login_credentials",
+            "next": "pincode"
+          }
+        },
+        {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "name": {
+        "en": "Volkswagen - Hybrid",
+        "nl": "Volkswagen - Hybride"
+      },
+      "id": "vw-hybrid"
+    }
+  ],
+  "capabilities": {
+    "measure_connected": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Connected",
+        "nl": "Verbonden"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/wifi.svg"
+    },
+    "measure_distance_driven": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Driven mileage",
+        "nl": "Gereden afstand"
+      },
+      "units": {
+        "en": "KM",
+        "nl": "KM"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Driven mileage in KM",
+        "nl": "Gereden afstand in KM"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/mileage.svg"
+    },
+    "measure_fuel_level": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Fuel-level",
+        "nl": "Tankniveau"
+      },
+      "units": {
+        "en": "%",
+        "nl": "%"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Fuel-level in %",
+        "nl": "Tankniveau in %"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/moisture.svg"
+    },
+    "measure_inspection_days": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Inspection",
+        "nl": "Inspectie"
+      },
+      "units": {
+        "en": "Days",
+        "nl": "Dagen"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Inspection in Days",
+        "nl": "Inspectie in Dagen"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/search.svg"
+    },
+    "measure_inspection_distance": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Inspection",
+        "nl": "Inspectie"
+      },
+      "units": {
+        "en": "KM",
+        "nl": "KM"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Inspection in KM",
+        "nl": "Inspectie in KM"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/search.svg"
+    },
+    "measure_is_home": {
+      "type": "boolean",
+      "title": {
+        "en": "Is vehicle at home",
+        "nl": "Is voertuig thuis"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/house-door.svg"
+    },
+    "measure_is_moving": {
+      "type": "boolean",
+      "title": {
+        "en": "Is vehicle moving",
+        "nl": "Voertuig in beweging"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/speedometer.svg"
+    },
+    "measure_oil_change_days": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Oil change",
+        "nl": "Olie verversen"
+      },
+      "units": {
+        "en": "Days",
+        "nl": "Dagen"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Oil change in Days",
+        "nl": "Olie verversen in Dagen"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/droplet-fill.svg"
+    },
+    "measure_oil_change_distance": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Oil change",
+        "nl": "Olie verversen"
+      },
+      "units": {
+        "en": "KM",
+        "nl": "KM"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Oil change in KM",
+        "nl": "Olie verversen in KM"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/droplet-fill.svg"
+    },
+    "measure_oil_level": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Oil-level",
+        "nl": "Olieniveau"
+      },
+      "units": {
+        "en": "%",
+        "nl": "%"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Oil-level in %",
+        "nl": "Olieniveau in %"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/droplet-half.svg"
+    },
+    "measure_range": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Range",
+        "nl": "Actieradius"
+      },
+      "units": {
+        "en": "KM",
+        "nl": "KM"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Range in KM",
+        "nl": "Actieradius in KM"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/mileage.svg"
+    },
+    "remote_battery_charge": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start charge",
+        "nl": "Start laden"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_flash": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Flash",
+        "nl": "Flits"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_flash_honk": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Flash & Honk",
+        "nl": "Flits & Toeteren"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    }
+  }
+}

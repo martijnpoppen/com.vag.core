@@ -1,0 +1,45 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Range",
+    "nl": "Actieradius"
+  },
+  "units": {
+    "en": "KM",
+    "nl": "KM"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Range in KM",
+    "nl": "Actieradius in KM"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/mileage.svg",
+  "$flow": {
+    "triggers": [
+      {
+        "id": "measure_range_changed",
+        "title": {
+          "en": "Range has changed",
+          "nl": "Actieradius is veranderd"
+        },
+        "tokens": [
+          {
+            "name": "measure_range",
+            "title": {
+              "en": "Range",
+              "nl": "Actieradius"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      }
+    ]
+  }
+}

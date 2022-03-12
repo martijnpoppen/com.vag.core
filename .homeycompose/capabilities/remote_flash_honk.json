@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Flash & Honk",
+    "nl": "Flits & Toeteren"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

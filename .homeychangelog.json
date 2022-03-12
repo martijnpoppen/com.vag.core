@@ -1,0 +1,32 @@
+{
+  "0.0.1": {
+    "en": "Initial Release"
+  },
+  "0.0.2": {
+    "en": "NEW: add oil change"
+  },
+  "0.0.3": {
+    "en": "Battery support EV"
+  },
+  "0.0.4": {
+    "en": "NEW: add S-PIN"
+  },
+  "0.0.5": {
+    "en": "NEW: add lock/unlock"
+  },
+  "0.0.6": {
+    "en": "Fix lock"
+  },
+  "0.0.7": {
+    "en": "SET s-pin"
+  },
+  "0.0.8": {
+    "en": "FIX: S-PIN during init"
+  },
+  "0.0.9": {
+    "en": "new capabilities"
+  },
+  "0.0.10": {
+    "en": "dynamic options"
+  }
+}

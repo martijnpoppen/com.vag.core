@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Start charge",
+    "nl": "Start laden"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

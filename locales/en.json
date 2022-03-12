@@ -2,6 +2,8 @@
   "pair": {
     "vw": "Volkswagen older than 2020",
     "vwv2": "Volkswagen 2020 or newer",
-    "id": "Volkswagen ID cars"
+    "id": "Volkswagen ID cars",
+    "seat": "Seat",
+    "seatelli": "Seat Elli Cupra"
   }
 }

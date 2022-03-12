@@ -1,6 +1,6 @@
-const localDriver = require('../main-driver');
+const mainDriver = require('../main-driver');
 
-module.exports = class driver_vw_fuel extends localDriver {
+module.exports = class driver_vw_fuel extends mainDriver {
     deviceType() {
         return 'vw_fuel';
     }

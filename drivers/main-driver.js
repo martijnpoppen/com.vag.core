@@ -15,7 +15,7 @@ module.exports = class mainDriver extends Homey.Driver {
                 type: data.type
             };
 
-            this.homey.app.log(`[Driver] ${this.id} - got config`, this.config);
+            this.homey.app.log(`[Driver] ${this.id} - got config`, {...this.config, username: 'LOG', password: 'LOG'});
 
             return session.nextView();
         });

@@ -25,7 +25,7 @@ module.exports = class mainDriver extends Homey.Driver {
                 this.config.username = data.username,
                 this.config.password = data.password,
  
-                this.homey.app.log(`[Driver] ${this.id} - got config`, this.config);
+                this.homey.app.log(`[Driver] ${this.id} - got config`, {...this.config, username: 'LOG', password: 'LOG'});
 
                 this._weConnectClient = await VwWeconnect({username: this.config.username, password: this.config.password, type: this.config.type});
     

@@ -82,9 +82,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     // ------------- CapabilityListeners -------------
     async setCapabilityListeners() {
-        await this.registerCapabilityListener('locked', this.onCapability_ACTION.bind(this));
-        // await this.registerCapabilityListener('target_temperature', this.onCapability_TEMPERATURE.bind(this));
-        // await this.registerCapabilityListener('action_update_data', this.onCapability_UPDATE_DATA.bind(this));
+        await this.registerMultipleCapabilityListener(['locked'], this.onCapability_ACTION.bind(this));
         await this.registerMultipleCapabilityListener(['remote_flash', 'remote_flash_honk'], this.onCapability_ACTION.bind(this));
         if (this.hasCapability('remote_battey_charge')) await this.registerCapabilityListener('remote_battey_charge', this.onCapability_ACTION.bind(this));
     }

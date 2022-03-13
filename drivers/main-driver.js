@@ -105,13 +105,13 @@ module.exports = class mainDriver extends Homey.Driver {
 
         async function waitForResults(ctx, retry = 10) {
             for (let i = 0; i < retry; i++) {
-                await sleep(500);
+                await sleep(750);
                 const weConnectData = ctx._weConnectClient.getState();
 
                 ctx.homey.app.log(`[Driver] ${ctx.id} - ctx._weConnectClient.getState() - try: ${i}`);
                 ctx.homey.app.log(`[Driver] ${ctx.id} - info.connection - `, weConnectData['info.connection']);
 
-                if (i > 5 && weConnectData['info.connection']) {
+                if (i === 8 && weConnectData['info.connection']) {
                     return Promise.resolve(weConnectData);
                 } else if (retry === 9) {
                     return Promise.resolve(false);

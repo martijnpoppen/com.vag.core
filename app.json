@@ -251,6 +251,21 @@
           }
         },
         {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          },
+          "navigation": {
+            "prev": "login_credentials"
+          }
+        },
+        {
           "id": "loading",
           "template": "loading"
         },
@@ -272,19 +287,7 @@
           },
           "navigation": {
             "prev": "login_credentials",
-            "next": "pincode"
-          }
-        },
-        {
-          "id": "pincode",
-          "template": "pincode",
-          "options": {
-            "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-            },
-            "type": "number",
-            "length": 4
+            "next": "add_devices"
           }
         },
         {
@@ -487,6 +490,21 @@
           }
         },
         {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          },
+          "navigation": {
+            "prev": "login_credentials"
+          }
+        },
+        {
           "id": "loading",
           "template": "loading"
         },
@@ -508,19 +526,7 @@
           },
           "navigation": {
             "prev": "login_credentials",
-            "next": "pincode"
-          }
-        },
-        {
-          "id": "pincode",
-          "template": "pincode",
-          "options": {
-            "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-            },
-            "type": "number",
-            "length": 4
+            "next": "add_devices"
           }
         },
         {
@@ -720,6 +726,21 @@
           }
         },
         {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          },
+          "navigation": {
+            "prev": "login_credentials"
+          }
+        },
+        {
           "id": "loading",
           "template": "loading"
         },
@@ -741,19 +762,7 @@
           },
           "navigation": {
             "prev": "login_credentials",
-            "next": "pincode"
-          }
-        },
-        {
-          "id": "pincode",
-          "template": "pincode",
-          "options": {
-            "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-            },
-            "type": "number",
-            "length": 4
+            "next": "add_devices"
           }
         },
         {
@@ -954,6 +963,21 @@
           }
         },
         {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          },
+          "navigation": {
+            "prev": "login_credentials"
+          }
+        },
+        {
           "id": "loading",
           "template": "loading"
         },
@@ -975,19 +999,7 @@
           },
           "navigation": {
             "prev": "login_credentials",
-            "next": "pincode"
-          }
-        },
-        {
-          "id": "pincode",
-          "template": "pincode",
-          "options": {
-            "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-            },
-            "type": "number",
-            "length": 4
+            "next": "add_devices"
           }
         },
         {
@@ -1190,6 +1202,21 @@
           }
         },
         {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          },
+          "navigation": {
+            "prev": "login_credentials"
+          }
+        },
+        {
           "id": "loading",
           "template": "loading"
         },
@@ -1211,19 +1238,7 @@
           },
           "navigation": {
             "prev": "login_credentials",
-            "next": "pincode"
-          }
-        },
-        {
-          "id": "pincode",
-          "template": "pincode",
-          "options": {
-            "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-            },
-            "type": "number",
-            "length": 4
+            "next": "add_devices"
           }
         },
         {
@@ -1423,6 +1438,21 @@
           }
         },
         {
+          "id": "pincode",
+          "template": "pincode",
+          "options": {
+            "title": {
+              "en": "Enter S-PIN:",
+              "nl": "Voer S-PIN in:"
+            },
+            "type": "number",
+            "length": 4
+          },
+          "navigation": {
+            "prev": "login_credentials"
+          }
+        },
+        {
           "id": "loading",
           "template": "loading"
         },
@@ -1444,19 +1474,7 @@
           },
           "navigation": {
             "prev": "login_credentials",
-            "next": "pincode"
-          }
-        },
-        {
-          "id": "pincode",
-          "template": "pincode",
-          "options": {
-            "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-            },
-            "type": "number",
-            "length": 4
+            "next": "add_devices"
           }
         },
         {

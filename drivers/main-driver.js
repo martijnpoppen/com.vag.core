@@ -15,23 +15,22 @@ module.exports = class mainDriver extends Homey.Driver {
                 type: data.type
             };
 
-            this.homey.app.log(`[Driver] ${this.id} - got config`, {...this.config, username: 'LOG', password: 'LOG'});
+            this.homey.app.log(`[Driver] ${this.id} - got config`, { ...this.config, username: 'LOG', password: 'LOG' });
 
-            return session.nextView();
+            return true;
         });
 
-        session.setHandler("login", async (data) => {
+        session.setHandler('login', async (data) => {
             try {
-                this.config.username = data.username,
-                this.config.password = data.password,
- 
-                this.homey.app.log(`[Driver] ${this.id} - got config`, {...this.config, username: 'LOG', password: 'LOG'});
+                (this.config.username = data.username),
+                    (this.config.password = data.password),
+                    this.homey.app.log(`[Driver] ${this.id} - got config`, { ...this.config, username: 'LOG', password: 'LOG' });
 
-                this._weConnectClient = await VwWeconnect({username: this.config.username, password: this.config.password, type: this.config.type});
-    
+                this._weConnectClient = await VwWeconnect({ username: this.config.username, password: this.config.password, type: this.config.type });
+
                 this._weConnectClient.sendEvent('ready');
 
-                return session.nextView();
+                return true;
             } catch (error) {
                 console.log('err', error);
                 throw new Error(this.homey.__('pair.error'));
@@ -41,40 +40,43 @@ module.exports = class mainDriver extends Homey.Driver {
         session.setHandler('showView', async (view) => {
             if (view === 'loading') {
                 await sleep(3000);
-    
-                return session.nextView();
+
+                session.nextView();
+                return true;
             }
 
             if (view === 'get_data') {
                 this.weConnectData = await waitForResults(this);
 
-                if(!this.weConnectData) {
-                    return session.showView("login_credentials");
+                if (!this.weConnectData) {
+                    session.showView('login_credentials');
+                    return true;
                 }
 
                 this.weConnectDataTransformed = dottie.transform(this.weConnectData);
                 this.homey.app.log(`[Driver] ${this.id} - weConnectData: `, this.weConnectDataTransformed);
-    
-                return session.nextView();
+
+                session.nextView();
+                return true;
             }
         });
 
-        session.setHandler("list_devices", async () => {
+        session.setHandler('list_devices', async () => {
             try {
                 const results = [];
-                const vinArray = Object.keys(this.weConnectData).filter(k => k.includes('.general.vin'));
+                const vinArray = Object.keys(this.weConnectData).filter((k) => k.includes('.general.vin'));
 
                 this.homey.app.log(`[Driver] ${this.id} - vinArray: `, vinArray.length);
 
                 for (const vinStr of vinArray) {
                     const vin = vinStr ? vinStr.split('.')[0] : null;
 
-                    this.homey.app.log(`[Driver] ${this.id} - vin: `, vin.substring(0,3));
+                    this.homey.app.log(`[Driver] ${this.id} - vin: `, vin.substring(0, 3));
 
                     results.push({
                         name: `${this.weConnectDataTransformed[vin].general.brand} - ${this.weConnectDataTransformed[vin].general.carportData.modelName}`,
                         data: {
-                            id: vin,
+                            id: vin
                         },
                         settings: {
                             ...this.config,
@@ -83,8 +85,7 @@ module.exports = class mainDriver extends Homey.Driver {
                             vin: vin
                         }
                     });
-                };
-
+                }
 
                 this.homey.app.log(`[Driver] ${this.id} - Found devices - `, results);
 
@@ -95,29 +96,29 @@ module.exports = class mainDriver extends Homey.Driver {
             }
         });
 
-        session.setHandler("pincode", async (pincode) => {
+        session.setHandler('pincode', async (pincode) => {
             this.homey.app.log(`[Driver] ${this.id} - pincode - `, pincode);
             this.config.pin = pincode.join('');
 
-            return true
+            return true;
         });
 
         async function waitForResults(ctx, retry = 10) {
-            for (let i = 0; i < retry; i++) {    
+            for (let i = 0; i < retry; i++) {
                 await sleep(500);
                 const weConnectData = ctx._weConnectClient.getState();
 
                 ctx.homey.app.log(`[Driver] ${ctx.id} - ctx._weConnectClient.getState() - try: ${i}`);
                 ctx.homey.app.log(`[Driver] ${ctx.id} - info.connection - `, weConnectData['info.connection']);
 
-                if(i > 5 && weConnectData['info.connection']) {
+                if (i > 5 && weConnectData['info.connection']) {
                     return Promise.resolve(weConnectData);
-                } else if(retry === 9) {
-                    return Promise.resolve(false)
+                } else if (retry === 9) {
+                    return Promise.resolve(false);
                 }
             }
 
-            return Promise.resolve(false)
+            return Promise.resolve(false);
         }
     }
-}
+};

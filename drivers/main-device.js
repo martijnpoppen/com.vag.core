@@ -36,7 +36,7 @@ module.exports = class mainDevice extends Homey.Device {
                 await this.setVwWeConnectClient(newSettings);
             }
 
-            await checkCapabilities();
+            await this.checkCapabilities(newSettings);
 
             if (newSettings.password !== oldSettings.password) {
                 this.savePassword(newSettings, 2000);
@@ -267,8 +267,8 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     // ------------- Capabilities -------------
-    async checkCapabilities() {
-        const settings = this.getSettings();
+    async checkCapabilities(overrideSettings = null) {
+        const settings = overrideSettings ? overrideSettings : this.getSettings();
         const driverManifest = this.driver.manifest;
         const driverCapabilities = driverManifest.capabilities;
         const deviceCapabilities = this.getCapabilities();

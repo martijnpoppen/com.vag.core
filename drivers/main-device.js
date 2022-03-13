@@ -119,37 +119,12 @@ module.exports = class mainDevice extends Homey.Device {
                 throw new Error('S-PIN missing');
             }
 
-            await this.setCapabilityValues();
-
             return Promise.resolve(true);
         } catch (e) {
             this.homey.app.error(e);
             return Promise.reject(e);
         }
     }
-
-    async onCapability_LOCKED(value) {
-        try {
-            this.homey.app.log(`[Device] ${this.getName()} - onCapability_LOCKED`, value);
-
-            const settings = this.getSettings();
-            const vin = settings.vin;
-            const pin = settings.pin;
-
-            if (pin.length) {
-                await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { val: value });
-            } else {
-                throw new Error('S-PIN missing');
-            }
-
-            return Promise.resolve(true);
-        } catch (e) {
-            this.homey.app.error(e);
-            return Promise.reject(e);
-        }
-    }
-
-    remote_battery_charge;
 
     async setCapabilityValues(check = false) {
         this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues`);

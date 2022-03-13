@@ -84,8 +84,8 @@ module.exports = class mainDriver extends Homey.Driver {
 
                     this.homey.app.log(`[Driver] ${this.id} - vin: `, vin.substring(0, 5));
 
-                    const carportData = this.weConnectDataTransformed[vin].general.carportData;
-                    const model = 'model' in carportData ?  carportData.model : carportData.modelName;
+                    const generalData = this.weConnectDataTransformed[vin].general;
+                    const model = 'model' in generalData ?  generalData.model : generalData.carportData.modelName;
                     const brand = this.brand();
 
                     results.push({

@@ -1,5 +1,5 @@
 # Logs
-env.json
+#env.json
 node_modules/
 assets/.DS_Store
 

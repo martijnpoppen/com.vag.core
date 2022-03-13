@@ -1,18 +1,18 @@
 {
   "pair": [
     {
-        "id": "type",
-        "options": {
-          "title": {
-            "en": "Select type",
-            "nl": "Selecteer type"
-          },
-          "button": {
-            "en": "Save & next",
-            "nl": "Opslaan & volgende"
-          }
+      "id": "type",
+      "options": {
+        "title": {
+          "en": "Select type",
+          "nl": "Selecteer type"
+        },
+        "button": {
+          "en": "Save & next",
+          "nl": "Opslaan & volgende"
         }
-      },
+      }
+    },
     {
       "id": "login_credentials",
       "template": "login_credentials",
@@ -41,18 +41,30 @@
       }
     },
     {
-        "id": "loading",
-        "template": "loading"
+      "id": "pincode",
+      "template": "pincode",
+      "options": {
+        "title": {
+          "en": "Enter S-PIN:",
+          "nl": "Voer S-PIN in:"
+        },
+        "type": "number",
+        "length": 4
+      }
     },
     {
-        "id": "get_data",
-        "template": "loading",
-        "options": {
-            "text": {
-              "en": "Getting Data from server",
-              "nl": "Data ophalen van server"
-            }
+      "id": "loading",
+      "template": "loading"
+    },
+    {
+      "id": "get_data",
+      "template": "loading",
+      "options": {
+        "text": {
+          "en": "Getting Data from server",
+          "nl": "Data ophalen van server"
         }
+      }
     },
     {
       "id": "list_devices",
@@ -66,21 +78,9 @@
       }
     },
     {
-        "id": "pincode",
-        "template": "pincode",
-        "options": {
-          "title": {
-              "en": "Enter S-PIN:",
-              "nl": "Voer S-PIN in:"
-          },
-          "type": "number",
-          "length": 4
-        }
-      },
-      {
-        "id": "add_devices",
-        "template": "add_devices"
-      }
+      "id": "add_devices",
+      "template": "add_devices"
+    }
   ],
   "platforms": ["local"],
   "connectivity": ["cloud"]

@@ -64,12 +64,12 @@ module.exports = class mainDriver extends Homey.Driver {
                 const results = [];
                 const vinArray = Object.keys(this.weConnectData).filter(k => k.includes('.general.vin'));
 
-                this.homey.app.log(`[Driver] ${this.id} - vinArray: `, vinArray);
+                this.homey.app.log(`[Driver] ${this.id} - vinArray: `, vinArray.length);
 
                 for (const vinStr of vinArray) {
                     const vin = vinStr ? vinStr.split('.')[0] : null;
 
-                    this.homey.app.log(`[Driver] ${this.id} - vin: `, vin);
+                    this.homey.app.log(`[Driver] ${this.id} - vin: `, vin.substring(0,3));
 
                     results.push({
                         name: `${this.weConnectDataTransformed[vin].general.brand} - ${this.weConnectDataTransformed[vin].general.carportData.modelName}`,

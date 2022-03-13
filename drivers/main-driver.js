@@ -9,6 +9,10 @@ module.exports = class mainDriver extends Homey.Driver {
         this.homey.app.log(`[Driver] - version`, Homey.manifest.version);
     }
 
+    brand() {
+        'Unknown'
+    }
+
     async onPair(session) {
         session.setHandler('setType', async (data) => {
             this.config = {
@@ -64,6 +68,7 @@ module.exports = class mainDriver extends Homey.Driver {
         session.setHandler('list_devices', async () => {
             try {
                 const results = [];
+                console.log(this.config);
                 const vinArray = Object.keys(this.weConnectData).filter((k) => k.includes('.general.vin'));
 
                 this.homey.app.log(`[Driver] ${this.id} - vinArray: `, vinArray.length);
@@ -71,10 +76,14 @@ module.exports = class mainDriver extends Homey.Driver {
                 for (const vinStr of vinArray) {
                     const vin = vinStr ? vinStr.split('.')[0] : null;
 
-                    this.homey.app.log(`[Driver] ${this.id} - vin: `, vin.substring(0, 3));
+                    this.homey.app.log(`[Driver] ${this.id} - vin: `, vin.substring(0, 5));
+
+                    const carportData = this.weConnectDataTransformed[vin].general.carportData;
+                    const model = 'model' in carportData ?  carportData.model : carportData.modelName;
+                    const brand = this.brand();
 
                     results.push({
-                        name: `${this.weConnectDataTransformed[vin].general.brand} - ${this.weConnectDataTransformed[vin].general.carportData.modelName}`,
+                        name: `${brand} - ${model}`,
                         data: {
                             id: vin
                         },
@@ -82,6 +91,7 @@ module.exports = class mainDriver extends Homey.Driver {
                             ...this.config,
                             username: this.config.username,
                             password: encrypt(this.config.password),
+                            pin: this.config.pin,
                             vin: vin
                         }
                     });
@@ -99,6 +109,8 @@ module.exports = class mainDriver extends Homey.Driver {
         session.setHandler('pincode', async (pincode) => {
             this.homey.app.log(`[Driver] ${this.id} - pincode - `, pincode);
             this.config.pin = pincode.join('');
+
+            console.log(this.config);
 
             return true;
         });

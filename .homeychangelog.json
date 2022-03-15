@@ -28,5 +28,11 @@
   },
   "0.0.10": {
     "en": "dynamic options"
+  },
+  "0.1.0": {
+    "en": "App test release"
+  },
+  "0.1.1": {
+    "en": "First release"
   }
 }

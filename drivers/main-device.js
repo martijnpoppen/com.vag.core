@@ -199,12 +199,12 @@ module.exports = class mainDevice extends Homey.Device {
 
     async setLocation(position) {
         try {
-            this.homey.app.log(`[Device] ${this.getName()} - setLocation => position =>`, position);
+            // this.homey.app.log(`[Device] ${this.getName()} - setLocation => position =>`, position);
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
             const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(position.latitude / 1000000), parseFloat(position.longitude / 1000000));
 
-            this.homey.app.log(`[Device] ${this.getName()} - setLocation =>`, setLocation);
+            // this.homey.app.log(`[Device] ${this.getName()} - setLocation =>`, setLocation);
             await this.setCapabilityValue('measure_is_home', setLocation <= 1);
         } catch (error) {
             this.homey.app.log(error);

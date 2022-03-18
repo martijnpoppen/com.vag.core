@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.we-volkswagen.connect",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -74,6 +74,82 @@
   "source": "https://github.com/martijnpoppen/com.we-volkswagen.connect",
   "homeyCommunityTopicId": 34493,
   "support": "https://community.athom.com/t/volkswagen-we-connect/34493",
+  "flow": {
+    "triggers": [
+      {
+        "id": "measure_connected_changed",
+        "title": {
+          "en": "Connected has changed",
+          "nl": "Verbonden is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vw-fuel"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_connected",
+            "title": {
+              "en": "Is connected",
+              "nl": "Is verbonden"
+            },
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "measure_is_home_changed",
+        "title": {
+          "en": "Is vehicle home has changed",
+          "nl": "Is voertuig thuis is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vw-fuel"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_is_home",
+            "title": {
+              "en": "Vehicle is home",
+              "nl": "Voertuig is thuis"
+            },
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "measure_is_moving_changed",
+        "title": {
+          "en": "Is vehicle moving has changed",
+          "nl": "Is voertuig in beweging is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=vw-fuel"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_is_moving",
+            "title": {
+              "en": "Vehicle is moving",
+              "nl": "Voertuig in beweging"
+            },
+            "type": "boolean"
+          }
+        ]
+      }
+    ]
+  },
   "drivers": [
     {
       "class": "lock",

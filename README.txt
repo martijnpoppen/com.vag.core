@@ -1,8 +1,10 @@
-Control your Balboa Spa with this app.
+Connect and control your VAG car with Homey.
 
-Current features:
-- Get spa status
-- Set temperature
-- Toggle heater mode
-- Lock/unlock panel
-- Control Jets, Blowers and Lights
+Requirements: A car with one of the following connected services:
+ - VW We Connect
+ - We Connect ID
+ - We Charge
+ - myAudi
+ - Skoda Connect
+ - Seat Connect
+ - We Connect Go

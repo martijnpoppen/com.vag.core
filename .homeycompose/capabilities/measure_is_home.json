@@ -7,26 +7,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/house-door.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_is_home_changed",
-        "title": {
-          "en": "Is vehicle at home changed",
-          "nl": "Is voertuig thuis is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_is_home",
-            "title": {
-              "en": "Is vehicle at home",
-              "nl": "Is voertuig thuis"
-            },
-            "type": "boolean"
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/house-door.svg"
 }

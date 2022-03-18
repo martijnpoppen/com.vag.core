@@ -1,0 +1,24 @@
+{
+  "id": "measure_is_home_changed",
+  "title": {
+    "en": "Is vehicle home has changed",
+    "nl": "Is voertuig thuis is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=vw-fuel"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_is_home",
+      "title": {
+        "en": "Vehicle is home",
+        "nl": "Voertuig is thuis"
+      },
+      "type": "boolean"
+    }
+  ]
+}

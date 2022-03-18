@@ -19,27 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/droplet-fill.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_oil_change_distance_changed",
-        "title": {
-          "en": "Oil change (KM) has changed",
-          "nl": "Olie verversen (KM) is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_oil_change_distance",
-            "title": {
-              "en": "Oil change (KM)",
-              "nl": "Olie verversen (KM)"
-            },
-            "type": "number",
-            "example": 99
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/droplet-fill.svg"
 }

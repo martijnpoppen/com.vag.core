@@ -19,27 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/droplet-half.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_oil_level_changed",
-        "title": {
-          "en": "Oil-level has changed",
-          "nl": "Olieniveau is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_oil_level",
-            "title": {
-              "en": "Oil-level",
-              "nl": "Olieniveau"
-            },
-            "type": "number",
-            "example": 99
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/droplet-half.svg"
 }

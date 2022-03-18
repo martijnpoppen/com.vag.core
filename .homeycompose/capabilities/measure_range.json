@@ -19,27 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/mileage.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_range_changed",
-        "title": {
-          "en": "Range has changed",
-          "nl": "Actieradius is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_range",
-            "title": {
-              "en": "Range",
-              "nl": "Actieradius"
-            },
-            "type": "number",
-            "example": 99
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/mileage.svg"
 }

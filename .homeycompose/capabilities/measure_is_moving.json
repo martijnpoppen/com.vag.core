@@ -7,26 +7,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/speedometer.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_is_moving_changed",
-        "title": {
-          "en": "Vehicle moving has changed",
-          "nl": "Voertuig in beweging is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_is_home",
-            "title": {
-              "en": "Is vehicle moving",
-              "nl": "Is voertuig in beweging"
-            },
-            "type": "boolean"
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/speedometer.svg"
 }

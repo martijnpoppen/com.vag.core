@@ -19,27 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/mileage.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_distance_driven_changed",
-        "title": {
-          "en": "The driven mileage has changed",
-          "nl": "De gereden afstand is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_distance_driven",
-            "title": {
-              "en": "Driven mileage",
-              "nl": "Gereden afstand"
-            },
-            "type": "number",
-            "example": 99
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/mileage.svg"
 }

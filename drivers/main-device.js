@@ -10,6 +10,7 @@ module.exports = class mainDevice extends Homey.Device {
             this.homey.app.log('[Device] - init =>', this.getName());
             this.setUnavailable(`Initializing ${this.getName()}`);
 
+            await this.initStore();
             await this.checkCapabilities();
             await this.setVwWeConnectClient();
             await this.setCapabilityListeners();
@@ -70,7 +71,15 @@ module.exports = class mainDevice extends Homey.Device {
                 pin: this.config.pin,
                 interval: this.config.update_interval
             });
-            this._weConnectClient.sendEvent('ready');
+
+            await this._weConnectClient.login();
+            await sleep(1000);
+            await this._weConnectClient.onUnload(() => {});
+            await this._weConnectClient.getVehicles();
+            await this._weConnectClient.getHomeRegion(this.config.vin);
+            await this._weConnectClient.getVehicleData(this.config.vin);
+            await this._weConnectClient.getVehicleRights(this.config.vin);
+            await this._weConnectClient.setState("info.connection", true, true);
 
             await this.setCapabilityValues(true);
             await this.setAvailable();
@@ -130,15 +139,32 @@ module.exports = class mainDevice extends Homey.Device {
         this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues`);
 
         try {
-            if (check) {
-                await sleep(15000);
-            }
-
             const settings = this.getSettings();
             const vin = settings.vin;
+            const forceUpdate = this.getStoreValue("forceUpdate")
+
+            if (check || forceUpdate >= 360) {
+                this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
+
+                await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
+                    this.homey.app.log("force status update Failed");
+                });
+                await sleep(5000);
+                await this._weConnectClient.updateStatus();
+                await sleep(10000);
+
+                this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
+            } else { 
+                this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
+
+                await this._weConnectClient.updateStatus();
+                await sleep(10000);
+
+                this.setStoreValue("forceUpdate", forceUpdate + settings.update_interval).catch(this.homey.app.error);
+            }
+
             const deviceInfo = this._weConnectClient.getState();
             const deviceInfoTransformed = dottie.transform(deviceInfo);
-
             const vinData = deviceInfoTransformed[vin];
 
             if (vinData && vinData.status) {
@@ -199,12 +225,10 @@ module.exports = class mainDevice extends Homey.Device {
 
     async setLocation(position) {
         try {
-            // this.homey.app.log(`[Device] ${this.getName()} - setLocation => position =>`, position);
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
             const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(position.latitude / 1000000), parseFloat(position.longitude / 1000000));
 
-            // this.homey.app.log(`[Device] ${this.getName()} - setLocation =>`, setLocation);
             await this.setCapabilityValue('measure_is_home', setLocation <= 1);
         } catch (error) {
             this.homey.app.log(error);
@@ -282,8 +306,14 @@ module.exports = class mainDevice extends Homey.Device {
         }
     }
 
+    async initStore() {
+        const forceUpdate = this.getStoreValue("forceUpdate");
+        if(!forceUpdate) {
+            this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
+        }
+    }
+
     onDeleted() {
         this.clearIntervals();
-        this._weConnectClient.sendEvent('unload');
     }
 };

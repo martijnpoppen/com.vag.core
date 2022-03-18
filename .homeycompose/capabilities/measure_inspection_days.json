@@ -19,27 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/search.svg",
-  "$flow": {
-    "triggers": [
-      {
-        "id": "measure_inspection_days_changed",
-        "title": {
-          "en": "The inspection (Days) has changed",
-          "nl": "De inspectie (Dagen) is veranderd"
-        },
-        "tokens": [
-          {
-            "name": "measure_inspection_days",
-            "title": {
-              "en": "inspection (Days)",
-              "nl": "Inspectie (Dagen)"
-            },
-            "type": "number",
-            "example": 99
-          }
-        ]
-      }
-    ]
-  }
+  "icon": "assets/icons/search.svg"
 }

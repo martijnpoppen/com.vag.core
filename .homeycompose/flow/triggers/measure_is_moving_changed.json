@@ -1,0 +1,25 @@
+{
+    "id": "measure_is_moving_changed",
+    "title": {
+      "en": "Is vehicle moving has changed",
+      "nl": "Is voertuig in beweging is veranderd"
+    },
+    "args": [
+      {
+        "type": "device",
+        "name": "device",
+        "filter": "driver_id=vw-fuel"
+      }
+    ],
+    "tokens": [
+      {
+        "name": "measure_is_moving",
+        "title": {
+          "en": "Vehicle is moving",
+            "nl": "Voertuig in beweging"
+        },
+        "type": "boolean"
+      }
+    ]
+  }
+  

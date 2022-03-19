@@ -43,5 +43,8 @@
   },
   "0.1.4": {
     "en": "FIX: issue with data updates"
+  },
+  "0.1.5": {
+    "en": "FIX: add logging"
   }
 }

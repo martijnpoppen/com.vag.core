@@ -1,7 +1,7 @@
 const Homey = require('homey');
 const VwWeconnect = require('../lib/@iobroker/iobroker.vw-connect');
 const dottie = require('dottie');
-const { sleep, decrypt, encrypt, calcCrow } = require('../lib/helpers');
+const { sleep, decrypt, encrypt, calcCrow, get } = require('../lib/helpers');
 const status_types = require('../constants/status_types');
 
 module.exports = class mainDevice extends Homey.Device {
@@ -75,10 +75,15 @@ module.exports = class mainDevice extends Homey.Device {
             await this._weConnectClient.login();
             await sleep(1000);
             await this._weConnectClient.onUnload(() => {});
+            await sleep(1000);
             await this._weConnectClient.getVehicles();
+            await sleep(1000);
             await this._weConnectClient.getHomeRegion(this.config.vin);
+            await sleep(1000);
             await this._weConnectClient.getVehicleData(this.config.vin);
+            await sleep(1000);
             await this._weConnectClient.getVehicleRights(this.config.vin);
+            await sleep(1000);
             await this._weConnectClient.setState("info.connection", true, true);
 
             await this.setCapabilityValues(true);
@@ -168,29 +173,44 @@ module.exports = class mainDevice extends Homey.Device {
             const vinData = deviceInfoTransformed[vin];
 
             if (vinData && vinData.status) {
-                const { status, general, position } = vinData;
-                const { isCarLocked, outsideTemperature } = status;
-                const { isConnect } = general;
-                const { isMoving, carCoordinate } = position;
-                const inspectionDays = status[`data_${status_types.MAINTENANCE}`][`field_${status_types.INTERVAL_TIME_TO_INSPECTION}`] || { value: 0 };
-                const inspectionDistance = status[`data_${status_types.MAINTENANCE}`][`field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}`] || { value: 0 };
-                const oilChangeDays = status[`data_${status_types.MAINTENANCE}`][`field_${status_types.INTERVAL_TIME_TO_OIL_CHANGE}`] || { value: 0 };
-                const oilChangeDistance = status[`data_${status_types.MAINTENANCE}`][`field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}`] || { value: 0 };
-                const distanceDriven = status[`data_${status_types.KILOMETER_STATUS}`][`field_${status_types.KILOMETER_STATUS}`] || { value: 0 };
-                const oilLevel = status[`data_${status_types.OIL_LEVEL_PERCENTAGE}`][`field_${status_types.OIL_LEVEL_PERCENTAGE}`] || { value: 0 };
+                const status = get(vinData, `status`, null);
+                const general = get(vinData, `general`, null);
+                const position = get(vinData, `position`, null);
+                
+                const isCarLocked = get(status, `isCarLocked`, false);
+                const outsideTemperature = get(status, `outsideTemperature`, 0);
+                const isMoving = get(position, `isMoving`, false);
+                const carCoordinate = get(position, `carCoordinate`, {latitude: 0, longitude: 0});
+                const isConnect = get(general, `isConnect`, false);
+
+                const inspectionDays = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}`, { value: 0 });
+                const inspectionDistance = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}`, { value: 0 });
+                const oilChangeDays = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_OIL_CHANGE}`, { value: 0 });
+                const oilChangeDistance = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}`, { value: 0 });
+                const distanceDriven = get(status, `data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}`, { value: 0 });
+                const oilLevel = get(status, `data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}`, { value: 0 });
 
                 let fuelLevel = { value: 0 };
                 let batteryLevel = { value: 0 };
                 let rangeDistance = { value: 0 };
 
-                if (status[`data_${status_types.LEVELS}`]) {
-                    fuelLevel = status[`data_${status_types.LEVELS}`][`field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}`] || fuelLevel;
-                    batteryLevel = status[`data_${status_types.LEVELS}`][`field_${status_types.STATE_OF_CHARGE}`] || batteryLevel;
-                    rangeDistance = status[`data_${status_types.LEVELS}`][`field_${status_types.TOTAL_RANGE}`] || rangeDistance;
-                } else if (status[`data_${status_types.LEVELS2}`]) {
-                    fuelLevel = status[`data_${status_types.LEVELS2}`][`field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}`] || fuelLevel;
-                    batteryLevel = status[`data_${status_types.LEVELS2}`][`field_${status_types.STATE_OF_CHARGE}`] || batteryLevel;
-                    rangeDistance = status[`data_${status_types.LEVELS2}`][`field_${status_types.TOTAL_RANGE}`] || rangeDistance;
+                if (get(status, `data_${status_types.LEVELS}`, false)) {
+                    fuelLevel = get(status, `data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}`, fuelLevel);
+                    batteryLevel = get(status, `data_${status_types.LEVELS}.field_${status_types.STATE_OF_CHARGE}`, batteryLevel);
+                    rangeDistance = get(status, `data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}`, rangeDistance);
+                } else if (get(status, `data_${status_types.LEVELS2}`, false)) {
+                    fuelLevel = get(status, `data_${status_types.LEVELS2}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}`, fuelLevel);
+                    batteryLevel = get(status, `data_${status_types.LEVELS2}.field_${status_types.STATE_OF_CHARGE}`, batteryLevel);
+                    rangeDistance = get(status, `data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}`, rangeDistance);
+                } else {
+                    // ID3
+                    if (get(status, `rangeStatus`, false)) {
+                        rangeDistance = get(status, `rangeStatus.totalRange_km`, rangeDistance);
+                    }
+    
+                    if (get(status, `batteryStatus`, false)) {
+                        batteryLevel = get(status, `rangeStatus.currentSOC_pct`, batteryLevel);
+                    }
                 }
 
                 // this.homey.app.log(`[Device] ${this.getName()} - values => status =>`, status);

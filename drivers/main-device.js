@@ -217,25 +217,25 @@ module.exports = class mainDevice extends Homey.Device {
                 // this.homey.app.log(`[Device] ${this.getName()} - values => general =>`, general);
 
                 // ------------ Get values --------------
-                await this.setCapabilityValue('locked', isCarLocked);
-                await this.setCapabilityValue('measure_connected', isConnect);
-                await this.setCapabilityValue('measure_temperature', outsideTemperature);
-                await this.setCapabilityValue('measure_is_moving', isMoving);
+                await this.setValue('locked', isCarLocked);
+                await this.setValue('measure_connected', isConnect);
+                await this.setValue('measure_temperature', outsideTemperature);
+                await this.setValue('measure_is_moving', isMoving);
                 await this.setLocation(carCoordinate);
-                await this.setCapabilityValue('measure_distance_driven', distanceDriven && distanceDriven.value);
-                await this.setCapabilityValue('measure_inspection_distance', Math.abs(inspectionDistance && inspectionDistance.value));
-                await this.setCapabilityValue('measure_inspection_days', Math.abs(inspectionDays && inspectionDays.value));
-                await this.setCapabilityValue('measure_range', Math.abs(rangeDistance && rangeDistance.value));
+                await this.setValue('measure_distance_driven', distanceDriven && distanceDriven.value);
+                await this.setValue('measure_inspection_distance', Math.abs(inspectionDistance && inspectionDistance.value));
+                await this.setValue('measure_inspection_days', Math.abs(inspectionDays && inspectionDays.value));
+                await this.setValue('measure_range', Math.abs(rangeDistance && rangeDistance.value));
 
                 if (this.hasCapability('measure_fuel_level')) {
-                    await this.setCapabilityValue('measure_oil_level', Math.abs(oilLevel && oilLevel.value));
-                    await this.setCapabilityValue('measure_fuel_level', Math.abs(fuelLevel && fuelLevel.value));
-                    await this.setCapabilityValue('measure_oil_change_distance', Math.abs(oilChangeDistance && oilChangeDistance.value));
-                    await this.setCapabilityValue('measure_oil_change_days', Math.abs(oilChangeDays && oilChangeDays.value));
+                    await this.setValue('measure_oil_level', Math.abs(oilLevel && oilLevel.value));
+                    await this.setValue('measure_fuel_level', Math.abs(fuelLevel && fuelLevel.value));
+                    await this.setValue('measure_oil_change_distance', Math.abs(oilChangeDistance && oilChangeDistance.value));
+                    await this.setValue('measure_oil_change_days', Math.abs(oilChangeDays && oilChangeDays.value));
                 }
 
                 if (this.hasCapability('measure_battery')) {
-                    await this.setCapabilityValue('measure_battery', Math.abs(batteryLevel && batteryLevel.value));
+                    await this.setValue('measure_battery', Math.abs(batteryLevel && batteryLevel.value));
                 }
             }
         } catch (error) {
@@ -249,10 +249,15 @@ module.exports = class mainDevice extends Homey.Device {
             const HomeyLng = this.homey.geolocation.getLongitude();
             const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(position.latitude / 1000000), parseFloat(position.longitude / 1000000));
 
-            await this.setCapabilityValue('measure_is_home', setLocation <= 1);
+            await this.setValue('measure_is_home', setLocation <= 1);
         } catch (error) {
             this.homey.app.log(error);
         }
+    }
+
+    async setValue(key, value) {
+        this.homey.app.log(`[Device] ${this.getName()} - setValue =>`, key, value);
+        await this.setCapabilityValue(key, value);
     }
 
     // ------------- Intervals -------------

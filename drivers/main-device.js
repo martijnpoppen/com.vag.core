@@ -256,7 +256,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async setValue(key, value) {
-        this.homey.app.log(`[Device] ${this.getName()} - setValue =>`, key, value);
+        this.homey.app.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
         await this.setCapabilityValue(key, value);
     }
 

@@ -49,5 +49,8 @@
   },
   "0.1.6": {
     "en": "FIX: prevent crashing when data unknown - NEW: add ID3 battery and range status"
+  },
+  "0.1.7": {
+    "en": "NEW: Log all values when set"
   }
 }

@@ -1,6 +1,6 @@
 {
   "id": "com.we-volkswagen.connect",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [

@@ -166,6 +166,19 @@
           },
           "children": [
             {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -176,7 +189,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
+              "value": false
             },
             {
               "id": "remote_flash_honk",
@@ -189,20 +202,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
-            },
-            {
-              "id": "remote_climatisation",
-              "type": "checkbox",
-              "label": {
-                "en": "Setting: Climatisation",
-                "nl": "Instelling Klimatiseren"
-              },
-              "hint": {
-                "en": "Checking this box will add the option to trigger this functionality",
-                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
-              },
-              "value": true
+              "value": false
             }
           ]
         },
@@ -278,11 +278,11 @@
       ],
       "class": "lock",
       "capabilities": [
-        "measure_temperature",
-        "measure_is_home",
-        "measure_connected",
         "measure_battery",
+        "measure_connected",
+        "measure_is_home",
         "measure_range",
+        "measure_temperature",
         "remote_battery_charge"
       ],
       "capabilitiesOptions": {
@@ -417,6 +417,19 @@
           },
           "children": [
             {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -427,7 +440,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
+              "value": false
             },
             {
               "id": "remote_flash_honk",
@@ -440,20 +453,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
-            },
-            {
-              "id": "remote_climatisation",
-              "type": "checkbox",
-              "label": {
-                "en": "Setting: Climatisation",
-                "nl": "Instelling Klimatiseren"
-              },
-              "hint": {
-                "en": "Checking this box will add the option to trigger this functionality",
-                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
-              },
-              "value": true
+              "value": false
             }
           ]
         },
@@ -531,17 +531,17 @@
       "capabilities": [
         "locked",
         "measure_connected",
-        "measure_temperature",
         "measure_distance_driven",
-        "measure_range",
         "measure_fuel_level",
-        "measure_oil_level",
+        "measure_inspection_days",
+        "measure_inspection_distance",
         "measure_is_home",
         "measure_is_moving",
-        "measure_inspection_distance",
-        "measure_inspection_days",
+        "measure_oil_change_days",
         "measure_oil_change_distance",
-        "measure_oil_change_days"
+        "measure_oil_level",
+        "measure_range",
+        "measure_temperature"
       ],
       "capabilitiesOptions": {
         "measure_temperature": {
@@ -664,6 +664,19 @@
           },
           "children": [
             {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -674,7 +687,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
+              "value": false
             },
             {
               "id": "remote_flash_honk",
@@ -687,20 +700,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
-            },
-            {
-              "id": "remote_climatisation",
-              "type": "checkbox",
-              "label": {
-                "en": "Setting: Climatisation",
-                "nl": "Instelling Klimatiseren"
-              },
-              "hint": {
-                "en": "Checking this box will add the option to trigger this functionality",
-                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
-              },
-              "value": true
+              "value": false
             }
           ]
         },
@@ -777,18 +777,18 @@
       "class": "lock",
       "capabilities": [
         "locked",
+        "measure_battery",
         "measure_connected",
-        "measure_temperature",
         "measure_distance_driven",
-        "measure_range",
         "measure_fuel_level",
+        "measure_inspection_days",
+        "measure_inspection_distance",
         "measure_is_home",
         "measure_is_moving",
-        "measure_inspection_distance",
-        "measure_inspection_days",
-        "measure_oil_change_distance",
         "measure_oil_change_days",
-        "measure_battery",
+        "measure_oil_change_distance",
+        "measure_range",
+        "measure_temperature",
         "remote_battery_charge"
       ],
       "capabilitiesOptions": {
@@ -802,12 +802,6 @@
           "title": {
             "en": "Outdoor temperature",
             "nl": "Buiten temperatuur"
-          }
-        },
-        "measure_range.ev": {
-          "title": {
-            "en": "Range electric",
-            "nl": "Actieradius elektrisch"
           }
         }
       },
@@ -929,6 +923,19 @@
           },
           "children": [
             {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -939,7 +946,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
+              "value": false
             },
             {
               "id": "remote_flash_honk",
@@ -952,20 +959,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
-            },
-            {
-              "id": "remote_climatisation",
-              "type": "checkbox",
-              "label": {
-                "en": "Setting: Climatisation",
-                "nl": "Instelling Klimatiseren"
-              },
-              "hint": {
-                "en": "Checking this box will add the option to trigger this functionality",
-                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
-              },
-              "value": true
+              "value": false
             }
           ]
         },
@@ -1041,11 +1035,11 @@
       ],
       "class": "lock",
       "capabilities": [
-        "measure_temperature",
-        "measure_is_home",
-        "measure_connected",
         "measure_battery",
+        "measure_connected",
+        "measure_is_home",
         "measure_range",
+        "measure_temperature",
         "remote_battery_charge"
       ],
       "capabilitiesOptions": {
@@ -1180,6 +1174,19 @@
           },
           "children": [
             {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -1190,7 +1197,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
+              "value": false
             },
             {
               "id": "remote_flash_honk",
@@ -1203,20 +1210,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
-            },
-            {
-              "id": "remote_climatisation",
-              "type": "checkbox",
-              "label": {
-                "en": "Setting: Climatisation",
-                "nl": "Instelling Klimatiseren"
-              },
-              "hint": {
-                "en": "Checking this box will add the option to trigger this functionality",
-                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
-              },
-              "value": true
+              "value": false
             }
           ]
         },
@@ -1294,17 +1288,17 @@
       "capabilities": [
         "locked",
         "measure_connected",
-        "measure_temperature",
         "measure_distance_driven",
-        "measure_range",
         "measure_fuel_level",
-        "measure_oil_level",
+        "measure_inspection_days",
+        "measure_inspection_distance",
         "measure_is_home",
         "measure_is_moving",
-        "measure_inspection_distance",
-        "measure_inspection_days",
+        "measure_oil_change_days",
         "measure_oil_change_distance",
-        "measure_oil_change_days"
+        "measure_oil_level",
+        "measure_range",
+        "measure_temperature"
       ],
       "capabilitiesOptions": {
         "measure_temperature": {
@@ -1427,6 +1421,19 @@
           },
           "children": [
             {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -1437,7 +1444,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
+              "value": false
             },
             {
               "id": "remote_flash_honk",
@@ -1450,20 +1457,7 @@
                 "en": "Checking this box will add the option to trigger this functionality",
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
-              "value": true
-            },
-            {
-              "id": "remote_climatisation",
-              "type": "checkbox",
-              "label": {
-                "en": "Setting: Climatisation",
-                "nl": "Instelling Klimatiseren"
-              },
-              "hint": {
-                "en": "Checking this box will add the option to trigger this functionality",
-                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
-              },
-              "value": true
+              "value": false
             }
           ]
         },
@@ -1540,18 +1534,18 @@
       "class": "lock",
       "capabilities": [
         "locked",
+        "measure_battery",
         "measure_connected",
-        "measure_temperature",
         "measure_distance_driven",
-        "measure_range",
         "measure_fuel_level",
+        "measure_inspection_days",
+        "measure_inspection_distance",
         "measure_is_home",
         "measure_is_moving",
-        "measure_inspection_distance",
-        "measure_inspection_days",
-        "measure_oil_change_distance",
         "measure_oil_change_days",
-        "measure_battery",
+        "measure_oil_change_distance",
+        "measure_range",
+        "measure_temperature",
         "remote_battery_charge"
       ],
       "capabilitiesOptions": {
@@ -1565,12 +1559,6 @@
           "title": {
             "en": "Outdoor temperature",
             "nl": "Buiten temperatuur"
-          }
-        },
-        "measure_range.ev": {
-          "title": {
-            "en": "Range electric",
-            "nl": "Actieradius elektrisch"
           }
         }
       },

@@ -1,11 +1,11 @@
 {
   "class": "lock",
   "capabilities": [
-    "measure_temperature",
-    "measure_is_home",
-    "measure_connected",
     "measure_battery",
+    "measure_connected",
+    "measure_is_home",
     "measure_range",
+    "measure_temperature",
     "remote_battery_charge"
   ],
   "capabilitiesOptions": {

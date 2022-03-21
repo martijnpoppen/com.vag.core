@@ -1947,7 +1947,7 @@
       "type": "number",
       "title": {
         "en": "Remaining charge time",
-        "nl": "Resterdende laadtijd"
+        "nl": "Resterende laadtijd"
       },
       "units": {
         "en": "min",
@@ -1956,7 +1956,7 @@
       "insights": true,
       "desc": {
         "en": "Remaining charge time in min",
-        "nl": "Resterdende laadtijd in min"
+        "nl": "Resterende laadtijd in min"
       },
       "chartType": "spline",
       "decimals": 2,
@@ -1972,7 +1972,7 @@
       "type": "number",
       "title": {
         "en": "Remaining climate time",
-        "nl": "Resterdende klimaattijd"
+        "nl": "Resterende klimaattijd"
       },
       "units": {
         "en": "min",
@@ -1981,7 +1981,7 @@
       "insights": true,
       "desc": {
         "en": "Remaining climate time in min",
-        "nl": "Resterdende klimaattijd in min"
+        "nl": "Resterende klimaattijd in min"
       },
       "chartType": "spline",
       "decimals": 2,

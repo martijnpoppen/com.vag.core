@@ -13,9 +13,8 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
-        measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
-        measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`
-        
+        measure_fuel_level: `status.data_${status_types.LEVELS2}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
+        measure_range: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`
     },
     'vw-hybrid': {
         locked: `status.isCarLocked`,
@@ -49,6 +48,8 @@ module.exports = {
     },
     'vw-ev-id': {
         measure_temperature: `status.climatisationSettings.targetTemperature_C`,
+        measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
+        measure_range: `status.rangeStatus.totalRange_km`,
         measure_is_home: {
             latitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_latitude',
             longitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_longitude'
@@ -56,8 +57,6 @@ module.exports = {
         measure_connected: `status.readinessStatus.connectionState.isOnline`,
         measure_battery: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
-        measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
-        measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_range: `status.rangeStatus.totalRange_km`
+        measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`
     }
 };

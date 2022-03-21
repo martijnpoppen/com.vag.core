@@ -13,7 +13,7 @@ module.exports = class mainDevice extends coreDevice {
             const type = settings.type;
             const forceUpdate = this.getStoreValue("forceUpdate")
 
-            if (forceUpdate >= 360) {
+            if (check || forceUpdate >= 360) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
                 await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
@@ -46,12 +46,14 @@ module.exports = class mainDevice extends coreDevice {
 
                     this.homey.app.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
-                    if(key === 'measure_is_home') {
-                        const lng = get(vinData, value.latitude, 0);
-                        const lat = get(vinData, value.longitude, 0);
+                    if(key.includes('measure_is_home')) {
+                        const lat = get(vinData, value.latitude, 0);
+                        const lng = get(vinData, value.longitude, 0);
+
+                        this.homey.app.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
                         await this.setLocation(lat, lng);    
-                    } else if((status || status !== null) && typeof status == 'number') {
+                    }else if((status || status !== null) && typeof status == 'number') {
                         if(key.includes('measure_temperature') && status > 2000) {
                             await this.setValue(key, Math.round(status - 2731.5) / 10.0);
                         } else {

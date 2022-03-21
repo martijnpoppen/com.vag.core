@@ -52,5 +52,8 @@
   },
   "0.1.7": {
     "en": "NEW: Log all values when set"
+  },
+  "0.2.0": {
+    "en": "NEW: status mapping - different statuses and capabilities per model"
   }
 }

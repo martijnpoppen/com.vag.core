@@ -8,7 +8,7 @@ module.exports = class mainDevice extends Homey.Device {
     async onInit() {
         try {
             this.homey.app.log('[Device] - init =>', this.getName());
-            this.setUnavailable(`Initializing ${this.getName()}`);
+            this.setUnavailable(`Starting... - ${this.getName()}`);
 
             await this.initStore();
             await this.checkCapabilities();
@@ -118,7 +118,17 @@ module.exports = class mainDevice extends Homey.Device {
 
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { val });
+
+                    if(type === 'id') {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { val });    
+                    } else {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { val });
+                    }
+                }
+
+                if ('remote_climatisation' in value) {
+                    const val = value.remote_battery_charge;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisation`, { val });
                 }
             } else {
                 throw new Error('S-PIN missing');
@@ -176,13 +186,13 @@ module.exports = class mainDevice extends Homey.Device {
                         const lat = get(vinData, value.longitude, 0);
 
                         await this.setLocation(lat, lng);    
-                    } else if(status && status.value && typeof status.value == 'number') {
-                        await this.setValue(key, Math.abs(status.value));
-                    } else if(status && status.value) {
-                        await this.setValue(key, status.value);
-                    } else if((status || status === 0) && typeof status == 'number') {
-                        await this.setValue(key, Math.abs(status));
-                    } else if(status) {
+                    } else if((status || status !== null) && typeof status == 'number') {
+                        if(key.includes('measure_temperature') && status > 2000) {
+                            await this.setValue(key, Math.round(status - 2731.5) / 10.0);
+                        } else {
+                            await this.setValue(key, Math.abs(status));
+                        }
+                    } else if(status || status !== null) {
                         await this.setValue(key, status);
                     }
                 }

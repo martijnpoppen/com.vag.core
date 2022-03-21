@@ -28,7 +28,7 @@ module.exports = {
         measure_is_moving: `position.isMoving`,
         measure_oil_change_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_OIL_CHANGE}.value`,
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
-        measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_DRIVE}.value`,
+        measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_temperature: `climater.settings.targetTemperature.content`,
         'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`
     },

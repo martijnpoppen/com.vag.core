@@ -58,5 +58,8 @@
   },
   "0.2.1": {
     "en": "FIX: capability sorting"
+  },
+  "0.2.2": {
+    "en": "FIX: E-golf"
   }
 }

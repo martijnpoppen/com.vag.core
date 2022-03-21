@@ -32,7 +32,20 @@
             "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
           },
           "value": true
-        }
+        },
+        {
+            "id": "remote_climatisation",
+            "type": "checkbox",
+            "label": {
+              "en": "Setting: Climatisation",
+              "nl": "Instelling Klimatiseren"
+            },
+            "hint": {
+              "en": "Checking this box will add the option to trigger this functionality",
+              "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            },
+            "value": true
+          }
       ]
     },
     {

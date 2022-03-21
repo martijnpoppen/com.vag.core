@@ -2,7 +2,7 @@ const Homey = require('homey');
 const VwWeconnect = require('../lib/@iobroker/iobroker.vw-connect');
 const dottie = require('dottie');
 const { sleep, decrypt, encrypt, calcCrow, get } = require('../lib/helpers');
-const status_types = require('../constants/status_types');
+const capability_map = require('../constants/capability_map');
 
 module.exports = class mainDevice extends Homey.Device {
     async onInit() {
@@ -72,19 +72,10 @@ module.exports = class mainDevice extends Homey.Device {
                 interval: this.config.update_interval
             });
 
-            await this._weConnectClient.login();
+            await this._weConnectClient.onReady();
             await sleep(1000);
             await this._weConnectClient.onUnload(() => {});
             await sleep(1000);
-            await this._weConnectClient.getVehicles();
-            await sleep(1000);
-            await this._weConnectClient.getHomeRegion(this.config.vin);
-            await sleep(1000);
-            await this._weConnectClient.getVehicleData(this.config.vin);
-            await sleep(1000);
-            await this._weConnectClient.getVehicleRights(this.config.vin);
-            await sleep(1000);
-            await this._weConnectClient.setState("info.connection", true, true);
 
             await this.setCapabilityValues(true);
             await this.setAvailable();
@@ -146,13 +137,14 @@ module.exports = class mainDevice extends Homey.Device {
         try {
             const settings = this.getSettings();
             const vin = settings.vin;
+            const type = settings.type;
             const forceUpdate = this.getStoreValue("forceUpdate")
 
-            if (check || forceUpdate >= 360) {
+            if (forceUpdate >= 360) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
                 await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
-                    this.homey.app.log("force status update Failed");
+                    this.homey.app.log("force status update Failed", `${this.driver.id}-${type}`);
                 });
                 await sleep(5000);
                 await this._weConnectClient.updateStatus();
@@ -171,71 +163,28 @@ module.exports = class mainDevice extends Homey.Device {
             const deviceInfo = this._weConnectClient.getState();
             const deviceInfoTransformed = dottie.transform(deviceInfo);
             const vinData = deviceInfoTransformed[vin];
+            const capabilityMapData = `${this.driver.id}-${type}` in capability_map ? capability_map[`${this.driver.id}-${type}`] : capability_map[`${this.driver.id}`];
+
+            this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
             if (vinData && vinData.status) {
-                const status = get(vinData, `status`, null);
-                const general = get(vinData, `general`, null);
-                const position = get(vinData, `position`, null);
-                
-                const isCarLocked = get(status, `isCarLocked`, false);
-                const outsideTemperature = get(status, `outsideTemperature`, 0);
-                const isMoving = get(position, `isMoving`, false);
-                const carCoordinate = get(position, `carCoordinate`, {latitude: 0, longitude: 0});
-                const isConnect = get(general, `isConnect`, false);
+                for (const [key, value] of Object.entries(capabilityMapData)) {
+                    const status = get(vinData, value, null);
 
-                const inspectionDays = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}`, { value: 0 });
-                const inspectionDistance = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}`, { value: 0 });
-                const oilChangeDays = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_OIL_CHANGE}`, { value: 0 });
-                const oilChangeDistance = get(status, `data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}`, { value: 0 });
-                const distanceDriven = get(status, `data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}`, { value: 0 });
-                const oilLevel = get(status, `data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}`, { value: 0 });
+                    if(key === 'measure_is_home') {
+                        const lng = get(vinData, value.latitude, 0);
+                        const lat = get(vinData, value.longitude, 0);
 
-                let fuelLevel = { value: 0 };
-                let batteryLevel = { value: 0 };
-                let rangeDistance = { value: 0 };
-
-                if (get(status, `data_${status_types.LEVELS}`, false)) {
-                    fuelLevel = get(status, `data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}`, fuelLevel);
-                    batteryLevel = get(status, `data_${status_types.LEVELS}.field_${status_types.STATE_OF_CHARGE}`, batteryLevel);
-                    rangeDistance = get(status, `data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}`, rangeDistance);
-                } else if (get(status, `data_${status_types.LEVELS2}`, false)) {
-                    fuelLevel = get(status, `data_${status_types.LEVELS2}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}`, fuelLevel);
-                    batteryLevel = get(status, `data_${status_types.LEVELS2}.field_${status_types.STATE_OF_CHARGE}`, batteryLevel);
-                    rangeDistance = get(status, `data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}`, rangeDistance);
-                } else {
-                    // ID3
-                    if (get(status, `rangeStatus`, false)) {
-                        rangeDistance = get(status, `rangeStatus.totalRange_km`, rangeDistance);
+                        await this.setLocation(lat, lng);    
+                    } else if(status && status.value && typeof status.value == 'number') {
+                        await this.setValue(key, Math.abs(status.value));
+                    } else if(status && status.value) {
+                        await this.setValue(key, status.value);
+                    } else if((status || status === 0) && typeof status == 'number') {
+                        await this.setValue(key, Math.abs(status));
+                    } else if(status) {
+                        await this.setValue(key, status);
                     }
-    
-                    if (get(status, `batteryStatus`, false)) {
-                        batteryLevel = get(status, `rangeStatus.currentSOC_pct`, batteryLevel);
-                    }
-                }
-
-                // this.homey.app.log(`[Device] ${this.getName()} - values => status =>`, status);
-                // this.homey.app.log(`[Device] ${this.getName()} - values => general =>`, general);
-
-                // ------------ Get values --------------
-                await this.setValue('locked', isCarLocked);
-                await this.setValue('measure_connected', isConnect);
-                await this.setValue('measure_temperature', outsideTemperature);
-                await this.setValue('measure_is_moving', isMoving);
-                await this.setLocation(carCoordinate);
-                await this.setValue('measure_distance_driven', distanceDriven && distanceDriven.value);
-                await this.setValue('measure_inspection_distance', Math.abs(inspectionDistance && inspectionDistance.value));
-                await this.setValue('measure_inspection_days', Math.abs(inspectionDays && inspectionDays.value));
-                await this.setValue('measure_range', Math.abs(rangeDistance && rangeDistance.value));
-
-                if (this.hasCapability('measure_fuel_level')) {
-                    await this.setValue('measure_oil_level', Math.abs(oilLevel && oilLevel.value));
-                    await this.setValue('measure_fuel_level', Math.abs(fuelLevel && fuelLevel.value));
-                    await this.setValue('measure_oil_change_distance', Math.abs(oilChangeDistance && oilChangeDistance.value));
-                    await this.setValue('measure_oil_change_days', Math.abs(oilChangeDays && oilChangeDays.value));
-                }
-
-                if (this.hasCapability('measure_battery')) {
-                    await this.setValue('measure_battery', Math.abs(batteryLevel && batteryLevel.value));
                 }
             }
         } catch (error) {
@@ -243,11 +192,11 @@ module.exports = class mainDevice extends Homey.Device {
         }
     }
 
-    async setLocation(position) {
+    async setLocation(lat, lng) {
         try {
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
-            const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(position.latitude / 1000000), parseFloat(position.longitude / 1000000));
+            const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(lat / 1000000), parseFloat(lng / 1000000));
 
             await this.setValue('measure_is_home', setLocation <= 1);
         } catch (error) {
@@ -291,38 +240,36 @@ module.exports = class mainDevice extends Homey.Device {
     // ------------- Capabilities -------------
     async checkCapabilities(overrideSettings = null) {
         const settings = overrideSettings ? overrideSettings : this.getSettings();
-        const driverManifest = this.driver.manifest;
-        const driverCapabilities = driverManifest.capabilities;
+        const driverCapabilities = this.driver.manifest.capabilities;
         const deviceCapabilities = this.getCapabilities();
-        const eligibleCapabilities = Object.keys(this.homey.manifest.capabilities);
+        const capabilityMapData = `${this.driver.id}-${settings.type}` in capability_map ? capability_map[`${this.driver.id}-${settings.type}`] : capability_map[`${this.driver.id}`];
         let settingsCapabilities = Object.keys(settings).filter((s) => s.startsWith('remote_') || s.startsWith('measure_'));
-
-        settingsCapabilities = settingsCapabilities.filter((c) => (eligibleCapabilities.includes(c) && settings[c] ? true : false));
+        settingsCapabilities = settingsCapabilities.filter((c) => (settings[c] ? true : false));
+        const combinedCapabilities = [...new Set([...driverCapabilities, ...Object.keys(capabilityMapData), ...settingsCapabilities])];
 
         this.homey.app.log(`[Device] ${this.getName()} - Device capabilities =>`, deviceCapabilities);
-        this.homey.app.log(`[Device] ${this.getName()} - Settings capabilities =>`, settingsCapabilities);
-        this.homey.app.log(`[Device] ${this.getName()} - Eligible capabilities =>`, eligibleCapabilities);
-        this.homey.app.log(`[Device] ${this.getName()} - Driver capabilities =>`, driverCapabilities);
+        this.homey.app.log(`[Device] ${this.getName()} - Combined capabilities =>`, combinedCapabilities);
 
-        if (deviceCapabilities.length - settingsCapabilities.length !== driverCapabilities.length) {
-            await this.updateCapabilities(driverCapabilities, deviceCapabilities, settingsCapabilities);
+        if (combinedCapabilities.length  !== deviceCapabilities.length) {
+            await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
         }
 
         return deviceCapabilities;
     }
 
-    async updateCapabilities(driverCapabilities, deviceCapabilities, settingsCapabilities) {
-        this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, [...driverCapabilities, ...settingsCapabilities]);
+    async updateCapabilities(combinedCapabilities, deviceCapabilities) {
         try {
-            deviceCapabilities.forEach((c) => {
+            const newC = combinedCapabilities.filter(d => !deviceCapabilities.includes(d));
+            const oldC = deviceCapabilities.filter(d => !combinedCapabilities.includes(d));
+
+            this.homey.app.log(`[Device] ${this.getName()} - Remove old capabilities =>`, oldC);
+            this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, newC);
+
+            oldC.forEach((c) => {
                 this.removeCapability(c);
             });
             await sleep(2000);
-            driverCapabilities.forEach((c) => {
-                this.addCapability(c);
-            });
-            await sleep(2000);
-            settingsCapabilities.forEach((c) => {
+            newC.forEach((c) => {
                 this.addCapability(c);
             });
             await sleep(2000);

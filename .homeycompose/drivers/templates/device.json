@@ -1,5 +1,4 @@
 {
-  "class": "lock",
   "icon": "{{driverAssetsPath}}/icon.svg",
   "images": {
     "large": "{{driverAssetsPath}}/images/large.png",

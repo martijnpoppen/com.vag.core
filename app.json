@@ -152,7 +152,6 @@
   },
   "drivers": [
     {
-      "class": "lock",
       "icon": "/drivers/seat-ev/assets/icon.svg",
       "images": {
         "large": "/drivers/seat-ev/assets/images/large.png",
@@ -185,6 +184,19 @@
               "label": {
                 "en": "Setting: Flash & Honk",
                 "nl": "Instelling Flitsen & Toeteren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
               },
               "hint": {
                 "en": "Checking this box will add the option to trigger this functionality",
@@ -264,23 +276,25 @@
           ]
         }
       ],
+      "class": "lock",
       "capabilities": [
-        "locked",
-        "measure_connected",
         "measure_temperature",
-        "measure_distance_driven",
-        "measure_range",
         "measure_is_home",
-        "measure_is_moving",
-        "measure_inspection_distance",
-        "measure_inspection_days",
+        "measure_connected",
         "measure_battery",
+        "measure_range",
         "remote_battery_charge"
       ],
       "capabilitiesOptions": {
         "measure_temperature": {
           "title": {
-            "en": "Outside temperature",
+            "en": "Target temperature",
+            "nl": "Doel temperatuur"
+          }
+        },
+        "measure_temperature.outdoor": {
+          "title": {
+            "en": "Outdoor temperature",
             "nl": "Buiten temperatuur"
           }
         }
@@ -389,7 +403,6 @@
       "id": "seat-ev"
     },
     {
-      "class": "lock",
       "icon": "/drivers/seat-fuel/assets/icon.svg",
       "images": {
         "large": "/drivers/seat-fuel/assets/images/large.png",
@@ -422,6 +435,19 @@
               "label": {
                 "en": "Setting: Flash & Honk",
                 "nl": "Instelling Flitsen & Toeteren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
               },
               "hint": {
                 "en": "Checking this box will add the option to trigger this functionality",
@@ -501,6 +527,7 @@
           ]
         }
       ],
+      "class": "lock",
       "capabilities": [
         "locked",
         "measure_connected",
@@ -623,7 +650,6 @@
       "id": "seat-fuel"
     },
     {
-      "class": "lock",
       "icon": "/drivers/seat-hybrid/assets/icon.svg",
       "images": {
         "large": "/drivers/seat-hybrid/assets/images/large.png",
@@ -656,6 +682,19 @@
               "label": {
                 "en": "Setting: Flash & Honk",
                 "nl": "Instelling Flitsen & Toeteren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
               },
               "hint": {
                 "en": "Checking this box will add the option to trigger this functionality",
@@ -735,6 +774,7 @@
           ]
         }
       ],
+      "class": "lock",
       "capabilities": [
         "locked",
         "measure_connected",
@@ -864,7 +904,6 @@
       "id": "seat-hybrid"
     },
     {
-      "class": "lock",
       "icon": "/drivers/vw-ev/assets/icon.svg",
       "images": {
         "large": "/drivers/vw-ev/assets/images/large.png",
@@ -897,6 +936,19 @@
               "label": {
                 "en": "Setting: Flash & Honk",
                 "nl": "Instelling Flitsen & Toeteren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
               },
               "hint": {
                 "en": "Checking this box will add the option to trigger this functionality",
@@ -976,23 +1028,25 @@
           ]
         }
       ],
+      "class": "lock",
       "capabilities": [
-        "locked",
-        "measure_connected",
         "measure_temperature",
-        "measure_distance_driven",
-        "measure_range",
         "measure_is_home",
-        "measure_is_moving",
-        "measure_inspection_distance",
-        "measure_inspection_days",
+        "measure_connected",
         "measure_battery",
+        "measure_range",
         "remote_battery_charge"
       ],
       "capabilitiesOptions": {
         "measure_temperature": {
           "title": {
-            "en": "Outside temperature",
+            "en": "Target temperature",
+            "nl": "Doel temperatuur"
+          }
+        },
+        "measure_temperature.outdoor": {
+          "title": {
+            "en": "Outdoor temperature",
             "nl": "Buiten temperatuur"
           }
         }
@@ -1101,7 +1155,6 @@
       "id": "vw-ev"
     },
     {
-      "class": "lock",
       "icon": "/drivers/vw-fuel/assets/icon.svg",
       "images": {
         "large": "/drivers/vw-fuel/assets/images/large.png",
@@ -1134,6 +1187,19 @@
               "label": {
                 "en": "Setting: Flash & Honk",
                 "nl": "Instelling Flitsen & Toeteren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
               },
               "hint": {
                 "en": "Checking this box will add the option to trigger this functionality",
@@ -1213,6 +1279,7 @@
           ]
         }
       ],
+      "class": "lock",
       "capabilities": [
         "locked",
         "measure_connected",
@@ -1335,7 +1402,6 @@
       "id": "vw-fuel"
     },
     {
-      "class": "lock",
       "icon": "/drivers/vw-hybrid/assets/icon.svg",
       "images": {
         "large": "/drivers/vw-hybrid/assets/images/large.png",
@@ -1368,6 +1434,19 @@
               "label": {
                 "en": "Setting: Flash & Honk",
                 "nl": "Instelling Flitsen & Toeteren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_climatisation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation",
+                "nl": "Instelling Klimatiseren"
               },
               "hint": {
                 "en": "Checking this box will add the option to trigger this functionality",
@@ -1447,6 +1526,7 @@
           ]
         }
       ],
+      "class": "lock",
       "capabilities": [
         "locked",
         "measure_connected",
@@ -1577,6 +1657,31 @@
     }
   ],
   "capabilities": {
+    "measure_charge_target": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Charge target",
+        "nl": "Tankniveau"
+      },
+      "units": {
+        "en": "%",
+        "nl": "%"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Charge target in %",
+        "nl": "Laaddoel in %"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/battery-full.svg"
+    },
     "measure_connected": {
       "platforms": [
         "local"
@@ -1813,6 +1918,56 @@
       "uiComponent": "sensor",
       "icon": "assets/icons/mileage.svg"
     },
+    "measure_remaining_charge_time": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Remaining charge time",
+        "nl": "Resterdende laadtijd"
+      },
+      "units": {
+        "en": "min",
+        "nl": "min"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Remaining charge time in min",
+        "nl": "Resterdende laadtijd in min"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/battery-full.svg"
+    },
+    "measure_remaining_climate_time": {
+      "platforms": [
+        "local"
+      ],
+      "type": "number",
+      "title": {
+        "en": "Remaining climate time",
+        "nl": "Resterdende klimaattijd"
+      },
+      "units": {
+        "en": "min",
+        "nl": "min"
+      },
+      "insights": true,
+      "desc": {
+        "en": "Remaining climate time in min",
+        "nl": "Resterdende klimaattijd in min"
+      },
+      "chartType": "spline",
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "assets/icons/temp.svg"
+    },
     "remote_battery_charge": {
       "platforms": [
         "local"
@@ -1821,6 +1976,19 @@
       "title": {
         "en": "Start charge",
         "nl": "Start laden"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_climatisation": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start climatisation",
+        "nl": "Start klimatiseren"
       },
       "getable": true,
       "setable": true,

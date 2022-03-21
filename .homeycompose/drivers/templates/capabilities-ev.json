@@ -1,23 +1,25 @@
 {
+  "class": "lock",
   "capabilities": [
-    "locked",
-    "measure_connected",
     "measure_temperature",
-    "measure_distance_driven",
-    "measure_range",
     "measure_is_home",
-    "measure_is_moving",
-    "measure_inspection_distance",
-    "measure_inspection_days",
+    "measure_connected",
     "measure_battery",
+    "measure_range",
     "remote_battery_charge"
   ],
   "capabilitiesOptions": {
     "measure_temperature": {
       "title": {
-        "en": "Outside temperature",
-        "nl": "Buiten temperatuur"
+        "en": "Target temperature",
+        "nl": "Doel temperatuur"
       }
-    }
+    },
+    "measure_temperature.outdoor": {
+        "title": {
+          "en": "Outdoor temperature",
+          "nl": "Buiten temperatuur"
+        }
+      }
   }
 }

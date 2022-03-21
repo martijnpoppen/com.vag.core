@@ -1,0 +1,23 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Remaining climate time",
+    "nl": "Resterdende klimaattijd"
+  },
+  "units": {
+    "en": "min",
+    "nl": "min"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Remaining climate time in min",
+    "nl": "Resterdende klimaattijd in min"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/temp.svg"
+}

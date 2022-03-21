@@ -1,4 +1,5 @@
 {
+  "class": "lock",
   "capabilities": [
     "locked",
     "measure_connected",

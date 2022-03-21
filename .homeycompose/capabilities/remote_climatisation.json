@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Start climatisation",
+    "nl": "Start klimatiseren"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

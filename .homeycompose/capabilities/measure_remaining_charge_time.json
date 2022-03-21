@@ -1,0 +1,23 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Remaining charge time",
+    "nl": "Resterdende laadtijd"
+  },
+  "units": {
+    "en": "min",
+    "nl": "min"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Remaining charge time in min",
+    "nl": "Resterdende laadtijd in min"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/battery-full.svg"
+}

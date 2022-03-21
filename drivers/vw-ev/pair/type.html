@@ -6,6 +6,10 @@
             width: 100%;
         }
 
+        .radio-toolbar {
+            max-width: 80%;
+        }
+
         .radio-toolbar input[type="radio"] {
             display: none;
         }
@@ -24,7 +28,6 @@
         }
 
         .radio-toolbar input[type="radio"]:checked+label {
-            background-color: #00c139;
             border: 3px solid #00c139;
         }
     </style>
@@ -32,11 +35,9 @@
         <div class="hy-tmpl-login_vag-row row">
             <label class="hy-label hy-tmpl-login_vag-label" id="title"></label>
             <div class="radio-toolbar">
-                <input id="type0" name="type" type="radio" value="id">
+                <input id="type0" name="type" type="radio" value="id" checked>
                 <label for="type0" data-i18n="pair.id"></label>
-                <input id="type1" name="type" type="radio" value="vw">
-                <label for="type1" data-i18n="pair.vw"></label>
-                <input id="type2" name="type" type="radio" value="vwv2" checked>
+                <input id="type2" name="type" type="radio" value="vwv2">
                 <label for="type2" data-i18n="pair.vwv2"></label>
             </div>
             <br>

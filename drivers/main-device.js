@@ -73,7 +73,7 @@ module.exports = class mainDevice extends Homey.Device {
             });
 
             await this._weConnectClient.onReady();
-            await sleep(1000);
+            await sleep(6000);
             await this._weConnectClient.onUnload(() => {});
             await sleep(1000);
 

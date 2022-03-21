@@ -181,6 +181,8 @@ module.exports = class mainDevice extends Homey.Device {
                 for (const [key, value] of Object.entries(capabilityMapData)) {
                     const status = get(vinData, value, null);
 
+                    this.homey.app.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
+
                     if(key === 'measure_is_home') {
                         const lng = get(vinData, value.latitude, 0);
                         const lat = get(vinData, value.longitude, 0);

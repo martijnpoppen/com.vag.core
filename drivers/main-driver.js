@@ -32,7 +32,8 @@ module.exports = class mainDriver extends Homey.Driver {
 
                 this._weConnectClient = await VwWeconnect({ username: this.config.username, password: this.config.password, type: this.config.type });
 
-                this._weConnectClient.sendEvent('ready');
+                await this._weConnectClient.onReady();
+                await sleep(6000);
 
                 return true;
             } catch (error) {
@@ -51,6 +52,7 @@ module.exports = class mainDriver extends Homey.Driver {
         session.setHandler('showView', async (view) => {
             if (view === 'loading') {
                 await sleep(3000);
+                
 
                 session.nextView();
                 return true;
@@ -120,6 +122,7 @@ module.exports = class mainDriver extends Homey.Driver {
                 ctx.homey.app.log(`[Driver] ${ctx.id} - info.connection - `, weConnectData['info.connection']);
 
                 if (i > 5 && weConnectData['info.connection']) {
+                    await ctx._weConnectClient.onUnload(() => {});
                     return Promise.resolve(weConnectData);
                 } else if (retry === 9) {
                     return Promise.resolve(false);

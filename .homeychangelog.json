@@ -55,5 +55,8 @@
   },
   "0.2.0": {
     "en": "NEW: status mapping - different statuses and capabilities per model"
+  },
+  "0.2.1": {
+    "en": "FIX: capability sorting"
   }
 }

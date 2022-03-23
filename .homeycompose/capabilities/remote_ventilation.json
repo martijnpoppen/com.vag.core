@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Start ventilation",
+    "nl": "Start ventileren"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Start window heating",
+    "nl": "Start raam verwarmen"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

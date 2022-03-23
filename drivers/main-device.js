@@ -87,9 +87,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     // ------------- CapabilityListeners -------------
     async setCapabilityListeners() {
-        await this.registerMultipleCapabilityListener(['locked'], this.onCapability_ACTION.bind(this));
-        await this.registerMultipleCapabilityListener(['remote_flash', 'remote_flash_honk'], this.onCapability_ACTION.bind(this));
-        if (this.hasCapability('remote_battey_charge')) await this.registerCapabilityListener('remote_battey_charge', this.onCapability_ACTION.bind(this));
+        await this.registerMultipleCapabilityListener(['locked', 'remote_flash', 'remote_flash_honk', "remote_battey_charge", "remote_climatisation", "remote_climatisation_v2", "remote_climatisation_v3", "remote_ventilation", "remote_ventilation_v2", "remote_ventilation_v3", "remote_window_heating",], this.onCapability_ACTION.bind(this));
     }
 
     async onCapability_ACTION(value) {
@@ -127,8 +125,38 @@ module.exports = class mainDevice extends Homey.Device {
                 }
 
                 if ('remote_climatisation' in value) {
-                    const val = value.remote_battery_charge;
+                    const val = value.remote_climatisation;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisation`, { val });
+                }
+
+                if ('remote_climatisation_v2' in value) {
+                    const val = value.remote_climatisation_v2;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationv2`, { val });
+                }
+
+                if ('remote_climatisation_v3' in value) {
+                    const val = value.remote_climatisation_v3;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationv3`, { val });
+                }
+
+                if ('remote_ventilation' in value) {
+                    const val = value.remote_ventilation;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilation`, { val });
+                }
+
+                if ('remote_ventilation_v2' in value) {
+                    const val = value.remote_ventilation_v2;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv2`, { val });
+                }
+
+                if ('remote_ventilation_v3' in value) {
+                    const val = value.remote_ventilation_v3;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv3`, { val });
+                }
+
+                if ('remote_window_heating' in value) {
+                    const val = value.remote_window_heating;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.windowheating`, { val });
                 }
             } else {
                 throw new Error('S-PIN missing');
@@ -194,7 +222,7 @@ module.exports = class mainDevice extends Homey.Device {
                         if(key.includes('measure_temperature') && status > 2000) {
                             await this.setValue(key, Math.round(status - 2731.5) / 10.0);
                         } else {
-                            await this.setValue(key, status * -1);
+                            await this.setValue(key, status);
                         }
                     } else if(status || status !== null) {
                         await this.setValue(key, status);

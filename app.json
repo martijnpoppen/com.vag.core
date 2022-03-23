@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.we-volkswagen.connect",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -177,6 +177,97 @@
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
               "value": true
+            },
+            {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
             },
             {
               "id": "remote_flash",
@@ -429,6 +520,97 @@
               "value": true
             },
             {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -674,6 +856,97 @@
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
               "value": true
+            },
+            {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
             },
             {
               "id": "remote_flash",
@@ -935,6 +1208,97 @@
               "value": true
             },
             {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -1180,6 +1544,97 @@
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
               "value": true
+            },
+            {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
             },
             {
               "id": "remote_flash",
@@ -1441,6 +1896,97 @@
               "value": true
             },
             {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -1691,6 +2237,97 @@
               "value": true
             },
             {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -1936,6 +2573,97 @@
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
               "value": true
+            },
+            {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
             },
             {
               "id": "remote_flash",
@@ -2188,6 +2916,97 @@
               "value": true
             },
             {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
               "id": "remote_flash",
               "type": "checkbox",
               "label": {
@@ -2433,6 +3252,97 @@
                 "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
               },
               "value": true
+            },
+            {
+              "id": "remote_climatisation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V2",
+                "nl": "Instelling Klimatiseren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_climatisation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Climatisation V3",
+                "nl": "Instelling Klimatiseren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation",
+                "nl": "Instelling Ventileren"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": true
+            },
+            {
+              "id": "remote_ventilation_v2",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V2",
+                "nl": "Instelling Ventileren V2"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_ventilation_v3",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "remote_window_heating",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Ventilation V3",
+                "nl": "Instelling Ventileren V3"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
+            },
+            {
+              "id": "force_refresh",
+              "type": "checkbox",
+              "label": {
+                "en": "Setting: Force Refresh",
+                "nl": "Instelling Geforceerd verversen"
+              },
+              "hint": {
+                "en": "Checking this box will add the option to trigger this functionality",
+                "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+              },
+              "value": false
             },
             {
               "id": "remote_flash",
@@ -3005,6 +3915,32 @@
       "setable": true,
       "uiComponent": "button"
     },
+    "remote_climatisationv2": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start climatisation (V2)",
+        "nl": "Start klimatiseren (V2)"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_climatisationv3": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start climatisation (V3)",
+        "nl": "Start klimatiseren (V3)"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
     "remote_flash": {
       "platforms": [
         "local"
@@ -3026,6 +3962,58 @@
       "title": {
         "en": "Flash & Honk",
         "nl": "Flits & Toeteren"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_ventilation": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start ventilation",
+        "nl": "Start ventileren"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_ventilationv2": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start ventilation (V2)",
+        "nl": "Start ventileren (V2)"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_ventilationv3": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start ventilation (V3)",
+        "nl": "Start ventileren (V3)"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "remote_window_heating": {
+      "platforms": [
+        "local"
+      ],
+      "type": "boolean",
+      "title": {
+        "en": "Start window heating",
+        "nl": "Start raam verwarmen"
       },
       "getable": true,
       "setable": true,

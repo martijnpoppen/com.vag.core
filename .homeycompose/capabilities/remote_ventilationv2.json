@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Start ventilation (V2)",
+    "nl": "Start ventileren (V2)"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

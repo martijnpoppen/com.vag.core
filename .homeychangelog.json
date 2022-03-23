@@ -79,5 +79,8 @@
   },
   "0.3.2": {
     "en": "FIX: moved files"
+  },
+  "0.4.0": {
+    "en": "NEW: Add new remote options + update ioBroker"
   }
 }

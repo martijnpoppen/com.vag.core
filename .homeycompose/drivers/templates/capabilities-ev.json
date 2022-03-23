@@ -1,8 +1,7 @@
 {
-  "class": "lock",
+  "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "measure_connected",
     "measure_is_home",
     "measure_range",
     "measure_temperature",

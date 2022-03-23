@@ -194,7 +194,7 @@ module.exports = class mainDevice extends Homey.Device {
                         if(key.includes('measure_temperature') && status > 2000) {
                             await this.setValue(key, Math.round(status - 2731.5) / 10.0);
                         } else {
-                            await this.setValue(key, Math.abs(status));
+                            await this.setValue(key, status * -1);
                         }
                     } else if(status || status !== null) {
                         await this.setValue(key, status);
@@ -266,6 +266,11 @@ module.exports = class mainDevice extends Homey.Device {
 
         if (combinedCapabilities.length  !== deviceCapabilities.length) {
             await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
+        }
+
+
+        if(this.getClass('other') || this.getClass('lock')) {
+            await this.setClass('sensor');
         }
 
         return deviceCapabilities;

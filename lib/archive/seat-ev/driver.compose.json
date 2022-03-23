@@ -1,7 +1,0 @@
-{
-  "$extends": ["device", "settings", "capabilities-ev", "pair", "battery"],
-  "name": {
-    "en": "Seat - Electric",
-    "nl": "Seat - Elektrisch"
-  }
-}

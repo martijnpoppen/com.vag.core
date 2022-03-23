@@ -1,5 +1,5 @@
 {
-  "class": "lock",
+  "class": "sensor",
   "capabilities": [
     "locked",
     "measure_battery",

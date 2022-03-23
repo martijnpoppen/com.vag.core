@@ -76,5 +76,8 @@
   },
   "0.3.1": {
     "en": "NEW: add Skoda (Fuel/EV) NEW: add Audi (Fuel/Hybrid/EV)"
+  },
+  "0.3.2": {
+    "en": "FIX: moved files"
   }
 }

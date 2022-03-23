@@ -1,8 +1,8 @@
 const mainDriver = require('../main-driver');
 
-module.exports = class driver_audi_fuel extends mainDriver {
+module.exports = class driver_audi_ev extends mainDriver {
     deviceType() {
-        return 'audi_fuel';
+        return 'audi_ev';
     }
     
     brand() {

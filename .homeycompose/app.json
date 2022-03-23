@@ -1,10 +1,11 @@
 {
   "id": "com.we-volkswagen.connect",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "brandColor": "#000000",
   "name": {

@@ -1,8 +1,8 @@
 const Homey = require('homey');
-const VwWeconnect = require('../@iobroker/iobroker.vw-connect');
 const dottie = require('dottie');
-const { sleep, decrypt, encrypt, calcCrow, get } = require('../helpers');
-const capability_map = require('../../constants/capability_map');
+const VwWeconnect = require('../lib/@iobroker/iobroker.vw-connect');
+const { sleep, decrypt, encrypt, calcCrow, get } = require('../lib/helpers');
+const capability_map = require('../constants/capability_map');
 
 module.exports = class mainDevice extends Homey.Device {
     async onInit() {

@@ -1,11 +1,12 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.we-volkswagen.connect",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "brandColor": "#000000",
   "name": {
@@ -386,7 +387,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -638,7 +640,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -892,7 +895,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -1144,7 +1148,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -1398,7 +1403,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -1649,7 +1655,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -1901,7 +1908,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -2147,7 +2155,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -2399,7 +2408,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"
@@ -2653,7 +2663,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "cloud"

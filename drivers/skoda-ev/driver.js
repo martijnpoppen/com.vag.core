@@ -1,11 +1,11 @@
 const mainDriver = require('../main-driver');
 
-module.exports = class driver_seat_fuel extends mainDriver {
+module.exports = class driver_skoda_ev extends mainDriver {
     deviceType() {
-        return 'seat_fuel';
+        return 'skoda_ev';
     }
     
     brand() {
-        return 'Seat';
+        return 'Skoda';
     }
 }

@@ -85,6 +85,6 @@
       "template": "add_devices"
     }
   ],
-  "platforms": ["local"],
+  "platforms": ["local","cloud"],
   "connectivity": ["cloud"]
 }

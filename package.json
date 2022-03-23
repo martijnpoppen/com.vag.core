@@ -6,9 +6,6 @@
     "type": "git",
     "url": "https://github.com/martijnpoppen/com.we-volkswagen.connect"
   },
-  "scripts": {
-    "postinstall": "node bin/fix-package-lock.js"
-  },
   "dependencies": {
     "@iobroker/adapter-core": "file:./lib/@iobroker/adapter-core",
     "@peculiar/webcrypto": "^1.1.6",

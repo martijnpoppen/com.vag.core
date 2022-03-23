@@ -4,6 +4,8 @@
     "vwv2": "Volkswagen 2020 or newer",
     "id": "Volkswagen ID cars",
     "seat": "Seat",
-    "seatelli": "Seat Elli Cupra"
+    "skoda": "Skoda",
+    "skodae": "Skoda (Enyaq)",
+    "audi": "Audi"
   }
 }

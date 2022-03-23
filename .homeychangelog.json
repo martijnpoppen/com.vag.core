@@ -70,5 +70,8 @@
   },
   "0.2.5": {
     "en": "FIX: Vw-fuel & Seat-fuel"
+  },
+  "0.3.0": {
+    "en": "NEW: add Skoda (Fuel/EV) NEW: add Audi (Fuel/Hybrid/EV)"
   }
 }

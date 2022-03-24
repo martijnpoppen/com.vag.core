@@ -85,5 +85,8 @@
   },
   "0.4.1": {
     "en": "FIX: bug in iobroker"
+  },
+  "0.4.2": {
+    "en": "FIX: ioBroker"
   }
 }

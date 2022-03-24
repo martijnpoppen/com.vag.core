@@ -31,13 +31,13 @@ module.exports = class mainDevice extends Homey.Device {
                 this.clearIntervals();
             }
 
-            if (newSettings.password !== oldSettings.password) {
-                await this.setVwWeConnectClient({ ...newSettings, password: encrypt(newSettings.password) });
-            } else {
-                await this.setVwWeConnectClient(newSettings);
-            }
-
             await this.checkCapabilities(newSettings);
+
+            if (newSettings.password !== oldSettings.password) {
+                this.setVwWeConnectClient({ ...newSettings, password: encrypt(newSettings.password) });
+            } else {
+                this.setVwWeConnectClient(newSettings);
+            }
 
             if (newSettings.password !== oldSettings.password) {
                 this.savePassword(newSettings, 2000);
@@ -313,10 +313,12 @@ module.exports = class mainDevice extends Homey.Device {
             this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, newC);
 
             oldC.forEach((c) => {
+                this.homey.app.log(`[Device] ${this.getName()} - updateCapabilities => Remove `, c);
                 this.removeCapability(c);
             });
             await sleep(2000);
             newC.forEach((c) => {
+                this.homey.app.log(`[Device] ${this.getName()} - updateCapabilities => Add `, c);
                 this.addCapability(c);
             });
             await sleep(2000);

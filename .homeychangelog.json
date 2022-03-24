@@ -82,5 +82,8 @@
   },
   "0.4.0": {
     "en": "NEW: Add new remote options + update ioBroker"
+  },
+  "0.4.1": {
+    "en": "FIX: bug in iobroker"
   }
 }

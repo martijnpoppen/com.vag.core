@@ -1,0 +1,11 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Force refresh",
+    "nl": "Geforceerd verversen"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": "button"
+}

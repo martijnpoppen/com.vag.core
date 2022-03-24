@@ -148,16 +148,16 @@ module.exports = {
     },
     'audi-ev': {
         locked: `status.isCarLocked`,
-        measure_battery: `status.data_${status_types.LEVELS}.field_${status_types.STATE_OF_CHARGE}.value`,
+        measure_battery: `charger.status.batteryStatusData.stateOfCharge`,
         measure_connected: `general.isConnect`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
         measure_is_home: { latitude: `position.carCoordinate.latitude`, longitude: `position.carCoordinate.longitude` },
         measure_is_moving: `position.isMoving`,
-        measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
+        measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`
+        'measure_temperature.outdoor': `status.outsideTemperature`
     },
     'audi-ev-audietron': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,

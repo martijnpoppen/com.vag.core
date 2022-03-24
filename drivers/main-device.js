@@ -13,7 +13,6 @@ module.exports = class mainDevice extends Homey.Device {
             await this.initStore();
             await this.checkCapabilities();
             await this.setVwWeConnectClient();
-            await this.setCapabilityListeners();
 
             await this.setAvailable();
         } catch (error) {
@@ -86,8 +85,9 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     // ------------- CapabilityListeners -------------
-    async setCapabilityListeners() {
-        await this.registerMultipleCapabilityListener(['locked', 'remote_flash', 'remote_flash_honk', "remote_battey_charge", "remote_climatisation", "remote_climatisation_v2", "remote_climatisation_v3", "remote_ventilation", "remote_ventilation_v2", "remote_ventilation_v3", "remote_window_heating",], this.onCapability_ACTION.bind(this));
+    async setCapabilityListeners(capabilities) {
+        const filtered = capabilities.filter(f => f.includes('remote') || f.includes('locked'))
+        await this.registerMultipleCapabilityListener(filtered, this.onCapability_ACTION.bind(this));
     }
 
     async onCapability_ACTION(value) {
@@ -158,6 +158,11 @@ module.exports = class mainDevice extends Homey.Device {
                     const val = value.remote_window_heating;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.windowheating`, { val });
                 }
+
+                if ('remote_force_refresh' in value) {
+                    const val = value.remote_force_refresh;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.forceRefresh`, { val });
+                }
             } else {
                 throw new Error('S-PIN missing');
             }
@@ -177,6 +182,10 @@ module.exports = class mainDevice extends Homey.Device {
             const vin = settings.vin;
             const type = settings.type;
             const forceUpdate = this.getStoreValue("forceUpdate")
+
+            if(this._weConnectClient.getShouldRestart()) {
+                this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
+            }
 
             if (check || forceUpdate >= 360) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
@@ -301,7 +310,9 @@ module.exports = class mainDevice extends Homey.Device {
             await this.setClass('sensor');
         }
 
-        return deviceCapabilities;
+        await this.setCapabilityListeners(combinedCapabilities);
+
+        return combinedCapabilities;
     }
 
     async updateCapabilities(combinedCapabilities, deviceCapabilities) {

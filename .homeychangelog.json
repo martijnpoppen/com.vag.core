@@ -91,5 +91,8 @@
   },
   "0.4.3": {
     "en": "FIX: mapping e-tron | FIX: listeners | FIX: token refresh call"
+  },
+  "0.4.4": {
+    "en": "FIX: e-tron values"
   }
 }

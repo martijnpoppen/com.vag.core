@@ -30,7 +30,8 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`
+        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        target_temperature: `climater.settings.targetTemperature.content`
     },
     'vw-ev': {
         locked: `status.isCarLocked`,
@@ -43,7 +44,8 @@ module.exports = {
         measure_is_moving: `position.isMoving`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`
+        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        target_temperature: `climater.settings.targetTemperature.content`
     },
     'vw-ev-id': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
@@ -53,7 +55,8 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature: `status.climatisationSettings.targetTemperature_C`
+        measure_temperature: `status.climatisationSettings.targetTemperature_C`,
+        target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
     'seat-fuel': {
         locked: `status.isCarLocked`,
@@ -85,7 +88,8 @@ module.exports = {
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        measure_temperature: `status.outsideTemperature`
+        'measure_temperature.outdoor': `status.outsideTemperature`,
+        target_temperature: `climater.settings.targetTemperature.content`,
     },
     'skoda-fuel': {
         locked: `status.isCarLocked`,
@@ -113,7 +117,8 @@ module.exports = {
         measure_is_moving: `position.isMoving`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`
+        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        target_temperature: `climater.settings.targetTemperature.content`
     },
     'audi-fuel': {
         locked: `status.isCarLocked`,
@@ -144,20 +149,22 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`
+        'measure_temperature.outdoor': `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        target_temperature: `climater.settings.targetTemperature.content`
     },
     'audi-ev': {
         locked: `status.isCarLocked`,
-        measure_battery: `charger.status.batteryStatusData.stateOfCharge`,
+        measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         measure_connected: `general.isConnect`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
         measure_is_home: { latitude: `position.carCoordinate.latitude`, longitude: `position.carCoordinate.longitude` },
         measure_is_moving: `position.isMoving`,
-        measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange`,
+        measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange.content`,
         measure_temperature: `climater.settings.targetTemperature.content`,
-        'measure_temperature.outdoor': `status.outsideTemperature`
+        'measure_temperature.outdoor': `status.outsideTemperature`,
+        target_temperature: `climater.settings.targetTemperature.content`
     },
     'audi-ev-audietron': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
@@ -166,6 +173,7 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature: `status.climatisationSettings.targetTemperature_C`
+        measure_temperature: `status.climatisationSettings.targetTemperature_C`,
+        target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
 };

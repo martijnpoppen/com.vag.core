@@ -89,8 +89,8 @@
           "id": "remote_window_heating",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Ventilation V3",
-            "nl": "Instelling Ventileren V3"
+            "en": "Setting: Window heating",
+            "nl": "Instelling Raam verwarming"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -99,7 +99,7 @@
           "value": false
         },
         {
-          "id": "force_refresh",
+          "id": "remote_force_refresh",
           "type": "checkbox",
           "label": {
             "en": "Setting: Force Refresh",

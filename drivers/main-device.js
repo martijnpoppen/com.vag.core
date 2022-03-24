@@ -86,7 +86,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     // ------------- CapabilityListeners -------------
     async setCapabilityListeners(capabilities) {
-        const filtered = capabilities.filter(f => f.includes('remote') || f.includes('locked'))
+        const filtered = capabilities.filter(f => f.includes('remote_') || f.includes('locked') || f.includes('target_'))
         await this.registerMultipleCapabilityListener(filtered, this.onCapability_ACTION.bind(this));
     }
 

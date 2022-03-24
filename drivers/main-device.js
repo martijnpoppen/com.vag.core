@@ -222,7 +222,7 @@ module.exports = class mainDevice extends Homey.Device {
                         if(key.includes('measure_temperature') && status > 2000) {
                             await this.setValue(key, Math.round(status - 2731.5) / 10.0);
                         } else {
-                            await this.setValue(key, status);
+                            await this.setValue(key, Math.abs(status));
                         }
                     } else if(status || status !== null) {
                         await this.setValue(key, status);

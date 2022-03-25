@@ -54,6 +54,11 @@ module.exports = class mainDevice extends Homey.Device {
         await this.setSettings({ ...settings, password: encrypt(settings.password) });
     }
 
+    async setRestart(val) {
+        this.homey.app.log(`[Device] ${this.getName()} - setRestart`, val);
+        this.setStoreValue("shouldRestart", val).catch(this.homey.app.error);
+    }
+
     // ------------- API -------------
     async setVwWeConnectClient(overrideSettings = null) {
         const settings = overrideSettings ? overrideSettings : this.getSettings();
@@ -68,7 +73,8 @@ module.exports = class mainDevice extends Homey.Device {
                 password: this.config.password,
                 type: this.config.type,
                 pin: this.config.pin,
-                interval: this.config.update_interval
+                interval: this.config.update_interval,
+                homeyDevice: this
             });
 
             await this._weConnectClient.onReady();
@@ -76,6 +82,7 @@ module.exports = class mainDevice extends Homey.Device {
             await this._weConnectClient.onUnload(() => {});
             await sleep(1000);
 
+            await this.setRestart(false);
             await this.setCapabilityValues(true);
             await this.setAvailable();
             await this.setIntervalsAndFlows(settings);
@@ -182,9 +189,11 @@ module.exports = class mainDevice extends Homey.Device {
             const vin = settings.vin;
             const type = settings.type;
             const forceUpdate = this.getStoreValue("forceUpdate")
+            const shouldRestart = this.getStoreValue("shouldRestart")
 
-            if(this._weConnectClient.getShouldRestart()) {
+            if(shouldRestart) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
+                await this.setVwWeConnectClient();
             }
 
             if (check || forceUpdate >= 360) {
@@ -343,6 +352,8 @@ module.exports = class mainDevice extends Homey.Device {
         if(!forceUpdate) {
             this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
         }
+
+        this.setStoreValue("shouldRestart", false).catch(this.homey.app.error);
     }
 
     onDeleted() {

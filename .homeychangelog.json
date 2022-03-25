@@ -97,5 +97,8 @@
   },
   "0.4.5": {
     "en": "FIX: issue with refresh data"
+  },
+  "0.4.6": {
+    "en": "FIX: DeciKelvin to Celsius conversion for target_temperature"
   }
 }

@@ -94,5 +94,8 @@
   },
   "0.4.4": {
     "en": "FIX: e-tron values"
+  },
+  "0.4.5": {
+    "en": "FIX: issue with refresh data"
   }
 }

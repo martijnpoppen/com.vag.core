@@ -91,6 +91,8 @@ module.exports = class mainDriver extends Homey.Driver {
                     
                     if('model' in generalData) {
                         model = generalData.model;
+                    } else if('specification' in generalData) {
+                        model = generalData.specification.model;
                     } else if(generalData && generalData.carportData && generalData.carportData.modelName) {
                         model = generalData.carportData.modelName;
                     }

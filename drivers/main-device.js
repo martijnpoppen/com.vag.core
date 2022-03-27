@@ -102,8 +102,7 @@ module.exports = class mainDevice extends Homey.Device {
             this.homey.app.log(`[Device] ${this.getName()} - onCapability_ACTION`, value);
 
             const settings = this.getSettings();
-            const vin = settings.vin;
-            const pin = settings.pin;
+            const {type, vin, pin } = settings;
 
             if (pin.length) {
                 if ('locked' in value) {
@@ -193,6 +192,10 @@ module.exports = class mainDevice extends Homey.Device {
 
             if(shouldRestart) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
+                if (this.onPollInterval) {
+                    this.clearIntervals();
+                }
+
                 await this.setVwWeConnectClient();
             }
 
@@ -237,13 +240,21 @@ module.exports = class mainDevice extends Homey.Device {
 
                         await this.setLocation(lat, lng);    
                     }else if((status || status !== null) && typeof status == 'number') {
-                        if(key.includes('measure_temperature') && status > 2000) {
-                            await this.setValue(key, Math.round(status - 2731.5) / 10.0);
+                        if(key.includes('_temperature') && status > 2000) {
+                            await this.setValue(key, Math.round(status - 2731.5));
+                        } else if(key.includes('_temperature') && status > 200) {
+                            await this.setValue(key, Math.round(status - 273.15));
+                        } else if(key.includes('_range') && status > 2000) {
+                            await this.setValue(key, status / 1000);
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
                     } else if(status || status !== null) {
-                        await this.setValue(key, status);
+                        if(key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
+                            await this.setValue(key, status === 'Connected');
+                        } else {
+                            await this.setValue(key, status);
+                        }
                     }
                 }
             }
@@ -353,7 +364,7 @@ module.exports = class mainDevice extends Homey.Device {
             this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
         }
 
-        this.setStoreValue("shouldRestart", false).catch(this.homey.app.error);
+        this.setRestart(false);
     }
 
     onDeleted() {

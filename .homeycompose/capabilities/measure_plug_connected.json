@@ -1,0 +1,12 @@
+{
+  "platforms": ["local"],
+  "type": "boolean",
+  "title": {
+    "en": "Plug connected",
+    "nl": "Stekker verbonden"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/plug.svg"
+}

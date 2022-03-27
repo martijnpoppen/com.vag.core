@@ -153,7 +153,7 @@
             "en": "Update interval",
             "nl": "Update interval"
           },
-          "min": 3,
+          "min": 1,
           "max": 3600,
           "units": {
             "en": "minutes",

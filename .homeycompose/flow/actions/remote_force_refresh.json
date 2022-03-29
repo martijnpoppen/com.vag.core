@@ -1,0 +1,25 @@
+{
+    "id": "remote_force_refresh",
+    "title": {
+      "en": "Force Refresh",
+      "nl": "Geforceerd verversen"
+    },
+    "titleFormatted": {
+      "en": "[[action_start_stop]] Force Refresh",
+      "nl": "[[action_start_stop]] Geforceerd verversen"
+    },
+    "args": [
+      {
+        "type": "device",
+        "name": "device",
+        "placeholder": {
+          "en": "Select device",
+          "nl": "Selecteer apparaat"
+        },
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_force_refresh"
+      }
+    ],
+    "platforms": [
+      "local"
+    ]
+}

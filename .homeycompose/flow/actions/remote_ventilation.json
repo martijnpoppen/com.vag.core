@@ -1,0 +1,46 @@
+
+{
+    "id": "remote_ventilation",
+    "title": {
+      "en": "Start/Stop ventilation",
+      "nl": "Start/Stop ventileren"
+    },
+    "titleFormatted": {
+      "en": "[[action_start_stop]] ventilation",
+      "nl": "[[action_start_stop]] ventileren"
+    },
+    "args": [
+      {
+        "type": "device",
+        "name": "device",
+        "placeholder": {
+          "en": "Select device",
+          "nl": "Selecteer apparaat"
+        },
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_ventilation"
+      },
+      {
+        "name": "action_start_stop",
+        "type": "dropdown",
+        "values": [
+          {
+            "id": "1",
+            "label": {
+              "en": "Start",
+              "nl": "Start"
+            }
+          },
+          {
+            "id": "0",
+            "label": {
+              "en": "Stop",
+              "nl": "Stop"
+            }
+          }
+        ]
+      }
+    ],
+    "platforms": [
+      "local"
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "id": "measure_is_moving",
+    "title": {
+      "en": "is moving",
+      "nl": "is in beweging"
+    },
+    "titleFormatted": {
+      "en": "!{{is|isn't}} moving",
+      "nl": "!{{is|is niet}} in beweging"
+    },
+    "args": [
+      {
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_is_moving"
+      }
+    ],
+    "platforms": ["local"]
+  }
+  

@@ -112,5 +112,11 @@
   },
   "0.6.1": {
     "en": "FIX: memory leak"
+  },
+  "0.7.0": {
+    "en": "NEW: add actions cards"
+  },
+  "0.7.1": {
+    "en": "NEW: Add conditions"
   }
 }

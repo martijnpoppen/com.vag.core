@@ -1,10 +1,10 @@
 {
-  "name": "com.we-volkswagen.connect",
+  "name": "com.vag.core",
   "version": "1.0.0",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/martijnpoppen/com.we-volkswagen.connect"
+    "url": "https://github.com/martijnpoppen/com.vag.core"
   },
   "scripts": {
     "sync": "npm run sync-vw && npm run sync-seat",

@@ -1,5 +1,5 @@
 {
-    "id": "measure_connected_changed",
+    "id": "measure_plug_connected_changed",
     "title": {
       "en": "Connected has changed",
       "nl": "Verbonden is veranderd"
@@ -8,12 +8,12 @@
         {
           "type": "device",
           "name": "device",
-          "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_connected"
+          "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_plug_connected"
         }
       ],
     "tokens": [
       {
-        "name": "measure_connected",
+        "name": "measure_plug_connected",
         "title": {
           "en": "Is connected",
           "nl": "Is verbonden"

@@ -1,0 +1,25 @@
+{
+    "id": "measure_fuel_level_changed",
+    "title": {
+         "en": "Fuel-level has changed",
+         "nl": "Tankniveau is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_fuel_level"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_fuel_level",
+        "title": {
+            "en": "Fuel level",
+            "nl": "Tankniveau"
+        },
+        "type": "number",
+        "example": 99
+      }
+    ]
+  }

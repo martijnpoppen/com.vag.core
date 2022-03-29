@@ -1,0 +1,25 @@
+{
+  "id": "measure_range_changed",
+  "title": {
+    "en": "Range has changed",
+    "nl": "Actieradius is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_range"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_range",
+      "title": {
+        "en": "Range",
+        "nl": "Actieradius"
+      },
+      "type": "number",
+      "example": 99
+    }
+  ]
+}

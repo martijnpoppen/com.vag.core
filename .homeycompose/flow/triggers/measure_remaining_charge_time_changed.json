@@ -1,0 +1,24 @@
+{
+    "id": "measure_remaining_charge_time_changed",
+    "title": {
+      "en": "Remaining charge time has changed",
+      "nl": "Resterende laadtijd is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_remaining_charge_time"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_remaining_charge_time",
+        "title": {
+          "en": "Charge time",
+          "nl": "Laadtijd"
+        },
+        "type": "number"
+      }
+    ]
+  }

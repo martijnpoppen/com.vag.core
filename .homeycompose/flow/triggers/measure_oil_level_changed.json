@@ -1,0 +1,25 @@
+{
+  "id": "measure_oil_level_changed",
+  "title": {
+    "en": "Oil-level has changed",
+    "nl": "Olieniveau is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-fuel|vw-fuel|vw-hybrid&capabilities=measure_oil_level"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_oil_level",
+      "title": {
+        "en": "Oil-level",
+        "nl": "Olieniveau"
+      },
+      "type": "number",
+      "example": 99
+    }
+  ]
+}

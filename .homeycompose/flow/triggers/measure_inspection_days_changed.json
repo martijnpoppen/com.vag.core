@@ -1,0 +1,25 @@
+{
+  "id": "measure_inspection_days_changed",
+  "title": {
+    "en": "The inspection (Days) has changed",
+    "nl": "De inspectie (Dagen) is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_inspection_days"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_inspection_days",
+      "title": {
+        "en": "inspection (Days)",
+        "nl": "Inspectie (Dagen)"
+      },
+      "type": "number",
+      "example": 99
+    }
+  ]
+}

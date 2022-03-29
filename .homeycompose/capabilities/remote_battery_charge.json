@@ -2,8 +2,8 @@
   "platforms": ["local"],
   "type": "boolean",
   "title": {
-    "en": "Start charge",
-    "nl": "Start laden"
+    "en": "Start/Stop charge",
+    "nl": "Start/Stop laden"
   },
   "getable": true,
   "setable": true,

@@ -2,8 +2,8 @@
   "platforms": ["local"],
   "type": "boolean",
   "title": {
-    "en": "Flash",
-    "nl": "Flits"
+    "en": "Start/Stop Flash",
+    "nl": "Start/Stop Flits"
   },
   "getable": true,
   "setable": true,

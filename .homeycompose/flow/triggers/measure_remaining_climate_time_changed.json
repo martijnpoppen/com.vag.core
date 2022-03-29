@@ -1,0 +1,24 @@
+{
+    "id": "measure_remaining_climate_time_changed",
+    "title": {
+      "en": "Remaining climate time has changed",
+      "nl": "Resterende klimaat tijd is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_remaining_climate_time"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_remaining_climate_time",
+        "title": {
+          "en": "Climate time",
+          "nl": "Klimaat tijd"
+        },
+        "type": "number"
+      }
+    ]
+  }

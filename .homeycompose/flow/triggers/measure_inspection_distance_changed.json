@@ -1,0 +1,25 @@
+{
+  "id": "measure_inspection_distance_changed",
+  "title": {
+    "en": "The inspection (KM) has changed",
+    "nl": "De inspectie (KM) is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_inspection_distance"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_inspection_distance",
+      "title": {
+        "en": "inspection (KM)",
+        "nl": "Inspectie (KM)"
+      },
+      "type": "number",
+      "example": 99
+    }
+  ]
+}

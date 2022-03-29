@@ -1,0 +1,25 @@
+{
+  "id": "measure_oil_change_days_changed",
+  "title": {
+    "en": "Oil change (Days) has changed",
+    "nl": "Olie verversen (Dagen) is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-fuel|vw-fuel|vw-hybrid&capabilities=measure_oil_change_days"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_oil_change_days",
+      "title": {
+        "en": "Oil change (Days)",
+        "nl": "Olie verversen (Dagen)"
+      },
+      "type": "number",
+      "example": 99
+    }
+  ]
+}

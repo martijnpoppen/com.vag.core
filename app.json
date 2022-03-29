@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.we-volkswagen.connect",
-  "version": "0.5.0",
+  "version": "0.6.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -77,6 +77,30 @@
   "flow": {
     "triggers": [
       {
+        "id": "measure_charge_target_changed",
+        "title": {
+          "en": "Charge target has changed",
+          "nl": "Laaddoel is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_charge_target"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_charge_target",
+            "title": {
+              "en": "Charge target",
+              "nl": "Laaddoel"
+            },
+            "type": "number"
+          }
+        ]
+      },
+      {
         "id": "measure_connected_changed",
         "title": {
           "en": "Connected has changed",
@@ -86,7 +110,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vw-fuel"
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_connected"
           }
         ],
         "tokens": [
@@ -101,6 +125,105 @@
         ]
       },
       {
+        "id": "measure_distance_driven_changed",
+        "title": {
+          "en": "Driven mileage has changed",
+          "nl": "Gereden afstand is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_distance_driven"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_distance_driven",
+            "title": {
+              "en": "Driven mileage",
+              "nl": "Gereden afstand"
+            },
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "measure_fuel_level_changed",
+        "title": {
+          "en": "Fuel-level has changed",
+          "nl": "Tankniveau is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_fuel_level"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_fuel_level",
+            "title": {
+              "en": "Fuel level",
+              "nl": "Tankniveau"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
+        "id": "measure_inspection_days_changed",
+        "title": {
+          "en": "The inspection (Days) has changed",
+          "nl": "De inspectie (Dagen) is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_inspection_days"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_inspection_days",
+            "title": {
+              "en": "inspection (Days)",
+              "nl": "Inspectie (Dagen)"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
+        "id": "measure_inspection_distance_changed",
+        "title": {
+          "en": "The inspection (KM) has changed",
+          "nl": "De inspectie (KM) is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_inspection_distance"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_inspection_distance",
+            "title": {
+              "en": "inspection (KM)",
+              "nl": "Inspectie (KM)"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
         "id": "measure_is_home_changed",
         "title": {
           "en": "Is vehicle home has changed",
@@ -110,7 +233,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vw-fuel"
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_is_home"
           }
         ],
         "tokens": [
@@ -134,7 +257,7 @@
           {
             "type": "device",
             "name": "device",
-            "filter": "driver_id=vw-fuel"
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_is_moving"
           }
         ],
         "tokens": [
@@ -145,6 +268,178 @@
               "nl": "Voertuig in beweging"
             },
             "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "measure_oil_change_days_changed",
+        "title": {
+          "en": "Oil change (Days) has changed",
+          "nl": "Olie verversen (Dagen) is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-fuel|vw-fuel|vw-hybrid&capabilities=measure_oil_change_days"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_oil_change_days",
+            "title": {
+              "en": "Oil change (Days)",
+              "nl": "Olie verversen (Dagen)"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
+        "id": "measure_oil_change_distance_changed",
+        "title": {
+          "en": "Oil change (KM) has changed",
+          "nl": "Olie verversen (KM) is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_oil_change_distance"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_oil_change_distance",
+            "title": {
+              "en": "Oil change (KM)",
+              "nl": "Olie verversen (KM)"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
+        "id": "measure_oil_level_changed",
+        "title": {
+          "en": "Oil-level has changed",
+          "nl": "Olieniveau is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-fuel|vw-fuel|vw-hybrid&capabilities=measure_oil_level"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_oil_level",
+            "title": {
+              "en": "Oil-level",
+              "nl": "Olieniveau"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
+        "id": "measure_plug_connected_changed",
+        "title": {
+          "en": "Connected has changed",
+          "nl": "Verbonden is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_plug_connected"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_plug_connected",
+            "title": {
+              "en": "Is connected",
+              "nl": "Is verbonden"
+            },
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "id": "measure_range_changed",
+        "title": {
+          "en": "Range has changed",
+          "nl": "Actieradius is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_range"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_range",
+            "title": {
+              "en": "Range",
+              "nl": "Actieradius"
+            },
+            "type": "number",
+            "example": 99
+          }
+        ]
+      },
+      {
+        "id": "measure_remaining_charge_time_changed",
+        "title": {
+          "en": "Remaining charge time has changed",
+          "nl": "Resterende laadtijd is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_remaining_charge_time"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_remaining_charge_time",
+            "title": {
+              "en": "Charge time",
+              "nl": "Laadtijd"
+            },
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "measure_remaining_climate_time_changed",
+        "title": {
+          "en": "Remaining climate time has changed",
+          "nl": "Resterende klimaat tijd is veranderd"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_remaining_climate_time"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "measure_remaining_climate_time",
+            "title": {
+              "en": "Climate time",
+              "nl": "Klimaat tijd"
+            },
+            "type": "number"
           }
         ]
       }
@@ -3909,8 +4204,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start charge",
-        "nl": "Start laden"
+        "en": "Start/Stop charge",
+        "nl": "Start/Stop laden"
       },
       "getable": true,
       "setable": true,
@@ -3922,8 +4217,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start climatisation",
-        "nl": "Start klimatiseren"
+        "en": "Start/Stop climatisation",
+        "nl": "Start/Stop klimatiseren"
       },
       "getable": true,
       "setable": true,
@@ -3935,8 +4230,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start climatisation (V2)",
-        "nl": "Start klimatiseren (V2)"
+        "en": "Start/Stop climatisation (V2)",
+        "nl": "Start/Stop klimatiseren (V2)"
       },
       "getable": true,
       "setable": true,
@@ -3948,8 +4243,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start climatisation (V3)",
-        "nl": "Start klimatiseren (V3)"
+        "en": "Start/Stop climatisation (V3)",
+        "nl": "Start/Stop klimatiseren (V3)"
       },
       "getable": true,
       "setable": true,
@@ -3961,8 +4256,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Flash",
-        "nl": "Flits"
+        "en": "Start/Stop Flash",
+        "nl": "Start/Stop Flits"
       },
       "getable": true,
       "setable": true,
@@ -3974,8 +4269,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Flash & Honk",
-        "nl": "Flits & Toeteren"
+        "en": "Start/Stop Flash & Honk",
+        "nl": "Start/Stop Flits & Toeteren"
       },
       "getable": true,
       "setable": true,
@@ -4000,8 +4295,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start ventilation",
-        "nl": "Start ventileren"
+        "en": "Start/Stop ventilation",
+        "nl": "Start/Stop ventileren"
       },
       "getable": true,
       "setable": true,
@@ -4013,8 +4308,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start ventilation (V2)",
-        "nl": "Start ventileren (V2)"
+        "en": "Start/Stop ventilation (V2)",
+        "nl": "Start/Stop ventileren (V2)"
       },
       "getable": true,
       "setable": true,
@@ -4026,8 +4321,8 @@
       ],
       "type": "boolean",
       "title": {
-        "en": "Start ventilation (V3)",
-        "nl": "Start ventileren (V3)"
+        "en": "Start/Stop ventilation (V3)",
+        "nl": "Start/Stop ventileren (V3)"
       },
       "getable": true,
       "setable": true,

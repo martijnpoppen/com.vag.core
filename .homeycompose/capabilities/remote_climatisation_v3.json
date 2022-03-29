@@ -2,8 +2,8 @@
   "platforms": ["local"],
   "type": "boolean",
   "title": {
-    "en": "Start climatisation (V3)",
-    "nl": "Start klimatiseren (V3)"
+    "en": "Start/Stop climatisation (V3)",
+    "nl": "Start/Stop klimatiseren (V3)"
   },
   "getable": true,
   "setable": true,

@@ -1,0 +1,24 @@
+{
+    "id": "measure_charge_target_changed",
+    "title": {
+      "en": "Charge target has changed",
+      "nl": "Laaddoel is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_charge_target"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_charge_target",
+        "title": {
+          "en": "Charge target",
+          "nl": "Laaddoel"
+        },
+        "type": "number"
+      }
+    ]
+  }

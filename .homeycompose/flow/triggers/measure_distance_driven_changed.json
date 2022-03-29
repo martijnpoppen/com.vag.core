@@ -1,0 +1,24 @@
+{
+    "id": "measure_distance_driven_changed",
+    "title": {
+         "en": "Driven mileage has changed",
+         "nl": "Gereden afstand is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_distance_driven"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_distance_driven",
+        "title": {
+            "en": "Driven mileage",
+            "nl": "Gereden afstand"
+        },
+        "type": "number"
+      }
+    ]
+  }

@@ -2,8 +2,8 @@
   "platforms": ["local"],
   "type": "boolean",
   "title": {
-    "en": "Start ventilation (V2)",
-    "nl": "Start ventileren (V2)"
+    "en": "Start/Stop ventilation (V2)",
+    "nl": "Start/Stop ventileren (V2)"
   },
   "getable": true,
   "setable": true,

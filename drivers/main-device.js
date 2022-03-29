@@ -104,7 +104,7 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const {type, vin, pin } = settings;
 
-            if (pin.length) {
+            if(type === 'id' || type === 'audietron' || pin.length) {
                 if ('locked' in value) {
                     const val = value.locked;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { val });
@@ -113,17 +113,19 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_flash' in value) {
                     const val = value.remote_flash;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.flash`, { val });
+                    await this.setCapabilityValue('remote_flash', false)
                 }
 
                 if ('remote_flash_honk' in value) {
                     const val = value.remote_flash_honk;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.honk`, { val });
+                    await this.setCapabilityValue('remote_flash_honk', false)
                 }
 
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
-                    if(type === 'id') {
+                    if(type === 'id' || type === 'audietron') {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { val });    
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { val });
@@ -168,6 +170,8 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_force_refresh' in value) {
                     const val = value.remote_force_refresh;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.forceRefresh`, { val });
+
+                    await this.setCapabilityValue('remote_force_refresh', false)
                 }
             } else {
                 throw new Error('S-PIN missing');
@@ -192,9 +196,7 @@ module.exports = class mainDevice extends Homey.Device {
 
             if(shouldRestart) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
-                if (this.onPollInterval) {
-                    this.clearIntervals();
-                }
+                this.clearIntervals();
 
                 await this.setVwWeConnectClient();
             }
@@ -241,7 +243,7 @@ module.exports = class mainDevice extends Homey.Device {
                         await this.setLocation(lat, lng);    
                     }else if((status || status !== null) && typeof status == 'number') {
                         if(key.includes('_temperature') && status > 2000) {
-                            await this.setValue(key, Math.round(status - 2731.5));
+                            await this.setValue(key, Math.round(status - 2731.5) / 10);
                         } else if(key.includes('_temperature') && status > 200) {
                             await this.setValue(key, Math.round(status - 273.15));
                         } else if(key.includes('_range') && status > 2000) {
@@ -251,7 +253,7 @@ module.exports = class mainDevice extends Homey.Device {
                         }
                     } else if(status || status !== null) {
                         if(key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
-                            await this.setValue(key, status === 'Connected');
+                            await this.setValue(key, ['Connected', 'connected'].includes(status));
                         } else {
                             await this.setValue(key, status);
                         }

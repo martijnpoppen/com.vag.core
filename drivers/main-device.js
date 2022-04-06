@@ -104,21 +104,21 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const {type, vin, pin } = settings;
 
-            if(type === 'id' || type === 'audietron' || pin.length) {
+            if(type === 'id' || type === 'audietron' || type === 'skodae' || pin.length) {
                 if ('locked' in value) {
                     const val = value.locked;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
                 }
 
                 if ('remote_flash' in value) {
                     const val = value.remote_flash;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.flash`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.flash`, { ack: false, val: val });
                     await this.setCapabilityValue('remote_flash', false)
                 }
 
                 if ('remote_flash_honk' in value) {
                     const val = value.remote_flash_honk;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.honk`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.honk`, { ack: false, val: val });
                     await this.setCapabilityValue('remote_flash_honk', false)
                 }
 
@@ -126,52 +126,51 @@ module.exports = class mainDevice extends Homey.Device {
                     const val = value.remote_battery_charge;
 
                     if(type === 'id' || type === 'audietron') {
-                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { val });    
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });    
                     } else {
-                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { val });
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { ack: false, val: val });
                     }
                 }
 
                 if ('remote_climatisation' in value) {
                     const val = value.remote_climatisation;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisation`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisation`, { ack: false, val: val });
                 }
 
                 if ('remote_climatisation_v2' in value) {
                     const val = value.remote_climatisation_v2;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationv2`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationv2`, { ack: false, val: val });
                 }
 
                 if ('remote_climatisation_v3' in value) {
                     const val = value.remote_climatisation_v3;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationv3`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationv3`, { ack: false, val: val });
                 }
 
                 if ('remote_ventilation' in value) {
                     const val = value.remote_ventilation;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilation`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilation`, { ack: false, val: val });
                 }
 
                 if ('remote_ventilation_v2' in value) {
                     const val = value.remote_ventilation_v2;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv2`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv2`, { ack: false, val: val });
                 }
 
                 if ('remote_ventilation_v3' in value) {
                     const val = value.remote_ventilation_v3;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv3`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv3`, { ack: false, val: val });
                 }
 
                 if ('remote_window_heating' in value) {
                     const val = value.remote_window_heating;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.windowheating`, { val });
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.windowheating`, { ack: false, val: val });
                 }
 
                 if ('remote_force_refresh' in value) {
-                    const val = value.remote_force_refresh;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.forceRefresh`, { val });
+                    this.setCapabilityValues(true)
 
-                    await this.setCapabilityValue('remote_force_refresh', false)
+                    await this.setCapabilityValue('remote_force_refresh', false);
                 }
             } else {
                 throw new Error('S-PIN missing');
@@ -220,6 +219,9 @@ module.exports = class mainDevice extends Homey.Device {
 
                 this.setStoreValue("forceUpdate", forceUpdate + settings.update_interval).catch(this.homey.app.error);
             }
+
+            // always unload vwconnectclient to prevent double intervals
+            await this._weConnectClient.onUnload(() => {});
 
             const deviceInfo = this._weConnectClient.getState();
             const deviceInfoTransformed = dottie.transform(deviceInfo);

@@ -1,11 +1,9 @@
 {
   "id": "com.we-volkswagen.connect",
-  "version": "0.7.1",
+  "version": "0.7.4",
   "compatibility": ">=5.0.0",
   "sdk": 3,
-  "platforms": [
-    "local"
-  ],
+  "platforms": ["local"],
   "brandColor": "#000000",
   "name": {
     "en": "VAG Connect",
@@ -30,12 +28,8 @@
       "Seat"
     ]
   },
-  "category": [
-    "appliances"
-  ],
-  "permissions": [
-    "homey:manager:geolocation"
-  ],
+  "category": ["appliances"],
+  "permissions": ["homey:manager:geolocation"],
   "images": {
     "large": "/assets/images/large.jpg",
     "small": "/assets/images/small.jpg"

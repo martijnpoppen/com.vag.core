@@ -74,7 +74,9 @@ module.exports = class mainDevice extends Homey.Device {
                 type: this.config.type,
                 pin: this.config.pin,
                 interval: this.config.update_interval,
-                homeyDevice: this
+                homeyDevice: this,
+                log: this.homey.app.log,
+                error: this.homey.app.error
             });
 
             await this._weConnectClient.onReady();
@@ -193,7 +195,7 @@ module.exports = class mainDevice extends Homey.Device {
             const forceUpdate = this.getStoreValue("forceUpdate")
             const shouldRestart = this.getStoreValue("shouldRestart")
 
-            if(shouldRestart) {
+            if(!check && shouldRestart) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
                 this.clearIntervals();
 
@@ -203,18 +205,19 @@ module.exports = class mainDevice extends Homey.Device {
             if (check || forceUpdate >= 360) {
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
+                await sleep(5000);
                 await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
                     this.homey.app.log("force status update Failed", `${this.driver.id}-${type}`);
                 });
                 await sleep(5000);
-                await this._weConnectClient.updateStatus();
+                await this._weConnectClient.updateStatus('setCapabilityValues force');
                 await sleep(10000);
 
                 this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
             } else { 
                 this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
 
-                await this._weConnectClient.updateStatus();
+                await this._weConnectClient.updateStatus('setCapabilityValues normal');
                 await sleep(10000);
 
                 this.setStoreValue("forceUpdate", forceUpdate + settings.update_interval).catch(this.homey.app.error);

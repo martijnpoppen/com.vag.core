@@ -262,9 +262,9 @@ module.exports = class mainDevice extends Homey.Device {
                         await this.setLocation(lat, lng);    
                     }else if((status || status !== null) && typeof status == 'number') {
                         if(key.includes('_temperature') && status > 2000) {
-                            await this.setValue(key, Math.round(status - 2731.5) / 10);
+                            await this.setValue(key, Math.round(status - 2731) / 10);
                         } else if(key.includes('_temperature') && status > 200) {
-                            await this.setValue(key, Math.round(status - 273.15));
+                            await this.setValue(key, Math.round(status - 273));
                         } else if(key.includes('_range') && status > 2000) {
                             await this.setValue(key, status / 1000);
                         } else {

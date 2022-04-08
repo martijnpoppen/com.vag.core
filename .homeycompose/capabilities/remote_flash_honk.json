@@ -2,10 +2,11 @@
   "platforms": ["local"],
   "type": "boolean",
   "title": {
-    "en": "Start/Stop Flash & Honk",
-    "nl": "Start/Stop Flits & Toeteren"
+    "en": "Start Flash & Honk",
+    "nl": "Start Flits & Toeteren"
   },
   "getable": true,
   "setable": true,
   "uiComponent": "button"
 }
+

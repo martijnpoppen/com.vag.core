@@ -5,9 +5,21 @@ const { sleep, decrypt, encrypt, calcCrow, get } = require('../lib/helpers');
 const capability_map = require('../constants/capability_map');
 
 module.exports = class mainDevice extends Homey.Device {
+    log() {
+        console.log.bind(this, '[log]').apply(this, arguments);
+    }
+
+    error() {
+        this.handleErrors(arguments);
+        console.error.bind(this, '[error]').apply(this, arguments);
+    }
+
+    // -------------------- INIT ----------------------
+
+
     async onInit() {
         try {
-            this.homey.app.log('[Device] - init =>', this.getName());
+            this.log('[Device] - init =>', this.getName());
             this.setUnavailable(`Starting... - ${this.getName()}`);
 
             await this.initStore();
@@ -16,14 +28,14 @@ module.exports = class mainDevice extends Homey.Device {
 
             await this.setAvailable();
         } catch (error) {
-            this.homey.app.log(`[Device] ${this.getName()} - OnInit Error`, error);
+            this.log(`[Device] ${this.getName()} - OnInit Error`, error);
         }
     }
 
     // ------------- Settings -------------
     async onSettings({ oldSettings, newSettings, changedKeys }) {
-        this.homey.app.log(`[Device] ${this.getName()} - oldSettings`, { ...oldSettings, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
-        this.homey.app.log(`[Device] ${this.getName()} - newSettings`, { ...newSettings, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
+        this.log(`[Device] ${this.getName()} - oldSettings`, { ...oldSettings, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
+        this.log(`[Device] ${this.getName()} - newSettings`, { ...newSettings, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
 
         if (changedKeys.length) {
             if (this.onPollInterval) {
@@ -45,7 +57,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async savePassword(settings, delay = 0) {
-        this.homey.app.log(`[Device] ${this.getName()} - savePassword - encrypted`);
+        this.log(`[Device] ${this.getName()} - savePassword - encrypted`);
 
         if (delay > 0) {
             await sleep(delay);
@@ -55,8 +67,8 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async setRestart(val) {
-        this.homey.app.log(`[Device] ${this.getName()} - setRestart`, val);
-        this.setStoreValue("shouldRestart", val).catch(this.homey.app.error);
+        this.log(`[Device] ${this.getName()} - setRestart`, val);
+        this.setStoreValue("shouldRestart", val).catch(this.error);
     }
 
     // ------------- API -------------
@@ -66,7 +78,7 @@ module.exports = class mainDevice extends Homey.Device {
         try {
             this.config = { ...settings, password: decrypt(settings.password) };
 
-            this.homey.app.log(`[Device] - ${this.getName()} => setVwWeConnectClient Got config`, { ...this.config, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
+            this.log(`[Device] - ${this.getName()} => setVwWeConnectClient Got config`, { ...this.config, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
 
             this._weConnectClient = await VwWeconnect({
                 username: this.config.username,
@@ -75,8 +87,8 @@ module.exports = class mainDevice extends Homey.Device {
                 pin: this.config.pin,
                 interval: this.config.update_interval,
                 homeyDevice: this,
-                log: this.homey.app.log,
-                error: this.homey.app.error
+                log: this.log,
+                error: this.error
             });
 
             await this._weConnectClient.onReady();
@@ -89,7 +101,7 @@ module.exports = class mainDevice extends Homey.Device {
             await this.setAvailable();
             await this.setIntervalsAndFlows(settings);
         } catch (error) {
-            this.homey.app.log(`[Device] ${this.getName()} - setVwWeConnectClient - error =>`, error);
+            this.log(`[Device] ${this.getName()} - setVwWeConnectClient - error =>`, error);
         }
     }
 
@@ -99,9 +111,10 @@ module.exports = class mainDevice extends Homey.Device {
         await this.registerMultipleCapabilityListener(filtered, this.onCapability_ACTION.bind(this));
     }
 
+    // ----------------- Actions ------------------
     async onCapability_ACTION(value) {
         try {
-            this.homey.app.log(`[Device] ${this.getName()} - onCapability_ACTION`, value);
+            this.log(`[Device] ${this.getName()} - onCapability_ACTION`, value);
 
             const settings = this.getSettings();
             const {type, vin, pin } = settings;
@@ -180,13 +193,14 @@ module.exports = class mainDevice extends Homey.Device {
 
             return Promise.resolve(true);
         } catch (e) {
-            this.homey.app.error(e);
+            this.error(e);
             return Promise.reject(e);
         }
     }
 
+    // ----------------- Values ------------------
     async setCapabilityValues(check = false) {
-        this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues`);
+        this.log(`[Device] ${this.getName()} - setCapabilityValues`);
 
         try {
             const settings = this.getSettings();
@@ -196,31 +210,31 @@ module.exports = class mainDevice extends Homey.Device {
             const shouldRestart = this.getStoreValue("shouldRestart")
 
             if(!check && shouldRestart) {
-                this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
+                this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
                 this.clearIntervals();
 
                 await this.setVwWeConnectClient();
             }
 
             if (check || forceUpdate >= 360) {
-                this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
+                this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
                 await sleep(5000);
                 await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
-                    this.homey.app.log("force status update Failed", `${this.driver.id}-${type}`);
+                    this.log("force status update Failed", `${this.driver.id}-${type}`);
                 });
                 await sleep(5000);
                 await this._weConnectClient.updateStatus('setCapabilityValues force');
                 await sleep(10000);
 
-                this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
+                this.setStoreValue("forceUpdate", 0).catch(this.error);
             } else { 
-                this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
+                this.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
 
                 await this._weConnectClient.updateStatus('setCapabilityValues normal');
                 await sleep(10000);
 
-                this.setStoreValue("forceUpdate", forceUpdate + settings.update_interval).catch(this.homey.app.error);
+                this.setStoreValue("forceUpdate", forceUpdate + settings.update_interval).catch(this.error);
             }
 
             // always unload vwconnectclient to prevent double intervals
@@ -231,19 +245,19 @@ module.exports = class mainDevice extends Homey.Device {
             const vinData = deviceInfoTransformed[vin];
             const capabilityMapData = `${this.driver.id}-${type}` in capability_map ? capability_map[`${this.driver.id}-${type}`] : capability_map[`${this.driver.id}`];
 
-            this.homey.app.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
+            this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
             if (vinData && vinData.status) {
                 for (const [key, value] of Object.entries(capabilityMapData)) {
                     const status = get(vinData, value, null);
 
-                    this.homey.app.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
+                    this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
                     if(key.includes('measure_is_home')) {
                         const lat = get(vinData, value.latitude, 0);
                         const lng = get(vinData, value.longitude, 0);
 
-                        this.homey.app.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
+                        this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
                         await this.setLocation(lat, lng);    
                     }else if((status || status !== null) && typeof status == 'number') {
@@ -266,7 +280,7 @@ module.exports = class mainDevice extends Homey.Device {
                 }
             }
         } catch (error) {
-            this.homey.app.error(error);
+            this.error(error);
         }
     }
 
@@ -278,13 +292,24 @@ module.exports = class mainDevice extends Homey.Device {
 
             await this.setValue('measure_is_home', setLocation <= 1);
         } catch (error) {
-            this.homey.app.log(error);
+            this.log(error);
         }
     }
 
     async setValue(key, value) {
-        this.homey.app.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
+        this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
         await this.setCapabilityValue(key, value);
+    }
+
+
+    // ----------------- Errors ------------------
+    handleErrors(args) {
+        if(args[0] && args[0].includes('Refresh Token in 10min')) {
+            this.log(`[Device] ${this.getName()} - refreshing token`);
+            this._weConnectClient.refreshToken(true).catch(() => {
+                this.log("Refresh Token was not successful");
+            });
+        }
     }
 
     // ------------- Intervals -------------
@@ -294,7 +319,7 @@ module.exports = class mainDevice extends Homey.Device {
                 await this.setCapabilityValuesInterval(settings.update_interval);
             }
         } catch (error) {
-            this.homey.app.log(`[Device] ${this.getName()} - OnInit Error`, error);
+            this.log(`[Device] ${this.getName()} - OnInit Error`, error);
         }
     }
 
@@ -302,16 +327,16 @@ module.exports = class mainDevice extends Homey.Device {
         try {
             const REFRESH_INTERVAL = 60000 * update_interval;
 
-            this.homey.app.log(`[Device] ${this.getName()} - onPollInterval =>`, REFRESH_INTERVAL, update_interval);
+            this.log(`[Device] ${this.getName()} - onPollInterval =>`, REFRESH_INTERVAL, update_interval);
             this.onPollInterval = setInterval(this.setCapabilityValues.bind(this), REFRESH_INTERVAL);
         } catch (error) {
             this.setUnavailable(error);
-            this.homey.app.log(error);
+            this.log(error);
         }
     }
 
     async clearIntervals() {
-        this.homey.app.log(`[Device] ${this.getName()} - clearIntervals`);
+        this.log(`[Device] ${this.getName()} - clearIntervals`);
         await clearInterval(this.onPollInterval);
     }
 
@@ -325,8 +350,8 @@ module.exports = class mainDevice extends Homey.Device {
         settingsCapabilities = settingsCapabilities.filter((c) => (settings[c] ? true : false));
         const combinedCapabilities = [...new Set([...driverCapabilities, ...Object.keys(capabilityMapData), ...settingsCapabilities])];
 
-        this.homey.app.log(`[Device] ${this.getName()} - Device capabilities =>`, deviceCapabilities);
-        this.homey.app.log(`[Device] ${this.getName()} - Combined capabilities =>`, combinedCapabilities);
+        this.log(`[Device] ${this.getName()} - Device capabilities =>`, deviceCapabilities);
+        this.log(`[Device] ${this.getName()} - Combined capabilities =>`, combinedCapabilities);
 
         if (combinedCapabilities.length  !== deviceCapabilities.length) {
             await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
@@ -347,32 +372,33 @@ module.exports = class mainDevice extends Homey.Device {
             const newC = combinedCapabilities.filter(d => !deviceCapabilities.includes(d));
             const oldC = deviceCapabilities.filter(d => !combinedCapabilities.includes(d));
 
-            this.homey.app.log(`[Device] ${this.getName()} - Remove old capabilities =>`, oldC);
-            this.homey.app.log(`[Device] ${this.getName()} - Add new capabilities =>`, newC);
+            this.log(`[Device] ${this.getName()} - Remove old capabilities =>`, oldC);
+            this.log(`[Device] ${this.getName()} - Add new capabilities =>`, newC);
 
             oldC.forEach((c) => {
-                this.homey.app.log(`[Device] ${this.getName()} - updateCapabilities => Remove `, c);
+                this.log(`[Device] ${this.getName()} - updateCapabilities => Remove `, c);
                 this.removeCapability(c);
             });
             await sleep(2000);
             newC.forEach((c) => {
-                this.homey.app.log(`[Device] ${this.getName()} - updateCapabilities => Add `, c);
+                this.log(`[Device] ${this.getName()} - updateCapabilities => Add `, c);
                 this.addCapability(c);
             });
             await sleep(2000);
         } catch (error) {
-            this.homey.app.log(error);
+            this.log(error);
         }
     }
 
     async initStore() {
         const forceUpdate = this.getStoreValue("forceUpdate");
         if(!forceUpdate) {
-            this.setStoreValue("forceUpdate", 0).catch(this.homey.app.error);
+            this.setStoreValue("forceUpdate", 0).catch(this.error);
         }
 
         this.setRestart(false);
     }
+    
 
     onDeleted() {
         this.clearIntervals();

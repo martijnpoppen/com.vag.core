@@ -10,8 +10,11 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     error() {
-        this.handleErrors(arguments);
         console.error.bind(this, '[error]').apply(this, arguments);
+
+        if(arguments && arguments.length) {
+            this.handleErrors(arguments);
+        }
     }
 
     // -------------------- INIT ----------------------
@@ -128,13 +131,13 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_flash' in value) {
                     const val = value.remote_flash;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.flash`, { ack: false, val: val });
-                    await this.setCapabilityValue('remote_flash', false)
+                    this.setValue('remote_flash', false, 3000);
                 }
 
                 if ('remote_flash_honk' in value) {
                     const val = value.remote_flash_honk;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.honk`, { ack: false, val: val });
-                    await this.setCapabilityValue('remote_flash_honk', false)
+                    this.setValue('remote_flash_honk', false, 3000);
                 }
 
                 if ('remote_battery_charge' in value) {
@@ -185,7 +188,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_force_refresh' in value) {
                     this.setCapabilityValues(true)
 
-                    await this.setCapabilityValue('remote_force_refresh', false);
+                    this.setValue('remote_force_refresh', false, 3000);
                 }
             } else {
                 throw new Error('S-PIN missing');
@@ -262,9 +265,9 @@ module.exports = class mainDevice extends Homey.Device {
                         await this.setLocation(lat, lng);    
                     }else if((status || status !== null) && typeof status == 'number') {
                         if(key.includes('_temperature') && status > 2000) {
-                            await this.setValue(key, Math.round(status - 2731) / 10);
+                            await this.setValue(key, Math.round(((status / 10) - 273.15) * 2) / 2);
                         } else if(key.includes('_temperature') && status > 200) {
-                            await this.setValue(key, Math.round(status - 273));
+                            await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
                         } else if(key.includes('_range') && status > 2000) {
                             await this.setValue(key, status / 1000);
                         } else {
@@ -284,20 +287,27 @@ module.exports = class mainDevice extends Homey.Device {
         }
     }
 
-    async setLocation(lat, lng) {
+    async setLocation(lat, lng, isMoving = false) {
         try {
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
             const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(lat / 1000000), parseFloat(lng / 1000000));
 
-            await this.setValue('measure_is_home', setLocation <= 1);
+            if(isMoving) {
+                await this.setValue('measure_is_home', false);    
+            } else {
+                await this.setValue('measure_is_home', setLocation <= 1);
+            }
         } catch (error) {
             this.log(error);
         }
     }
 
-    async setValue(key, value) {
+    async setValue(key, value, delay = 0) {
         this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
+        if(delay) {
+            await sleep(delay);
+        }
         await this.setCapabilityValue(key, value);
     }
 

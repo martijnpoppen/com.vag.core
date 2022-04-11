@@ -1,8 +1,8 @@
 {
     "id": "measure_plug_connected_changed",
     "title": {
-      "en": "Connected has changed",
-      "nl": "Verbonden is veranderd"
+      "en": "Plug ponnected has changed",
+      "nl": "Stekker verbonden is veranderd"
     },
     "args": [
         {
@@ -15,8 +15,8 @@
       {
         "name": "measure_plug_connected",
         "title": {
-          "en": "Is connected",
-          "nl": "Is verbonden"
+          "en": "Is plug connected",
+          "nl": "Is stekker verbonden"
         },
         "type": "boolean"
       }

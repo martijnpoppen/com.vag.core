@@ -187,6 +187,7 @@ module.exports = {
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
         measure_is_home: { latitude: `position.carCoordinate.latitude`, longitude: `position.carCoordinate.longitude` },
         measure_is_moving: `position.isMoving`,
+        measure_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange.content`,
         measure_temperature: `climater.settings.targetTemperature.content`,
         'measure_temperature.outdoor': `status.outsideTemperature`,

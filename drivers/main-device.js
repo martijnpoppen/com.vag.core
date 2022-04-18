@@ -10,8 +10,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     error() {
-        console.error.bind(this, '[error]').apply(this, arguments);
-
+        console.log.bind(this, '[error]').apply(this, arguments);
         if(arguments && arguments.length) {
             this.handleErrors(arguments);
         }
@@ -185,6 +184,11 @@ module.exports = class mainDevice extends Homey.Device {
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.windowheating`, { ack: false, val: val });
                 }
 
+                if ('target_temperature' in value) {
+                    const val = value.target_temperature;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationTemperature`, { ack: false, val: val });
+                }
+
                 if ('remote_force_refresh' in value) {
                     this.setCapabilityValues(true)
 
@@ -270,6 +274,8 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
                         } else if(key.includes('_range') && status > 2000) {
                             await this.setValue(key, status / 1000);
+                        } else if(key.includes('remaining_climate_time') && type === 'skodae') {
+                            await this.setValue(key, status / 60);
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
@@ -314,7 +320,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     // ----------------- Errors ------------------
     handleErrors(args) {
-        if(args[0] && args[0].includes('Refresh Token in 10min')) {
+        if(args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
             this.log(`[Device] ${this.getName()} - refreshing token`);
             this._weConnectClient.refreshToken(true).catch(() => {
                 this.log("Refresh Token was not successful");

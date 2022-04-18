@@ -1,7 +1,7 @@
 {
     "id": "measure_plug_connected_changed",
     "title": {
-      "en": "Plug ponnected has changed",
+      "en": "Plug connected has changed",
       "nl": "Stekker verbonden is veranderd"
     },
     "args": [

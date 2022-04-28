@@ -166,6 +166,28 @@
     {
       "type": "group",
       "label": {
+        "en": "Dev settings",
+        "nl": "Dev instellingen"
+      },
+      "children": [
+        {
+          "id": "debug_logs",
+          "type": "checkbox",
+          "label": {
+            "en": "Enable Debug",
+            "nl": "Schakel Debug in"
+          },
+          "hint": {
+            "en": "Checking this box will enable extra logging for the app developer ",
+            "nl": "Het aanzetten van deze instelling zal extra logs aanmaken voor de app ontwikkelaar"
+          },
+          "value": false
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
         "en": "Login settings",
         "nl": "Login instellingen"
       },

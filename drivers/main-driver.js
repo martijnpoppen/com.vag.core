@@ -13,6 +13,8 @@ module.exports = class mainDriver extends Homey.Driver {
         'Unknown'
     }
 
+    dummyLog() {}
+
     async onPair(session) {
         session.setHandler('setType', async (data) => {
             this.config = {
@@ -31,7 +33,14 @@ module.exports = class mainDriver extends Homey.Driver {
                 
                 this.homey.app.log(`[Driver] ${this.id} - got config`, { ...this.config, username: 'LOG', password: 'LOG' });
 
-                this._weConnectClient = await VwWeconnect({ username: this.config.username, password: this.config.password, type: this.config.type });
+                this._weConnectClient = await VwWeconnect({
+                    username: this.config.username,
+                    password: this.config.password,
+                    type: this.config.type,
+                    log: this.dummyLog,
+                    error: this.homey.app.error,
+                    debug: this.dummyLog
+                });
 
                 await this._weConnectClient.onReady();
                 await sleep(6000);

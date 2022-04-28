@@ -6,18 +6,23 @@ const capability_map = require('../constants/capability_map');
 
 module.exports = class mainDevice extends Homey.Device {
     log() {
-        console.log.bind(this, '[log]').apply(this, arguments);
+        console.log.bind(this, `[${Date.now()}][log]`).apply(this, arguments);
+    }
+
+    debug() {
+        console.log.bind(this, `[${Date.now()}][debug]`).apply(this, arguments);
     }
 
     error() {
-        console.log.bind(this, '[error]').apply(this, arguments);
-        if(arguments && arguments.length) {
+        console.log.bind(this, `[${Date.now()}][error]`).apply(this, arguments);
+        if (arguments && arguments.length) {
             this.handleErrors(arguments);
         }
     }
 
-    // -------------------- INIT ----------------------
+    dummyLog() {}
 
+    // -------------------- INIT ----------------------
 
     async onInit() {
         try {
@@ -70,7 +75,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     async setRestart(val) {
         this.log(`[Device] ${this.getName()} - setRestart`, val);
-        this.setStoreValue("shouldRestart", val).catch(this.error);
+        this.setStoreValue('shouldRestart', val).catch(this.error);
     }
 
     // ------------- API -------------
@@ -90,7 +95,8 @@ module.exports = class mainDevice extends Homey.Device {
                 interval: this.config.update_interval,
                 homeyDevice: this,
                 log: this.log,
-                error: this.error
+                error: this.error,
+                debug: settings.debug_logs ? this.debug : this.dummyLog
             });
 
             await this._weConnectClient.onReady();
@@ -109,7 +115,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     // ------------- CapabilityListeners -------------
     async setCapabilityListeners(capabilities) {
-        const filtered = capabilities.filter(f => f.includes('remote_') || f.includes('locked') || f.includes('target_'))
+        const filtered = capabilities.filter((f) => f.includes('remote_') || f.includes('locked') || f.includes('target_'));
         await this.registerMultipleCapabilityListener(filtered, this.onCapability_ACTION.bind(this));
     }
 
@@ -119,9 +125,9 @@ module.exports = class mainDevice extends Homey.Device {
             this.log(`[Device] ${this.getName()} - onCapability_ACTION`, value);
 
             const settings = this.getSettings();
-            const {type, vin, pin } = settings;
+            const { type, vin, pin } = settings;
 
-            if(type === 'id' || type === 'audietron' || type === 'skodae' || pin.length) {
+            if (type === 'id' || type === 'audietron' || type === 'skodae' || pin.length) {
                 if ('locked' in value) {
                     const val = value.locked;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
@@ -142,8 +148,8 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
-                    if(type === 'id' || type === 'audietron') {
-                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });    
+                    if (type === 'id' || type === 'audietron' || type === 'skodae') {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { ack: false, val: val });
                     }
@@ -166,17 +172,32 @@ module.exports = class mainDevice extends Homey.Device {
 
                 if ('remote_ventilation' in value) {
                     const val = value.remote_ventilation;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilation`, { ack: false, val: val });
+
+                    if (type === 'skodae') {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.air-conditioning`, { ack: false, val: val });
+                    } else {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilation`, { ack: false, val: val });
+                    }
                 }
 
                 if ('remote_ventilation_v2' in value) {
                     const val = value.remote_ventilation_v2;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv2`, { ack: false, val: val });
+
+                    if (type === 'skodae') {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.air-conditioning`, { ack: false, val: val });
+                    } else {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv2`, { ack: false, val: val });
+                    }
                 }
 
                 if ('remote_ventilation_v3' in value) {
                     const val = value.remote_ventilation_v3;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv3`, { ack: false, val: val });
+
+                    if (type === 'skodae') {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.air-conditioning`, { ack: false, val: val });
+                    } else {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv3`, { ack: false, val: val });
+                    }
                 }
 
                 if ('remote_window_heating' in value) {
@@ -186,11 +207,16 @@ module.exports = class mainDevice extends Homey.Device {
 
                 if ('target_temperature' in value) {
                     const val = value.target_temperature;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationTemperature`, { ack: false, val: val });
+
+                    if (type === 'skodae') {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.targetTemperatureInCelsius`, { ack: false, val: val });
+                    } else {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationTemperature`, { ack: false, val: val });
+                    }
                 }
 
                 if ('remote_force_refresh' in value) {
-                    this.setCapabilityValues(true)
+                    this.setCapabilityValues(true);
 
                     this.setValue('remote_force_refresh', false, 3000);
                 }
@@ -213,10 +239,10 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const vin = settings.vin;
             const type = settings.type;
-            const forceUpdate = this.getStoreValue("forceUpdate")
-            const shouldRestart = this.getStoreValue("shouldRestart")
+            const forceUpdate = this.getStoreValue('forceUpdate');
+            const shouldRestart = this.getStoreValue('shouldRestart');
 
-            if(!check && shouldRestart) {
+            if (!check && shouldRestart) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
                 this.clearIntervals();
 
@@ -228,20 +254,20 @@ module.exports = class mainDevice extends Homey.Device {
 
                 await sleep(5000);
                 await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
-                    this.log("force status update Failed", `${this.driver.id}-${type}`);
+                    this.log('force status update Failed', `${this.driver.id}-${type}`);
                 });
                 await sleep(5000);
                 await this._weConnectClient.updateStatus('setCapabilityValues force');
                 await sleep(10000);
 
-                this.setStoreValue("forceUpdate", 0).catch(this.error);
-            } else { 
+                this.setStoreValue('forceUpdate', 0).catch(this.error);
+            } else {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
 
                 await this._weConnectClient.updateStatus('setCapabilityValues normal');
                 await sleep(10000);
 
-                this.setStoreValue("forceUpdate", forceUpdate + settings.update_interval).catch(this.error);
+                this.setStoreValue('forceUpdate', forceUpdate + settings.update_interval).catch(this.error);
             }
 
             // always unload vwconnectclient to prevent double intervals
@@ -260,27 +286,27 @@ module.exports = class mainDevice extends Homey.Device {
 
                     this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
-                    if(key.includes('measure_is_home')) {
+                    if (key.includes('is_home')) {
                         const lat = get(vinData, value.latitude, 0);
                         const lng = get(vinData, value.longitude, 0);
 
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
-                        await this.setLocation(lat, lng);    
-                    }else if((status || status !== null) && typeof status == 'number') {
-                        if(key.includes('_temperature') && status > 2000) {
-                            await this.setValue(key, Math.round(((status / 10) - 273.15) * 2) / 2);
-                        } else if(key.includes('_temperature') && status > 200) {
+                        await this.setLocation(lat, lng);
+                    } else if ((status || status !== null) && typeof status == 'number') {
+                        if (key.includes('_temperature') && status > 2000) {
+                            await this.setValue(key, Math.round((status / 10 - 273.15) * 2) / 2);
+                        } else if (key.includes('_temperature') && status > 200) {
                             await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
-                        } else if(key.includes('_range') && status > 2000) {
+                        } else if (key.includes('_range') && status > 2000) {
                             await this.setValue(key, status / 1000);
-                        } else if(key.includes('remaining_climate_time') && type === 'skodae') {
+                        } else if (key.includes('remaining_climate_time') && type === 'skodae') {
                             await this.setValue(key, status / 60);
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
-                    } else if(status || status !== null) {
-                        if(key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
+                    } else if (status || status !== null) {
+                        if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
                         } else {
                             await this.setValue(key, status);
@@ -299,10 +325,10 @@ module.exports = class mainDevice extends Homey.Device {
             const HomeyLng = this.homey.geolocation.getLongitude();
             const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(lat / 1000000), parseFloat(lng / 1000000));
 
-            if(isMoving) {
-                await this.setValue('measure_is_home', false);    
+            if (isMoving) {
+                await this.setValue('is_home', false);
             } else {
-                await this.setValue('measure_is_home', setLocation <= 1);
+                await this.setValue('is_home', setLocation <= 1);
             }
         } catch (error) {
             this.log(error);
@@ -311,19 +337,31 @@ module.exports = class mainDevice extends Homey.Device {
 
     async setValue(key, value, delay = 0) {
         this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
-        if(delay) {
+        const oldVal = await this.getCapabilityValue(key);
+
+        this.log(`[Device] ${this.getName()} - setValue - oldValue => ${key} => `, oldVal, value);
+
+        if (delay) {
             await sleep(delay);
         }
-        await this.setCapabilityValue(key, value);
-    }
 
+        await this.setCapabilityValue(key, value);
+
+        if (typeof value === 'boolean' && key.startsWith('is_') && oldVal !== value) {
+            await this.homey.flow
+                .getDeviceTriggerCard(`${key}_changed`)
+                .trigger(this, { [`${key}`]: value })
+                .catch(this.error)
+                .then(this.log(`[Device] ${this.getName()} - setValue ${key}_changed - Triggered: "${key} | ${value}"`));
+        }
+    }
 
     // ----------------- Errors ------------------
     handleErrors(args) {
-        if(args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
             this.log(`[Device] ${this.getName()} - refreshing token`);
             this._weConnectClient.refreshToken(true).catch(() => {
-                this.log("Refresh Token was not successful");
+                this.log('Refresh Token was not successful');
             });
         }
     }
@@ -369,12 +407,11 @@ module.exports = class mainDevice extends Homey.Device {
         this.log(`[Device] ${this.getName()} - Device capabilities =>`, deviceCapabilities);
         this.log(`[Device] ${this.getName()} - Combined capabilities =>`, combinedCapabilities);
 
-        if (combinedCapabilities.length  !== deviceCapabilities.length) {
+        if (combinedCapabilities.length !== deviceCapabilities.length) {
             await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
         }
 
-
-        if(this.getClass('other') || this.getClass('lock')) {
+        if (this.getClass('other') || this.getClass('lock')) {
             await this.setClass('sensor');
         }
 
@@ -385,8 +422,8 @@ module.exports = class mainDevice extends Homey.Device {
 
     async updateCapabilities(combinedCapabilities, deviceCapabilities) {
         try {
-            const newC = combinedCapabilities.filter(d => !deviceCapabilities.includes(d));
-            const oldC = deviceCapabilities.filter(d => !combinedCapabilities.includes(d));
+            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d));
+            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d));
 
             this.log(`[Device] ${this.getName()} - Remove old capabilities =>`, oldC);
             this.log(`[Device] ${this.getName()} - Add new capabilities =>`, newC);
@@ -407,14 +444,13 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async initStore() {
-        const forceUpdate = this.getStoreValue("forceUpdate");
-        if(!forceUpdate) {
-            this.setStoreValue("forceUpdate", 0).catch(this.error);
+        const forceUpdate = this.getStoreValue('forceUpdate');
+        if (!forceUpdate) {
+            this.setStoreValue('forceUpdate', 0).catch(this.error);
         }
 
         this.setRestart(false);
     }
-    
 
     onDeleted() {
         this.clearIntervals();

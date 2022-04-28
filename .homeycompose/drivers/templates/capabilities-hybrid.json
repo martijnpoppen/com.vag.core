@@ -3,13 +3,13 @@
   "capabilities": [
     "locked",
     "measure_battery",
-    "measure_connected",
+    "is_connected",
     "measure_distance_driven",
     "measure_fuel_level",
     "measure_inspection_days",
     "measure_inspection_distance",
-    "measure_is_home",
-    "measure_is_moving",
+    "is_home",
+    "is_moving",
     "measure_oil_change_days",
     "measure_oil_change_distance",
     "measure_range",
@@ -18,12 +18,6 @@
   ],
   "capabilitiesOptions": {
     "measure_temperature": {
-      "title": {
-        "en": "Target temperature",
-        "nl": "Doel temperatuur"
-      }
-    },
-    "measure_temperature.outdoor": {
       "title": {
         "en": "Outdoor temperature",
         "nl": "Buiten temperatuur"

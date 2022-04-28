@@ -1,5 +1,5 @@
 {
-  "id": "measure_is_home_changed",
+  "id": "is_home_changed",
   "title": {
     "en": "Is vehicle home has changed",
     "nl": "Is voertuig thuis is veranderd"
@@ -8,12 +8,12 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_is_home"
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_home"
     }
   ],
   "tokens": [
     {
-      "name": "measure_is_home",
+      "name": "is_home",
       "title": {
         "en": "Vehicle is home",
         "nl": "Voertuig is thuis"

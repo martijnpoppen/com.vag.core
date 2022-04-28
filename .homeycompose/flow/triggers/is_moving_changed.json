@@ -1,5 +1,5 @@
 {
-  "id": "measure_is_moving_changed",
+  "id": "is_moving_changed",
   "title": {
     "en": "Is vehicle moving has changed",
     "nl": "Is voertuig in beweging is veranderd"
@@ -8,12 +8,12 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_is_moving"
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_moving"
     }
   ],
   "tokens": [
     {
-      "name": "measure_is_moving",
+      "name": "is_moving",
       "title": {
         "en": "Vehicle is moving",
         "nl": "Voertuig in beweging"

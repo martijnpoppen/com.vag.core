@@ -2,23 +2,17 @@
   "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "measure_is_home",
+    "is_home",
     "measure_range",
     "measure_temperature",
     "remote_battery_charge"
   ],
   "capabilitiesOptions": {
     "measure_temperature": {
-      "title": {
-        "en": "Target temperature",
-        "nl": "Doel temperatuur"
-      }
-    },
-    "measure_temperature.outdoor": {
         "title": {
-          "en": "Outdoor temperature",
-          "nl": "Buiten temperatuur"
-        }
-      }
+            "en": "Outdoor temperature",
+            "nl": "Buiten temperatuur"
+          }
+    }
   }
 }

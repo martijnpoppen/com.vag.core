@@ -1,5 +1,5 @@
 {
-    "id": "plug_connected",
+    "id": "is_plug_connected",
     "title": {
       "en": "is plug connected",
       "nl": "is stekker aangesloten"
@@ -12,7 +12,7 @@
       {
         "name": "device",
         "type": "device",
-        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=plug_connected"
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_plug_connected"
       }
     ],
     "platforms": ["local"]

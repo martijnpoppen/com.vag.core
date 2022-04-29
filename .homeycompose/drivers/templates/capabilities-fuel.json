@@ -13,14 +13,6 @@
     "measure_oil_change_distance",
     "measure_oil_level",
     "measure_range",
-    "measure_temperature"
-  ],
-  "capabilitiesOptions": {
-    "measure_temperature": {
-      "title": {
-        "en": "Outside temperature",
-        "nl": "Buiten temperatuur"
-      }
-    }
-  }
+    "measure_temperature_outdoor"
+  ]
 }

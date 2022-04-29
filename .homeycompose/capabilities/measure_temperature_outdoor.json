@@ -2,20 +2,19 @@
   "platforms": ["local"],
   "type": "number",
   "title": {
-    "en": "Remaining climate time",
-    "nl": "Resterende klimaattijd"
+    "en": "Outside Temperature",
+    "nl": "Buiten Temperatuur"
   },
   "units": {
-    "en": "min",
-    "nl": "min"
+    "en": "°C"
   },
   "insights": true,
   "desc": {
-    "en": "Remaining climate time in min",
-    "nl": "Resterende klimaattijd in min"
+    "en": "Outside Temperature in degrees Celsius (°C)",
+    "nl": "Buiten Temperatuur in graden Celsius (°C)"
   },
-  "chartType": "spline",
   "decimals": 2,
+  "chartType": "spline",
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",

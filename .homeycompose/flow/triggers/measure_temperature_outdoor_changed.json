@@ -1,0 +1,26 @@
+{
+    "id": "measure_temperature_outdoor_changed",
+    "highlight": true,
+    "title": {
+      "en": "The outdoor temperature changed",
+      "nl": "De buiten temperatuur is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_temperature_outdoor"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_temperature_outdoor",
+        "title": {
+          "en": "Outdoor temperature",
+          "nl": "Buiten temperatuur"
+        },
+        "type": "number",
+        "example": 23.5
+      }
+    ]
+  }

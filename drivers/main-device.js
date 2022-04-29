@@ -167,7 +167,7 @@ module.exports = class mainDevice extends Homey.Device {
                     if (type === 'id' || type === 'audietron' || type === 'skodae') {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
-                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryCharge`, { ack: false, val: val });
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batterycharge`, { ack: false, val: val });
                     }
                 }
 
@@ -428,9 +428,7 @@ module.exports = class mainDevice extends Homey.Device {
         this.log(`[Device] ${this.getName()} - Device capabilities =>`, deviceCapabilities);
         this.log(`[Device] ${this.getName()} - Combined capabilities =>`, combinedCapabilities);
 
-        if (combinedCapabilities.length !== deviceCapabilities.length) {
-            await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
-        }
+        await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
 
         await this.setCapabilityListeners(combinedCapabilities);
 
@@ -442,8 +440,8 @@ module.exports = class mainDevice extends Homey.Device {
             const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d));
             const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d));
 
-            this.log(`[Device] ${this.getName()} - Remove old capabilities =>`, oldC);
-            this.log(`[Device] ${this.getName()} - Add new capabilities =>`, newC);
+            this.log(`[Device] ${this.getName()} - Got old capabilities =>`, oldC);
+            this.log(`[Device] ${this.getName()} - Got new capabilities =>`, newC);
 
             oldC.forEach((c) => {
                 this.log(`[Device] ${this.getName()} - updateCapabilities => Remove `, c);

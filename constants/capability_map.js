@@ -14,7 +14,7 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
-        measure_temperature: `status.outsideTemperature`
+        measure_temperature_outdoor: `status.outsideTemperature`
     },
     'vw-hybrid': {
         locked: `status.isCarLocked`,
@@ -33,7 +33,7 @@ module.exports = {
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
-        measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -52,7 +52,7 @@ module.exports = {
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
-        measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -66,7 +66,7 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature: `status.climatisationSettings.targetTemperature_C`,
+        measure_temperature_outdoor: `status.climatisationSettings.targetTemperature_C`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
     'seat-fuel': {
@@ -82,7 +82,7 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
-        measure_temperature: `status.outsideTemperature`
+        measure_temperature_outdoor: `status.outsideTemperature`
     },
     'seat-hybrid': {
         locked: `status.isCarLocked`,
@@ -102,7 +102,7 @@ module.exports = {
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
-        measure_temperature: `status.outsideTemperature`,
+        measure_temperature_outdoor: `status.outsideTemperature`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -115,7 +115,7 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature: `status.climatisationSettings.targetTemperature_C`,
+        measure_temperature_outdoor: `status.climatisationSettings.targetTemperature_C`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
     'skoda-fuel': {
@@ -131,7 +131,7 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
-        measure_temperature: `status.outsideTemperature`
+        measure_temperature_outdoor: `status.outsideTemperature`
     },
     'skoda-ev': {
         locked: `status.isCarLocked`,
@@ -144,7 +144,7 @@ module.exports = {
         is_moving: `position.isMoving`,
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
-        measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
         target_temperature: `climater.settings.targetTemperature.content`
     },
     'skoda-ev-skodae': {
@@ -154,7 +154,7 @@ module.exports = {
         measure_range: `status.charging.status.battery.cruisingRangeElectricInMeters`,
         measure_remaining_charge_time: `status.charging.status.charging.remainingToCompleteInSeconds`,
         measure_remaining_climate_time: `status.air-conditioning.status.remainingTimeToReachTargetTemperatureInSeconds`,
-        measure_temperature: `status.air-conditioning.settings.targetTemperatureInKelvin`,
+        measure_temperature_outdoor: `status.air-conditioning.settings.targetTemperatureInKelvin`,
         target_temperature: `status.air-conditioning.settings.targetTemperatureInKelvin`
     },
     'audi-fuel': {
@@ -170,7 +170,7 @@ module.exports = {
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
-        measure_temperature: `status.outsideTemperature`
+        measure_temperature_outdoor: `status.outsideTemperature`
     },
     'audi-hybrid': {
         locked: `status.isCarLocked`,
@@ -189,7 +189,7 @@ module.exports = {
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
-        measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
+        measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -208,7 +208,7 @@ module.exports = {
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange.content`,
-        measure_temperature: `status.outsideTemperature`,
+        measure_temperature_outdoor: `status.outsideTemperature`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -221,7 +221,7 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature: `status.climatisationSettings.targetTemperature_C`,
+        measure_temperature_outdoor: `status.climatisationSettings.targetTemperature_C`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     }
 };

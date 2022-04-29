@@ -4,15 +4,7 @@
     "measure_battery",
     "is_home",
     "measure_range",
-    "measure_temperature",
+    "measure_temperature_outdoor",
     "remote_battery_charge"
-  ],
-  "capabilitiesOptions": {
-    "measure_temperature": {
-        "title": {
-            "en": "Outdoor temperature",
-            "nl": "Buiten temperatuur"
-          }
-    }
-  }
+  ]
 }

@@ -1,0 +1,58 @@
+{
+    "id": "remote_max_charge_current",
+    "title": {
+        "en": "Max. Charge level",
+        "nl": "Max. laadstroom"
+    },
+    "titleFormatted": {
+      "en": "Set Max. Charge level to [[limit]]",
+      "nl": "Zet Max. laadstroom op [[limit]]"
+    },
+    "args": [
+      {
+        "type": "device",
+        "name": "device",
+        "placeholder": {
+          "en": "Select device",
+          "nl": "Selecteer apparaat"
+        },
+        "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_max_charge_current"
+      },
+      {
+        "name": "limit",
+        "type": "dropdown",
+        "values": [
+          {
+            "id": "5",
+            "label": {
+              "en": "5A",
+              "nl": "5A"
+            }
+          },
+          {
+            "id": "10",
+            "label": {
+              "en": "10A",
+              "nl": "10A"
+            }
+          },
+          {
+            "id": "13",
+            "label": {
+              "en": "13A",
+              "nl": "13A"
+            }
+          },
+          {
+            "id": "16",
+            "label": {
+              "en": "16A (Max)",
+              "nl": "16A (Max)"
+            }
+          }
+        ]
+      }
+    ],
+    "platforms": ["local"]
+  }
+  

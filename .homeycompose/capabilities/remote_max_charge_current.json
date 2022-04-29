@@ -1,0 +1,23 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Max. Charge current",
+    "nl": "Max. Laadvermogen"
+  },
+  "units": {
+    "en": "A",
+    "nl": "A"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Max. Charge current in Ampere",
+    "nl": "Max. Laadvermogen in Ampere"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": true,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/lightning-charge.svg"
+}

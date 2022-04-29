@@ -20,7 +20,7 @@ module.exports = {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
-        is_charging: `charger.status.plugStatusData.plugState.content`,
+        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
@@ -34,13 +34,15 @@ module.exports = {
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
-        target_temperature: `climater.settings.targetTemperature.content`
+        target_temperature: `climater.settings.targetTemperature.content`,
+        remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
+        remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'vw-ev': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
-        is_charging: `charger.status.plugStatusData.plugState.content`,
+        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
@@ -51,7 +53,9 @@ module.exports = {
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
-        target_temperature: `climater.settings.targetTemperature.content`
+        target_temperature: `climater.settings.targetTemperature.content`,
+        remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
+        remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'vw-ev-id': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
@@ -84,7 +88,7 @@ module.exports = {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
-        is_charging: `charger.status.plugStatusData.plugState.content`,
+        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
@@ -99,7 +103,9 @@ module.exports = {
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature: `status.outsideTemperature`,
-        target_temperature: `climater.settings.targetTemperature.content`
+        target_temperature: `climater.settings.targetTemperature.content`,
+        remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
+        remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'seat-ev-cupra': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
@@ -170,7 +176,7 @@ module.exports = {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
-        is_charging: `charger.status.plugStatusData.plugState.content`,
+        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
@@ -184,13 +190,15 @@ module.exports = {
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_temperature: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
-        target_temperature: `climater.settings.targetTemperature.content`
+        target_temperature: `climater.settings.targetTemperature.content`,
+        remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
+        remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'audi-ev': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
-        is_charging: `charger.status.plugStatusData.plugState.content`,
+        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
@@ -201,7 +209,9 @@ module.exports = {
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange.content`,
         measure_temperature: `status.outsideTemperature`,
-        target_temperature: `climater.settings.targetTemperature.content`
+        target_temperature: `climater.settings.targetTemperature.content`,
+        remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
+        remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'audi-ev-audietron': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,

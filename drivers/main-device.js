@@ -151,6 +151,16 @@ module.exports = class mainDevice extends Homey.Device {
                     this.setValue('remote_flash_honk', false, 3000);
                 }
 
+                if ('remote_charge_min_limit' in value) {
+                    const val = value.remote_charge_min_limit;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.chargeMinLimit`, { ack: false, val: val });
+                }
+
+                if ('remote_max_charge_current' in value) {
+                    const val = value.remote_max_charge_current;
+                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.maxChargeCurrent`, { ack: false, val: val });
+                }
+
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
@@ -314,11 +324,13 @@ module.exports = class mainDevice extends Homey.Device {
                     } else if (status || status !== null) {
                         if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
-                        } else {
+                        } else if (key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
+                            await this.setValue(key, ['Charging', 'charging'].includes(status));
+                        }else {
                             await this.setValue(key, status);
                         }
                     }
-                }
+                }    
             }
         } catch (error) {
             this.error(error);
@@ -369,6 +381,9 @@ module.exports = class mainDevice extends Homey.Device {
             this._weConnectClient.refreshToken(true).catch(() => {
                 this.log('Refresh Token was not successful');
             });
+        } else if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart Adapter')) {
+            this.log(`[Device] ${this.getName()} - Restart Adapter`);
+            this.setRestart(true);
         }
     }
 
@@ -415,10 +430,6 @@ module.exports = class mainDevice extends Homey.Device {
 
         if (combinedCapabilities.length !== deviceCapabilities.length) {
             await this.updateCapabilities(combinedCapabilities, deviceCapabilities);
-        }
-
-        if (this.getClass('other') || this.getClass('lock')) {
-            await this.setClass('sensor');
         }
 
         await this.setCapabilityListeners(combinedCapabilities);

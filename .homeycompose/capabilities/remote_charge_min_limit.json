@@ -1,0 +1,23 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Min. Charge limit",
+    "nl": "Min. Laad limiet"
+  },
+  "units": {
+    "en": "%",
+    "nl": "%"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Min. Charge limit in %",
+    "nl": "Min. Laad limiet in %"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": true,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/battery-half.svg"
+}

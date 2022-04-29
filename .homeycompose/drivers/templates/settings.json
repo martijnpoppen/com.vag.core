@@ -12,7 +12,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Climatisation",
-            "nl": "Instelling Klimatiseren"
+            "nl": "Instelling: Klimatiseren"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -25,7 +25,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Climatisation V2",
-            "nl": "Instelling Klimatiseren V2"
+            "nl": "Instelling: Klimatiseren V2"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -38,7 +38,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Climatisation V3",
-            "nl": "Instelling Klimatiseren V3"
+            "nl": "Instelling: Klimatiseren V3"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -51,7 +51,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Ventilation",
-            "nl": "Instelling Ventileren"
+            "nl": "Instelling: Ventileren"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -64,7 +64,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Ventilation V2",
-            "nl": "Instelling Ventileren V2"
+            "nl": "Instelling: Ventileren V2"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -77,7 +77,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Ventilation V3",
-            "nl": "Instelling Ventileren V3"
+            "nl": "Instelling: Ventileren V3"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -90,7 +90,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Window heating",
-            "nl": "Instelling Raam verwarming"
+            "nl": "Instelling: Raam verwarming"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -103,7 +103,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Force Refresh",
-            "nl": "Instelling Geforceerd verversen"
+            "nl": "Instelling: Geforceerd verversen"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -116,7 +116,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Flash",
-            "nl": "Instelling Flitsen"
+            "nl": "Instelling: Flitsen"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
@@ -129,7 +129,7 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Flash & Honk",
-            "nl": "Instelling Flitsen & Toeteren"
+            "nl": "Instelling: Flitsen & Toeteren"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",

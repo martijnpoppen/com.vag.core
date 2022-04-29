@@ -1,0 +1,24 @@
+{
+  "id": "is_charging_changed",
+  "title": {
+    "en": "Charging has changed",
+    "nl": "Opladen is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=is_charging"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "is_charging",
+      "title": {
+        "en": "Is charging",
+        "nl": "Is aan het opladen"
+      },
+      "type": "boolean"
+    }
+  ]
+}

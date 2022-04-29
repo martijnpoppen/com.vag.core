@@ -87,13 +87,19 @@ module.exports = class mainDevice extends Homey.Device {
 
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient Got config`, { ...this.config, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
 
+            if(this._weConnectClient) {
+                this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - removing old instance`)
+                this._weConnectClient = null;
+                await sleep(1000);
+            }
+            
+
             this._weConnectClient = await VwWeconnect({
                 username: this.config.username,
                 password: this.config.password,
                 type: this.config.type,
                 pin: this.config.pin,
                 interval: this.config.update_interval,
-                homeyDevice: this,
                 log: this.log,
                 error: this.error,
                 debug: settings.debug_logs ? this.debug : this.dummyLog

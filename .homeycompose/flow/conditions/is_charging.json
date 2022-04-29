@@ -1,0 +1,20 @@
+{
+    "id": "is_charging",
+    "title": {
+      "en": "is charging",
+      "nl": "is aan het opladen"
+    },
+    "titleFormatted": {
+      "en": "!{{is |isn't}} charging",
+      "nl": "!{{is|is niet}} aan het opladen"
+    },
+    "args": [
+      {
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-hybrid&capabilities=is_charging"
+      }
+    ],
+    "platforms": ["local"]
+  }
+  

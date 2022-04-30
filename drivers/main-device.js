@@ -73,11 +73,6 @@ module.exports = class mainDevice extends Homey.Device {
         await this.setSettings({ ...settings, password: encrypt(settings.password) });
     }
 
-    async setRestart(val) {
-        this.log(`[Device] ${this.getName()} - setRestart`, val);
-        this.setStoreValue('shouldRestart', val).catch(this.error);
-    }
-
     // ------------- API -------------
     async setVwWeConnectClient(overrideSettings = null) {
         const settings = overrideSettings ? overrideSettings : this.getSettings();
@@ -256,14 +251,6 @@ module.exports = class mainDevice extends Homey.Device {
             const vin = settings.vin;
             const type = settings.type;
             const forceUpdate = this.getStoreValue('forceUpdate');
-            const shouldRestart = this.getStoreValue('shouldRestart');
-
-            if (!check && shouldRestart) {
-                this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
-                this.clearIntervals();
-
-                await this.setVwWeConnectClient();
-            }
 
             if (check || forceUpdate >= 360) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
@@ -381,9 +368,14 @@ module.exports = class mainDevice extends Homey.Device {
             this._weConnectClient.refreshToken(true).catch(() => {
                 this.log('Refresh Token was not successful');
             });
-        } else if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart Adapter')) {
+        }
+        
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
             this.log(`[Device] ${this.getName()} - Restart Adapter`);
-            this.setRestart(true);
+            
+            this.clearIntervals();
+
+            await this.setVwWeConnectClient();
         }
     }
 

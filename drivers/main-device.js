@@ -82,12 +82,11 @@ module.exports = class mainDevice extends Homey.Device {
 
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient Got config`, { ...this.config, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
 
-            if(this._weConnectClient) {
-                this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - removing old instance`)
+            if (this._weConnectClient) {
+                this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - removing old instance`);
                 this._weConnectClient = null;
                 await sleep(1000);
             }
-            
 
             this._weConnectClient = await VwWeconnect({
                 username: this.config.username,
@@ -105,7 +104,6 @@ module.exports = class mainDevice extends Homey.Device {
             await this._weConnectClient.onUnload(() => {});
             await sleep(1000);
 
-            await this.setRestart(false);
             await this.setCapabilityValues(true);
             await this.setAvailable();
             await this.setIntervalsAndFlows(settings);
@@ -313,11 +311,11 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
                         } else if (key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
-                        }else {
+                        } else {
                             await this.setValue(key, status);
                         }
                     }
-                }    
+                }
             }
         } catch (error) {
             this.error(error);
@@ -363,19 +361,19 @@ module.exports = class mainDevice extends Homey.Device {
 
     // ----------------- Errors ------------------
     handleErrors(args) {
-        if (args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
+        if (this._weConnectClient && args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
             this.log(`[Device] ${this.getName()} - refreshing token`);
             this._weConnectClient.refreshToken(true).catch(() => {
                 this.log('Refresh Token was not successful');
             });
         }
-        
+
         if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
             this.log(`[Device] ${this.getName()} - Restart Adapter`);
-            
+
             this.clearIntervals();
 
-            await this.setVwWeConnectClient();
+            this.setVwWeConnectClient();
         }
     }
 
@@ -455,8 +453,6 @@ module.exports = class mainDevice extends Homey.Device {
         if (!forceUpdate) {
             this.setStoreValue('forceUpdate', 0).catch(this.error);
         }
-
-        this.setRestart(false);
     }
 
     onDeleted() {

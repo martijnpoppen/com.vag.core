@@ -66,7 +66,6 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature_outdoor: `status.climatisationSettings.targetTemperature_C`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
     'seat-fuel': {
@@ -115,7 +114,6 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature_outdoor: `status.climatisationSettings.targetTemperature_C`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
     'skoda-fuel': {
@@ -221,7 +219,6 @@ module.exports = {
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        measure_temperature_outdoor: `status.climatisationSettings.targetTemperature_C`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     }
 };

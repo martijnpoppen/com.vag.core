@@ -248,89 +248,86 @@ module.exports = class mainDevice extends Homey.Device {
         this.log(`[Device] ${this.getName()} - setCapabilityValues`);
 
         try {
-            if (this.getAvailable()) {
-                const settings = this.getSettings();
-                const vin = settings.vin;
-                const type = settings.type;
-                const forceUpdate = this.getStoreValue('forceUpdate');
+            const settings = this.getSettings();
+            const vin = settings.vin;
+            const type = settings.type;
+            const forceUpdate = this.getStoreValue('forceUpdate');
+            const shouldRestart = this.getStoreValue('shouldRestart');
 
-                const shouldRestart = this.getStoreValue('shouldRestart');
+            if (!check && shouldRestart) {
+                this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
+                this.clearIntervals();
 
-                if (!check && shouldRestart) {
-                    this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
-                    this.clearIntervals();
-    
-                    await this.setVwWeConnectClient();
-                }
+                await this.setVwWeConnectClient();
+            }
 
-                if (check || forceUpdate >= 360) {
-                    this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
+            if (check || forceUpdate >= 360) {
+                this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
-                    await sleep(5000);
-                    await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
-                        this.log('force status update Failed', `${this.driver.id}-${type}`);
-                    });
-                    await sleep(5000);
-                    await this._weConnectClient.updateStatus('setCapabilityValues force');
-                    await sleep(10000);
+                await sleep(5000);
+                await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
+                    this.log('force status update Failed', `${this.driver.id}-${type}`);
+                });
+                await sleep(5000);
+                await this._weConnectClient.updateStatus('setCapabilityValues force');
+                await sleep(10000);
 
-                    this.setStoreValue('forceUpdate', 0).catch(this.error);
-                } else {
-                    this.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
+                this.setStoreValue('forceUpdate', 0).catch(this.error);
+            } else {
+                this.log(`[Device] ${this.getName()} - setCapabilityValues - updateStatus`);
 
-                    await this._weConnectClient.updateStatus('setCapabilityValues normal');
-                    await sleep(10000);
+                await this._weConnectClient.updateStatus('setCapabilityValues normal');
+                await sleep(10000);
 
-                    this.setStoreValue('forceUpdate', forceUpdate + settings.update_interval).catch(this.error);
-                }
+                this.setStoreValue('forceUpdate', forceUpdate + settings.update_interval).catch(this.error);
+            }
 
-                // always unload vwconnectclient to prevent double intervals
-                await this._weConnectClient.onUnload(() => {});
+            // always unload vwconnectclient to prevent double intervals
+            await this._weConnectClient.onUnload(() => {});
 
-                const deviceInfo = this._weConnectClient.getState();
-                const deviceInfoTransformed = dottie.transform(deviceInfo);
-                const vinData = deviceInfoTransformed[vin];
-                const capabilityMapData = `${this.driver.id}-${type}` in capability_map ? capability_map[`${this.driver.id}-${type}`] : capability_map[`${this.driver.id}`];
+            const deviceInfo = this._weConnectClient.getState();
+            const deviceInfoTransformed = dottie.transform(deviceInfo);
+            const vinData = deviceInfoTransformed[vin];
+            const capabilityMapData = `${this.driver.id}-${type}` in capability_map ? capability_map[`${this.driver.id}-${type}`] : capability_map[`${this.driver.id}`];
 
-                this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
+            this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
-                if(settings.debug_logs) {
-                    this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, vinData);
-                }
-                
-                if (vinData && vinData.status) {
-                    for (const [key, value] of Object.entries(capabilityMapData)) {
-                        const status = get(vinData, value, null);
+            if (settings.debug_logs) {
+                this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, vinData);
+            }
 
-                        this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
+            if (vinData && vinData.status) {
+                for (const [key, value] of Object.entries(capabilityMapData)) {
+                    const status = get(vinData, value, null);
 
-                        if (key.includes('is_home')) {
-                            const lat = get(vinData, value.latitude, 0);
-                            const lng = get(vinData, value.longitude, 0);
+                    this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
-                            this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
+                    if (key.includes('is_home')) {
+                        const lat = get(vinData, value.latitude, 0);
+                        const lng = get(vinData, value.longitude, 0);
 
-                            await this.setLocation(lat, lng);
-                        } else if ((status || status !== null) && typeof status == 'number') {
-                            if (key.includes('_temperature') && status > 2000) {
-                                await this.setValue(key, Math.round((status / 10 - 273.15) * 2) / 2);
-                            } else if (key.includes('_temperature') && status > 200) {
-                                await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
-                            } else if (key.includes('_range') && status > 2000) {
-                                await this.setValue(key, status / 1000);
-                            } else if (key.includes('remaining_climate_time') && type === 'skodae') {
-                                await this.setValue(key, status / 60);
-                            } else {
-                                await this.setValue(key, Math.abs(status));
-                            }
-                        } else if (status || status !== null) {
-                            if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
-                                await this.setValue(key, ['Connected', 'connected'].includes(status));
-                            } else if (key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
-                                await this.setValue(key, ['Charging', 'charging'].includes(status));
-                            } else {
-                                await this.setValue(key, status);
-                            }
+                        this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
+
+                        await this.setLocation(lat, lng);
+                    } else if ((status || status !== null) && typeof status == 'number') {
+                        if (key.includes('_temperature') && status > 2000) {
+                            await this.setValue(key, Math.round((status / 10 - 273.15) * 2) / 2);
+                        } else if (key.includes('_temperature') && status > 200) {
+                            await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
+                        } else if (key.includes('_range') && status > 2000) {
+                            await this.setValue(key, status / 1000);
+                        } else if (key.includes('remaining_climate_time') && type === 'skodae') {
+                            await this.setValue(key, status / 60);
+                        } else {
+                            await this.setValue(key, Math.abs(status));
+                        }
+                    } else if (status || status !== null) {
+                        if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
+                            await this.setValue(key, ['Connected', 'connected'].includes(status));
+                        } else if (key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
+                            await this.setValue(key, ['Charging', 'charging'].includes(status));
+                        } else {
+                            await this.setValue(key, status);
                         }
                     }
                 }
@@ -381,16 +378,23 @@ module.exports = class mainDevice extends Homey.Device {
     handleErrors(args) {
         if (this.getAvailable()) {
             if (this._weConnectClient && args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
-                this.log(`[Device] ${this.getName()} - refreshing token`);
+                this.log(`[Device] ${this.getName()} - handleErrors - refreshing token`);
                 this._weConnectClient.refreshToken(true).catch(() => {
                     this.log('Refresh Token was not successful');
                 });
             }
 
             if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
-                this.log(`[Device] ${this.getName()} - Restart Adapter`);
+                this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
-                this.setRestart(true);
+                const shouldRestart = this.getStoreValue('shouldRestart');
+
+                if (!shouldRestart) {
+                    this.log(`[Device] ${this.getName()} - Try to Restart Adapter`);
+                    this.setRestart(true);
+                } else {
+                    this.log(`[Device] ${this.getName()} - Restart Adapter already scheduled`);
+                }
             }
         }
     }

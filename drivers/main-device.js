@@ -104,6 +104,7 @@ module.exports = class mainDevice extends Homey.Device {
             await this._weConnectClient.onUnload(() => {});
             await sleep(1000);
 
+            await this.setRestart(false);
             await this.setCapabilityValues(true);
             await this.setAvailable();
             await this.setIntervalsAndFlows(settings);
@@ -253,6 +254,15 @@ module.exports = class mainDevice extends Homey.Device {
                 const type = settings.type;
                 const forceUpdate = this.getStoreValue('forceUpdate');
 
+                const shouldRestart = this.getStoreValue('shouldRestart');
+
+                if (!check && shouldRestart) {
+                    this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
+                    this.clearIntervals();
+    
+                    await this.setVwWeConnectClient();
+                }
+
                 if (check || forceUpdate >= 360) {
                     this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
@@ -379,11 +389,8 @@ module.exports = class mainDevice extends Homey.Device {
 
             if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
                 this.log(`[Device] ${this.getName()} - Restart Adapter`);
-                this.setUnavailable('Refreshing Tokens');
 
-                this.clearIntervals();
-
-                this.setVwWeConnectClient();
+                this.setRestart(true);
             }
         }
     }
@@ -464,6 +471,13 @@ module.exports = class mainDevice extends Homey.Device {
         if (!forceUpdate) {
             this.setStoreValue('forceUpdate', 0).catch(this.error);
         }
+
+        this.setRestart(false);
+    }
+
+    async setRestart(val) {
+        this.log(`[Device] ${this.getName()} - setRestart`, val);
+        this.setStoreValue('shouldRestart', val).catch(this.error);
     }
 
     onDeleted() {

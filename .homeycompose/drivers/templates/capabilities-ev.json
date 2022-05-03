@@ -4,7 +4,6 @@
     "measure_battery",
     "is_home",
     "measure_range",
-    "measure_temperature_outdoor",
     "remote_battery_charge"
   ]
 }

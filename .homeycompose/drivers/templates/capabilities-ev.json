@@ -2,7 +2,6 @@
   "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "is_home",
     "measure_range",
     "remote_battery_charge"
   ]

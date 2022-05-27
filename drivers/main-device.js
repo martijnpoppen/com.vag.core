@@ -316,7 +316,7 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
                         } else if (key.includes('_range') && status > 2000) {
                             await this.setValue(key, status / 1000);
-                        } else if (key.includes('remaining_climate_time') && type === 'skodae') {
+                        } else if (key.includes('_time') && type === 'skodae') {
                             await this.setValue(key, status / 60);
                         } else {
                             await this.setValue(key, Math.abs(status));
@@ -396,6 +396,8 @@ module.exports = class mainDevice extends Homey.Device {
                     this.log(`[Device] ${this.getName()} - Restart Adapter already scheduled`);
                 }
             }
+
+            // if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
         }
     }
 

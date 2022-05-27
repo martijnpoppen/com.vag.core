@@ -9,7 +9,7 @@
     "en": "%",
     "nl": "%"
   },
-  "insights": false,
+  "insights": true,
   "desc": {
     "en": "Battery level in %",
     "nl": "Batterij niveau in %"

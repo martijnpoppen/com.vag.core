@@ -1,0 +1,17 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Battery",
+    "nl": "Batterij"
+  },
+  "units": {
+    "en": "%",
+    "nl": "%"
+  },
+  "insights": false,
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": null
+}

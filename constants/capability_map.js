@@ -19,6 +19,7 @@ module.exports = {
     'vw-hybrid': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
+        measure_battery_percent: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
@@ -41,6 +42,7 @@ module.exports = {
     'vw-ev': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
+        measure_battery_percent: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
@@ -59,6 +61,7 @@ module.exports = {
     },
     'vw-ev-id': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
+        measure_battery_percent: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
         is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_home: { latitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_latitude', longitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_longitude' },
@@ -86,6 +89,7 @@ module.exports = {
     'seat-hybrid': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
+        measure_battery_percent: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
@@ -108,6 +112,7 @@ module.exports = {
     },
     'seat-ev-cupra': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
+        measure_battery_percent: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
         is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_home: { latitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_latitude', longitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_longitude' },
@@ -134,6 +139,7 @@ module.exports = {
     'skoda-hybrid': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
+        measure_battery_percent: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
@@ -157,6 +163,7 @@ module.exports = {
     'skoda-ev': {
         locked: `status.isCarLocked`,
         measure_battery: `status.data_${status_types.LEVELS}.field_${status_types.STATE_OF_CHARGE}.value`,
+        measure_battery_percent: `status.data_${status_types.LEVELS}.field_${status_types.STATE_OF_CHARGE}.value`,
         is_connected: `general.isConnect`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
@@ -170,6 +177,7 @@ module.exports = {
     },
     'skoda-ev-skodae': {
         measure_battery: `status.charging.status.battery.stateOfChargeInPercent`,
+        measure_battery_percent: `status.charging.status.battery.stateOfChargeInPercent`,
         measure_charge_target: `status.charging.settings.targetStateOfChargeInPercent`,
         is_plug_connected: `status.charging.status.plug.connectionState`,
         measure_range: `status.charging.status.battery.cruisingRangeElectricInMeters`,
@@ -196,6 +204,7 @@ module.exports = {
     'audi-hybrid': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
+        measure_battery_percent: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
@@ -218,6 +227,7 @@ module.exports = {
     'audi-ev': {
         locked: `status.isCarLocked`,
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
+        measure_battery_percent: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
@@ -236,6 +246,7 @@ module.exports = {
     },
     'audi-ev-audietron': {
         measure_battery: `status.batteryStatus.currentSOC_pct`,
+        measure_battery_percent: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
         is_home: { latitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_latitude', longitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_longitude' },
         is_plug_connected: `status.plugStatus.plugConnectionState`,

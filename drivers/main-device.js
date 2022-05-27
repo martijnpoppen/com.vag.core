@@ -354,23 +354,33 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async setValue(key, value, delay = 0) {
-        this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
-        const oldVal = await this.getCapabilityValue(key);
-
-        this.log(`[Device] ${this.getName()} - setValue - oldValue => ${key} => `, oldVal, value);
-
-        if (delay) {
-            await sleep(delay);
+        if(key.includes('_FALLBACK')) {
+            key = key.replace('_FALLBACK', '')
+            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK => ${key} => `, value);
+        } else {
+            this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
         }
 
-        await this.setCapabilityValue(key, value);
+        if (this.hasCapability(key)) {
+            const oldVal = await this.getCapabilityValue(key);
 
-        if (typeof value === 'boolean' && key.startsWith('is_') && oldVal !== value) {
-            await this.homey.flow
-                .getDeviceTriggerCard(`${key}_changed`)
-                .trigger(this, { [`${key}`]: value })
-                .catch(this.error)
-                .then(this.log(`[Device] ${this.getName()} - setValue ${key}_changed - Triggered: "${key} | ${value}"`));
+            this.log(`[Device] ${this.getName()} - setValue - oldValue => ${key} => `, oldVal, value);
+
+            if (delay) {
+                await sleep(delay);
+            }
+
+            if (this.hasCapability(key)) {
+            }
+            await this.setCapabilityValue(key, value);
+
+            if (typeof value === 'boolean' && key.startsWith('is_') && oldVal !== value) {
+                await this.homey.flow
+                    .getDeviceTriggerCard(`${key}_changed`)
+                    .trigger(this, { [`${key}`]: value })
+                    .catch(this.error)
+                    .then(this.log(`[Device] ${this.getName()} - setValue ${key}_changed - Triggered: "${key} | ${value}"`));
+            }
         }
     }
 
@@ -384,7 +394,7 @@ module.exports = class mainDevice extends Homey.Device {
                 });
             }
 
-            if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
+            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion'))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
                 const shouldRestart = this.getStoreValue('shouldRestart');
@@ -396,8 +406,6 @@ module.exports = class mainDevice extends Homey.Device {
                     this.log(`[Device] ${this.getName()} - Restart Adapter already scheduled`);
                 }
             }
-
-            // if (args[0] && typeof args[0] === 'string' && args[0].includes('Restart adapter in')) {
         }
     }
 

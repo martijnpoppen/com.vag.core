@@ -2,16 +2,22 @@
   "platforms": ["local"],
   "type": "number",
   "title": {
-    "en": "Battery",
-    "nl": "Batterij"
+    "en": "Battery level",
+    "nl": "Batterij niveau"
   },
   "units": {
     "en": "%",
     "nl": "%"
   },
   "insights": false,
+  "desc": {
+    "en": "Battery level in %",
+    "nl": "Batterij niveau in %"
+  },
+  "chartType": "spline",
   "decimals": 2,
   "getable": true,
   "setable": false,
-  "uiComponent": null
+  "uiComponent": "sensor",
+  "icon": "assets/icons/battery.svg"
 }

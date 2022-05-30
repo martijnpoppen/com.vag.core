@@ -459,8 +459,8 @@ module.exports = class mainDevice extends Homey.Device {
 
     async updateCapabilities(combinedCapabilities, deviceCapabilities) {
         try {
-            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d));
-            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d));
+            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d) && d.includes('_FALLBACK'));
+            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d) && d.includes('_FALLBACK'));
 
             this.log(`[Device] ${this.getName()} - Got old capabilities =>`, oldC);
             this.log(`[Device] ${this.getName()} - Got new capabilities =>`, newC);

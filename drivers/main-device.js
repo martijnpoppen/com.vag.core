@@ -3,6 +3,7 @@ const dottie = require('dottie');
 const VwWeconnect = require('../lib/@iobroker/iobroker.vw-connect');
 const { sleep, decrypt, encrypt, calcCrow, get } = require('../lib/helpers');
 const capability_map = require('../constants/capability_map');
+const remote_map = require('../constants/remote_map');
 
 module.exports = class mainDevice extends Homey.Device {
     log() {
@@ -289,6 +290,7 @@ module.exports = class mainDevice extends Homey.Device {
             const deviceInfoTransformed = dottie.transform(deviceInfo);
             const vinData = deviceInfoTransformed[vin];
             const capabilityMapData = `${this.driver.id}-${type}` in capability_map ? capability_map[`${this.driver.id}-${type}`] : capability_map[`${this.driver.id}`];
+            
 
             this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
@@ -324,17 +326,35 @@ module.exports = class mainDevice extends Homey.Device {
                     } else if (status || status !== null) {
                         if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
-                        } else if (key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
+                        } else if (type !== 'skodae' && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
+                        }  else if (type === 'skodae' && key.includes('is_charging')) {
+                            await this.setValue(key, status !== 'ReadyForCharging');
                         } else {
                             await this.setValue(key, status);
                         }
                     }
                 }
+
+                await this.setRemoteValues(vinData)
             }
         } catch (error) {
             this.error(error);
         }
+    }
+
+    async setRemoteValues() {
+        remote_map.forEach(c => {
+            if(this.hasCapability(c.default)) {
+                const value = this.getCapabilityValue(c.default);
+                const status = value !== c.operator;
+                
+                this.log(`[Device] ${this.getName()} - getValue => ${c.capability} => `, value, status);
+
+                this.setValue(c.capability, status);
+                
+            }
+        });
     }
 
     async setLocation(lat, lng, isMoving = false) {
@@ -370,8 +390,6 @@ module.exports = class mainDevice extends Homey.Device {
                 await sleep(delay);
             }
 
-            if (this.hasCapability(key)) {
-            }
             await this.setCapabilityValue(key, value);
 
             if (typeof value === 'boolean' && key.startsWith('is_') && oldVal !== value) {

@@ -30,10 +30,6 @@ module.exports = class mainDevice extends Homey.Device {
             this.log('[Device] - init =>', this.getName());
             this.setUnavailable(`Starting... - ${this.getName()}`);
 
-            const settings = this.getSettings();
-            const oldPass = decrypt(settings.password, true);
-            this.setSettings({ ...settings, password: encrypt(oldPass)});
-
             await this.initStore();
             await this.checkCapabilities();
             await this.setVwWeConnectClient();

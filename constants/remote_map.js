@@ -18,25 +18,25 @@ module.exports = [
         capability: 'remote_climatisation_v3',
         default: 'measure_remaining_climate_time',
         operator: 0
-    },
-    {
-        capability: 'remote_ventilation',
-        default: 'measure_remaining_climate_time',
-        operator: 0
-    },
-    {
-        capability: 'remote_ventilation_v2',
-        default: 'measure_remaining_climate_time',
-        operator: 0
-    },
-    {
-        capability: 'remote_ventilation_v3',
-        default: 'measure_remaining_climate_time',
-        operator: 0
-    },
-    {
-        capability: 'remote_window_heating',
-        default: 'measure_remaining_climate_time',
-        operator: 0
     }
+    // {
+    //     capability: 'remote_ventilation',
+    //     default: 'measure_remaining_climate_time',
+    //     operator: 0
+    // },
+    // {
+    //     capability: 'remote_ventilation_v2',
+    //     default: 'measure_remaining_climate_time',
+    //     operator: 0
+    // },
+    // {
+    //     capability: 'remote_ventilation_v3',
+    //     default: 'measure_remaining_climate_time',
+    //     operator: 0
+    // },
+    // {
+    //     capability: 'remote_window_heating',
+    //     default: 'measure_remaining_climate_time',
+    //     operator: 0
+    // }
 ];

@@ -8,12 +8,21 @@
   },
   "scripts": {
     "sync": "npm run sync-vw && npm run sync-seat && npm run sync-skoda && npm run sync-audi",
-    "sync-dev": "cd ../ && rm -rf ./com.we-volkswagen.connect && cp -R ./com.vag.core ./com.we-volkswagen.connect && cd ./com.we-volkswagen.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.we-volkswagen.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone  && cd ..;",
-    "run-dev": "cd ../ && rm -rf ./com.we-volkswagen.connect && cp -R ./com.vag.core ./com.we-volkswagen.connect && cd ./com.we-volkswagen.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.we-volkswagen.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone && homey app run",
-    "sync-vw": "cd ../ && rm -rf ./com.we-volkswagen.connect && cp -R ./com.vag.core ./com.we-volkswagen.connect && cd ./com.we-volkswagen.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.we-volkswagen.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/audi-ev drivers/audi-fuel drivers/audi-hybrid drivers/skoda-ev drivers/skoda-fuel drivers/skoda-hybrid drivers/seat-ev drivers/seat-fuel drivers/seat-hybrid  && cd ..;",
-    "sync-seat": "cd ../ && rm -rf ./com.seat.connectedcar && cp -R ./com.vag.core ./com.seat.connectedcar && cd ./com.seat.connectedcar && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.seat.connectedcar.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/audi-ev drivers/audi-fuel drivers/audi-hybrid drivers/skoda-ev drivers/skoda-fuel drivers/skoda-hybrid drivers/vw-ev drivers/vw-fuel drivers/vw-hybrid  && cd ..;",
-    "sync-skoda": "cd ../ && rm -rf ./cz.skodaauto.connect && cp -R ./com.vag.core ./cz.skodaauto.connect && cd ./cz.skodaauto.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/cz.skodaauto.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/audi-ev drivers/audi-fuel drivers/audi-hybrid drivers/seat-ev drivers/seat-fuel drivers/seat-hybrid drivers/vw-ev drivers/vw-fuel drivers/vw-hybrid  && cd ..;",
-    "sync-audi": "cd ../ && rm -rf ./de.myaudi.mobile.assistant && cp -R ./com.vag.core ./de.myaudi.mobile.assistant && cd ./de.myaudi.mobile.assistant && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/de.myaudi.mobile.assistant.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/seat-ev drivers/seat-fuel drivers/seat-hybrid drivers/skoda-ev drivers/skoda-fuel drivers/skoda-hybrid drivers/vw-ev drivers/vw-fuel drivers/vw-hybrid  && cd ..;"
+    "sync-vw": "cd ../ && rm -rf ./com.we-volkswagen.connect && cp -R ./com.vag.core ./com.we-volkswagen.connect && cd ./com.we-volkswagen.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.we-volkswagen.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/audi-ev drivers/audi-fuel drivers/audi-hybrid drivers/skoda-ev drivers/skoda-fuel drivers/skoda-hybrid drivers/seat-ev drivers/seat-fuel drivers/seat-hybrid",
+    "sync-seat": "cd ../ && rm -rf ./com.seat.connectedcar && cp -R ./com.vag.core ./com.seat.connectedcar && cd ./com.seat.connectedcar && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.seat.connectedcar.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/audi-ev drivers/audi-fuel drivers/audi-hybrid drivers/skoda-ev drivers/skoda-fuel drivers/skoda-hybrid drivers/vw-ev drivers/vw-fuel drivers/vw-hybrid",
+    "sync-skoda": "cd ../ && rm -rf ./cz.skodaauto.connect && cp -R ./com.vag.core ./cz.skodaauto.connect && cd ./cz.skodaauto.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/cz.skodaauto.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/audi-ev drivers/audi-fuel drivers/audi-hybrid drivers/seat-ev drivers/seat-fuel drivers/seat-hybrid drivers/vw-ev drivers/vw-fuel drivers/vw-hybrid",
+    "sync-audi": "cd ../ && rm -rf ./de.myaudi.mobile.assistant && cp -R ./com.vag.core ./de.myaudi.mobile.assistant && cd ./de.myaudi.mobile.assistant && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/de.myaudi.mobile.assistant.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone drivers/seat-ev drivers/seat-fuel drivers/seat-hybrid drivers/skoda-ev drivers/skoda-fuel drivers/skoda-hybrid drivers/vw-ev drivers/vw-fuel drivers/vw-hybrid",
+    "publish-vw": "yarn sync-vw && homey app publish",
+    "publish-seat": "yarn sync-seat && homey app publish",
+    "publish-skoda": "yarn sync-skoda && homey app publish",
+    "publish-audi": "yarn sync-audi && homey app publish",
+    "run-vw": "yarn sync-vw && homey app run",
+    "run-seat": "yarn sync-seat && homey app run",
+    "run-skoda": "yarn sync-skoda && homey app run",
+    "run-audi": "yarn sync-audi && homey app run",
+    "sync-dev": "cd ../ && rm -rf ./com.we-volkswagen.connect && cp -R ./com.vag.core ./com.we-volkswagen.connect && cd ./com.we-volkswagen.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.we-volkswagen.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone",
+    "publish-dev": "yarn sync-dev && homey app publish",
+    "run-dev": "yarn sync-dev && homey app run"
   },
   "dependencies": {
     "@iobroker/adapter-core": "file:./lib/@iobroker/adapter-core",

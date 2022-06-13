@@ -1,8 +1,8 @@
 {
   "id": "is_moving_changed",
   "title": {
-    "en": "Is vehicle moving has changed",
-    "nl": "Is voertuig in beweging is veranderd"
+    "en": "Is vehicle moving / not moving",
+    "nl": "Is voertuig in beweging / niet in beweging"
   },
   "args": [
     {

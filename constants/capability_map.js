@@ -16,6 +16,7 @@ module.exports = {
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_temperature_outdoor: `status.outsideTemperature`
     },
     'vw-hybrid': {
@@ -36,6 +37,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
@@ -57,6 +59,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
@@ -89,6 +92,7 @@ module.exports = {
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_temperature_outdoor: `status.outsideTemperature`
     },
     'seat-hybrid': {
@@ -110,6 +114,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature_outdoor: `status.outsideTemperature`,
@@ -117,16 +122,15 @@ module.exports = {
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
-    'seat-ev-cupra': {
-        measure_battery: `status.batteryStatus.currentSOC_pct`,
-        measure_percent_battery: `status.batteryStatus.currentSOC_pct`,
-        measure_charge_target: `status.chargingSettings.targetSOC_pct`,
-        is_connected: `status.readinessStatus.connectionState.isOnline`,
-        is_home: { latitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_latitude', longitude: 'wecharge.chargeandpay.records.latestItem.location_coordinates_longitude' },
-        measure_range: `status.rangeStatus.totalRange_km`,
-        measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
-        measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
-        target_temperature: `status.climatisationSettings.targetTemperature_C`
+    'cupra-ev-seatcupra': {
+        measure_battery: `charging.battery.currentSOC_pct`,
+        measure_percent_battery: `charging.battery.currentSOC_pct`,
+        measure_charge_target: `status.services.charging.targetPct`,
+        is_plug_connected: `charging.plug.plugConnectionState`,
+        measure_range: `charging.battery.cruisingRangeElectric_km`,
+        measure_remaining_charge_time: `charging.charging.remainingChargingTimeToComplete_min`,
+        measure_remaining_climate_time: `climatisation.climatisationStatus.remainingClimatisationTime_min`,
+        target_temperature: `status.services.climatisation.targetTemperatureKelvin`
     },
     'skoda-fuel': {
         locked: `status.isCarLocked`,
@@ -143,6 +147,7 @@ module.exports = {
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_temperature_outdoor: `status.outsideTemperature`
     },
     'skoda-hybrid': {
@@ -164,6 +169,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_temperature_outdoor: `status.outsideTemperature`,
@@ -185,6 +191,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
         target_temperature: `climater.settings.targetTemperature.content`
     },
@@ -215,6 +222,7 @@ module.exports = {
         measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_temperature_outdoor: `status.outsideTemperature`
     },
     'audi-hybrid': {
@@ -237,6 +245,7 @@ module.exports = {
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
+        measure_range_FALLBACK_2: `status.data_${status_types.LEVELS2}.field_0x0301030006.value`,
         measure_temperature_outdoor: `status.data_0x030102FFFF.field_${status_types.TEMPERATURE_OUTSIDE}.value`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,

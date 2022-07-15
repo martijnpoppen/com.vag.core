@@ -1,0 +1,7 @@
+{
+  "$extends": ["device", "settings", "capabilities-ev", "pair", "battery"],
+  "name": {
+    "en": "Cupra - Electric",
+    "nl": "Cupra - Elektrisch"
+  }
+}

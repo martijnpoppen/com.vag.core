@@ -16,7 +16,7 @@
         "en": "Select device",
         "nl": "Selecteer apparaat"
       },
-      "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|skoda-ev|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_charge_min_limit"
+      "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_charge_min_limit"
     },
     {
       "type": "number",

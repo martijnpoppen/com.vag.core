@@ -128,7 +128,7 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const { type, vin, pin } = settings;
 
-            if (type === 'id' || type === 'audietron' || type === 'skodae' || pin.length) {
+            if (type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra' || pin.length) {
                 if ('locked' in value) {
                     const val = value.locked;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
@@ -159,7 +159,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
-                    if (type === 'id' || type === 'audietron' || type === 'skodae') {
+                    if (type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra') {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batterycharge`, { ack: false, val: val });
@@ -219,7 +219,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('target_temperature' in value) {
                     const val = value.target_temperature;
 
-                    if (type === 'id' || type === 'audietron') {
+                    if (type === 'id' || type === 'audietron' || type === 'seatcupra') {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.status.climatisationSettings.targetTemperature_C`, { ack: false, val: val });
                     } else if (type === 'skodae') {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.targetTemperatureInCelsius`, { ack: false, val: val });
@@ -377,6 +377,9 @@ module.exports = class mainDevice extends Homey.Device {
         if(key.includes('_FALLBACK')) {
             key = key.replace('_FALLBACK', '')
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK => ${key} => `, value);
+        } else if(key.includes('_FALLBACK_2')) {
+            key = key.replace('_FALLBACK_2', '')
+            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_2 => ${key} => `, value);
         } else {
             this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
         }
@@ -412,7 +415,7 @@ module.exports = class mainDevice extends Homey.Device {
                 });
             }
 
-            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion'))) {
+            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion') || args[0].includes('get skodae status Failed'))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
                 const shouldRestart = this.getStoreValue('shouldRestart');
@@ -477,8 +480,8 @@ module.exports = class mainDevice extends Homey.Device {
 
     async updateCapabilities(combinedCapabilities, deviceCapabilities) {
         try {
-            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d) && !d.includes('_FALLBACK'));
-            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d) && !d.includes('_FALLBACK'));
+            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d) && !d.includes('_FALLBACK') && !d.includes('_FALLBACK_2'));
+            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d) && !d.includes('_FALLBACK') && !d.includes('_FALLBACK_2'));
 
             this.log(`[Device] ${this.getName()} - Got old capabilities =>`, oldC);
             this.log(`[Device] ${this.getName()} - Got new capabilities =>`, newC);

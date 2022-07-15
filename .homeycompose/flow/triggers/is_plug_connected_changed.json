@@ -2,13 +2,13 @@
   "id": "is_plug_connected_changed",
   "title": {
     "en": "Plug connection has changed",
-    "nl": "Stekker verboning is veranderd"
+    "nl": "Stekker verbinding is veranderd"
   },
   "args": [
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_plug_connected"
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_plug_connected"
     }
   ],
   "tokens": [

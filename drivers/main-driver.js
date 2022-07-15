@@ -68,6 +68,15 @@ module.exports = class mainDriver extends Homey.Driver {
                 return true;
             }
 
+            if (view === 'pincode') {
+                const skip_array = ['id', 'seatcupra', 'audietron']
+                if(skip_array.includes(this.config.type)) {
+                    session.nextView();
+                }
+
+                return true;
+            }
+
             if (view === 'get_data') {
                 this.weConnectData = await waitForResults(this);
 

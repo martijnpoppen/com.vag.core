@@ -311,6 +311,8 @@ module.exports = class mainDevice extends Homey.Device {
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
                         await this.setLocation(lat, lng);
+                    } else if(key.includes('lng') || key.includes('lat')) {
+                        this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
                         if (key.includes('_temperature') && status > 2000) {
                             await this.setValue(key, Math.round((status / 10 - 273.15) * 2) / 2);
@@ -361,25 +363,32 @@ module.exports = class mainDevice extends Homey.Device {
         try {
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
-            const setLocation = calcCrow(HomeyLat, HomeyLng, parseFloat(lat / 1000000), parseFloat(lng / 1000000));
+            const carLat = parseFloat(lat / 1000000);
+            const carLng = parseFloat(lng / 1000000);
+
+            const setLocation = calcCrow(HomeyLat, HomeyLng, carLat, carLng);
 
             if (isMoving) {
                 await this.setValue('is_home', false);
             } else {
                 await this.setValue('is_home', setLocation <= 1);
             }
+
+            await this.setValue('measure_lat', carLat);
+            await this.setValue('measure_lng', carLng);
+            // await this.setValue('get_location', `https://maps.google.com/maps?q=${carLat},${carLng}&z=17&output=embed`)
         } catch (error) {
             this.log(error);
         }
     }
 
     async setValue(key, value, delay = 0) {
-        if(key.includes('_FALLBACK')) {
-            key = key.replace('_FALLBACK', '')
-            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK => ${key} => `, value);
-        } else if(key.includes('_FALLBACK_2')) {
+        if(key.includes('_FALLBACK_2')) {
             key = key.replace('_FALLBACK_2', '')
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_2 => ${key} => `, value);
+        } else if(key.includes('_FALLBACK')) {
+            key = key.replace('_FALLBACK', '')
+            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK => ${key} => `, value);
         } else {
             this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
         }
@@ -415,7 +424,7 @@ module.exports = class mainDevice extends Homey.Device {
                 });
             }
 
-            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion') || args[0].includes('get skodae status Failed'))) {
+            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion') || args[0].includes('get skodae status Failed') || args[0].includes('get seat status Failed'))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
                 const shouldRestart = this.getStoreValue('shouldRestart');

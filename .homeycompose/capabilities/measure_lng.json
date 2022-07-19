@@ -1,0 +1,18 @@
+{
+    "platforms": ["local"],
+    "type": "number",
+    "title": {
+      "en": "Longitude",
+      "nl": "Longitude"
+    },
+    "insights": false,
+    "desc": {
+      "en": "Longitude",
+      "nl": "Longitude"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "icon": "assets/icons/geo-alt-fill.svg"
+  }
+  

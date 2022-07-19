@@ -12,7 +12,6 @@
     "measure_oil_change_days",
     "measure_oil_change_distance",
     "measure_oil_level",
-    "measure_range",
-    "measure_temperature_outdoor"
+    "measure_range"
   ]
 }

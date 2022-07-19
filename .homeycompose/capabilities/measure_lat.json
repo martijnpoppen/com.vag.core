@@ -1,0 +1,17 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Latitude",
+    "nl": "Latitude"
+  },
+  "insights": false,
+  "desc": {
+    "en": "Latitude",
+    "nl": "Latitude"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/geo-alt.svg"
+}

@@ -1,0 +1,13 @@
+{
+    "platforms": ["local"],
+    "type": "string",
+    "title": {
+      "en": "Location url",
+      "nl": "Locatie url"
+    },
+    "insights": false,
+    "getable": true,
+    "setable": false,
+    "uiComponent": null
+  }
+  

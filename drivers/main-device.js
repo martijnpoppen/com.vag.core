@@ -302,6 +302,8 @@ module.exports = class mainDevice extends Homey.Device {
                 for (const [key, value] of Object.entries(capabilityMapData)) {
                     const status = get(vinData, value, null);
 
+                    console.log(get(vinData, 'status.data_0x030103FFFF.field_0x0301030006', 'none'))
+
                     this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
                     if (key.includes('is_home')) {
@@ -311,7 +313,7 @@ module.exports = class mainDevice extends Homey.Device {
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
                         await this.setLocation(lat, lng);
-                    } else if(key.includes('lng') || key.includes('lat')) {
+                    } else if(key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
                         if (key.includes('_temperature') && status > 2000) {
@@ -376,14 +378,17 @@ module.exports = class mainDevice extends Homey.Device {
 
             await this.setValue('measure_lat', carLat);
             await this.setValue('measure_lng', carLng);
-            // await this.setValue('get_location', `https://maps.google.com/maps?q=${carLat},${carLng}&z=17&output=embed`)
+            await this.setValue('get_location_url', `https://maps.google.com/maps?q=${carLat},${carLng}&z=17&output=embed`);
         } catch (error) {
             this.log(error);
         }
     }
 
     async setValue(key, value, delay = 0) {
-        if(key.includes('_FALLBACK_2')) {
+        if(key.includes('_FALLBACK_3')) {
+            key = key.replace('_FALLBACK_3', '')
+            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_3 => ${key} => `, value);
+        } else if(key.includes('_FALLBACK_2')) {
             key = key.replace('_FALLBACK_2', '')
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_2 => ${key} => `, value);
         } else if(key.includes('_FALLBACK')) {
@@ -473,7 +478,7 @@ module.exports = class mainDevice extends Homey.Device {
         const driverCapabilities = this.driver.manifest.capabilities;
         const deviceCapabilities = this.getCapabilities();
         const capabilityMapData = `${this.driver.id}-${settings.type}` in capability_map ? capability_map[`${this.driver.id}-${settings.type}`] : capability_map[`${this.driver.id}`];
-        let settingsCapabilities = Object.keys(settings).filter((s) => s.startsWith('remote_') || s.startsWith('measure_'));
+        let settingsCapabilities = Object.keys(settings).filter((s) => s.startsWith('remote_') || s.startsWith('measure_') || s.startsWith('get_'));
         settingsCapabilities = settingsCapabilities.filter((c) => (settings[c] ? true : false));
         const combinedCapabilities = [...new Set([...driverCapabilities, ...Object.keys(capabilityMapData), ...settingsCapabilities])];
 
@@ -489,8 +494,8 @@ module.exports = class mainDevice extends Homey.Device {
 
     async updateCapabilities(combinedCapabilities, deviceCapabilities) {
         try {
-            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d) && !d.includes('_FALLBACK') && !d.includes('_FALLBACK_2'));
-            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d) && !d.includes('_FALLBACK') && !d.includes('_FALLBACK_2'));
+            const newC = combinedCapabilities.filter((d) => !deviceCapabilities.includes(d) && !d.includes('_FALLBACK') && !d.includes('_FALLBACK_2') && !d.includes('_FALLBACK_3'));
+            const oldC = deviceCapabilities.filter((d) => !combinedCapabilities.includes(d) && !d.includes('_FALLBACK') && !d.includes('_FALLBACK_2') && !d.includes('_FALLBACK_3'));
 
             this.log(`[Device] ${this.getName()} - Got old capabilities =>`, oldC);
             this.log(`[Device] ${this.getName()} - Got new capabilities =>`, newC);

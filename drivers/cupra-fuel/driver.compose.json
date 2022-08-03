@@ -1,0 +1,7 @@
+{
+  "$extends": ["device", "settings", "capabilities-fuel", "pair"],
+  "name": {
+    "en": "Cupra - Fuel",
+    "nl": "Cupra - Brandstof"
+  }
+}

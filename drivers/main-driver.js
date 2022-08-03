@@ -69,7 +69,7 @@ module.exports = class mainDriver extends Homey.Driver {
             }
 
             if (view === 'pincode') {
-                const skip_array = ['id', 'seatcupra', 'audietron']
+                const skip_array = ['id', 'seatcupra', 'audietron', 'skodae']
                 if(skip_array.includes(this.config.type)) {
                     session.nextView();
                 }

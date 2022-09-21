@@ -25,7 +25,8 @@
     "run-audi": "yarn sync-audi && cd ../de.myaudi.mobile.assistant && homey app run && cd ../com.vag.core",
     "sync-dev": "cd ../ && rm -rf ./com.we-volkswagen.connect && cp -R ./com.vag.core ./com.we-volkswagen.connect && cd ./com.we-volkswagen.connect && rm -rf .git .gitignore && git clone https://github.com/martijnpoppen/com.we-volkswagen.connect.git ./clone && cp -R ./clone/ . && npm ci && rm -rf clone",
     "publish-dev": "yarn sync-dev && homey app publish",
-    "run-dev": "yarn sync-dev && homey app run"
+    "run-dev": "yarn sync-dev && homey app run",
+    "publish-all": "yarn publish-vw && yarn publish-seat && yarn publish-cupra && yarn publish-skoda && yarn publish-audi"
   },
   "dependencies": {
     "@iobroker/adapter-core": "file:./lib/@iobroker/adapter-core",

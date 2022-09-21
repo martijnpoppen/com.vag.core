@@ -302,8 +302,6 @@ module.exports = class mainDevice extends Homey.Device {
                 for (const [key, value] of Object.entries(capabilityMapData)) {
                     const status = get(vinData, value, null);
 
-                    console.log(get(vinData, 'status.data_0x030103FFFF.field_0x0301030006', 'none'))
-
                     this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
                     if (key.includes('is_home')) {
@@ -341,6 +339,15 @@ module.exports = class mainDevice extends Homey.Device {
                 }
 
                 await this.setRemoteValues(vinData)
+            } else {
+                const shouldRestart = this.getStoreValue('shouldRestart');
+
+                if (!shouldRestart) {
+                    this.log(`[Device] ${this.getName()} - Try to Restart Adapter`);
+                    this.setRestart(true);
+                } else {
+                    this.log(`[Device] ${this.getName()} - Restart Adapter already scheduled`);
+                }
             }
         } catch (error) {
             this.error(error);
@@ -429,7 +436,7 @@ module.exports = class mainDevice extends Homey.Device {
                 });
             }
 
-            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion') || args[0].includes('get skodae status Failed') || args[0].includes('get seat status Failed'))) {
+            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion') || args[0].includes('get skodae status Failed') || args[0].includes('304 No values updated')|| args[0].includes('get seat status Failed'))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
                 const shouldRestart = this.getStoreValue('shouldRestart');

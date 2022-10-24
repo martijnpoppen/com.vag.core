@@ -7,15 +7,15 @@ const remote_map = require('../constants/remote_map');
 
 module.exports = class mainDevice extends Homey.Device {
     log() {
-        console.log.bind(this, `[${Date.now()}][log]`).apply(this, arguments);
+        console.log.bind(this, `[log]`).apply(this, arguments);
     }
 
     debug() {
-        console.log.bind(this, `[${Date.now()}][debug]`).apply(this, arguments);
+        console.log.bind(this, `[debug]`).apply(this, arguments);
     }
 
     error() {
-        console.log.bind(this, `[${Date.now()}][error]`).apply(this, arguments);
+        console.log.bind(this, `[error]`).apply(this, arguments);
         if (arguments && arguments.length) {
             this.handleErrors(arguments);
         }

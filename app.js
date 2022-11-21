@@ -1,9 +1,6 @@
-'use strict';
-
 const Homey = require('homey');
 const flowActions = require('./lib/flows/actions');
 const flowConditions = require('./lib/flows/conditions');
-const { Log } = require('homey-log');
 
 class App extends Homey.App {
     log() {
@@ -18,8 +15,6 @@ class App extends Homey.App {
 
     async onInit() {
         this.log(`${this.homey.manifest.id} - ${this.homey.manifest.version} started...`);
-
-        this.homeyLog = new Log({ homey: this.homey });
 
         await flowActions.init(this.homey);
         await flowConditions.init(this.homey);

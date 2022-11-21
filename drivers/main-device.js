@@ -328,6 +328,8 @@ module.exports = class mainDevice extends Homey.Device {
                     } else if (status || status !== null) {
                         if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
+                        } else if (key.includes('is_climating') && ['off', 'on'].includes(status)) {
+                            await this.setValue(key, ['on'].includes(status));
                         } else if (type !== 'skodae' && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
                         }  else if (type === 'skodae' && key.includes('is_charging')) {

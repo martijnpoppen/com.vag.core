@@ -6,18 +6,18 @@ module.exports = [
     },
     {
         capability: 'remote_climatisation',
-        default: 'measure_remaining_climate_time',
-        operator: 0
+        default: 'is_climating',
+        operator: false
     },
     {
         capability: 'remote_climatisation_v2',
-        default: 'measure_remaining_climate_time',
-        operator: 0
+        default: 'is_climating',
+        operator: false
     },
     {
         capability: 'remote_climatisation_v3',
-        default: 'measure_remaining_climate_time',
-        operator: 0
+        default: 'is_climating',
+        operator: false
     }
     // {
     //     capability: 'remote_ventilation',

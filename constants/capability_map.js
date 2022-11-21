@@ -40,6 +40,7 @@ module.exports = {
         is_moving: `position.isMoving`,
         measure_oil_change_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_OIL_CHANGE}.value`,
         measure_oil_change_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_OIL_CHANGE}.value`,
+        measure_oil_level: `status.data_${status_types.OIL_LEVEL_PERCENTAGE}.field_${status_types.OIL_LEVEL_PERCENTAGE}.value`,
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
@@ -47,6 +48,7 @@ module.exports = {
         measure_range_FALLBACK_3: `status.data_${status_types.LEVELS2}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -72,6 +74,7 @@ module.exports = {
         measure_range_FALLBACK_3: `status.data_${status_types.LEVELS2}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -83,6 +86,7 @@ module.exports = {
         is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
         measure_range: `status.rangeStatus.totalRange_km`,
+        measure_distance_driven: `status.odometerMeasurement.odoMeter`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
@@ -92,6 +96,7 @@ module.exports = {
         is_connected: `general.isConnect`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
+        measure_fuel_level_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
         is_home: { latitude: `position.carCoordinate.latitude`, longitude: `position.carCoordinate.longitude` },
@@ -134,6 +139,7 @@ module.exports = {
         measure_range_FALLBACK_3: `status.data_${status_types.LEVELS2}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -143,6 +149,7 @@ module.exports = {
         is_connected: `general.isConnect`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
+        measure_fuel_level_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
         measure_inspection_days: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_TIME_TO_INSPECTION}.value`,
         measure_inspection_distance: `status.data_${status_types.MAINTENANCE}.field_${status_types.INTERVAL_DISTANCE_TO_INSPECTION}.value`,
         is_home: { latitude: `position.carCoordinate.latitude`, longitude: `position.carCoordinate.longitude` },
@@ -185,6 +192,7 @@ module.exports = {
         measure_range_FALLBACK_3: `status.data_${status_types.LEVELS2}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -247,6 +255,7 @@ module.exports = {
         measure_range_FALLBACK_3: `status.data_${status_types.LEVELS2}.field_${status_types.PRIMARY_RANGE}.value`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
@@ -326,6 +335,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         measure_range: `status.data_${status_types.LEVELS}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.TOTAL_RANGE}.value`,
         measure_range_FALLBACK_2: `status.data_${status_types.LEVELS}.field_${status_types.PRIMARY_RANGE}.value`,
@@ -351,6 +361,7 @@ module.exports = {
         is_plug_connected: `charger.status.plugStatusData.plugState.content`,
         measure_remaining_charge_time: `charger.status.batteryStatusData.remainingChargingTime.content`,
         measure_remaining_climate_time: `climater.status.climatisationStatusData.remainingClimatisationTime.content`,
+        is_climating: `climater.status.climatisationStatusData.climatisationState.content`,
         measure_range: `charger.status.cruisingRangeStatusData.primaryEngineRange.content`,
         target_temperature: `climater.settings.targetTemperature.content`,
         remote_charge_min_limit: `timer.timersAndProfiles.timerBasicSetting.chargeMinLimit`,

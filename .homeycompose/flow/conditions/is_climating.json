@@ -1,0 +1,20 @@
+{
+    "id": "is_climating",
+    "title": {
+      "en": "is climatisation on",
+      "nl": "staat klimaatbeheer aan"
+    },
+    "titleFormatted": {
+      "en": "Is climatisation !{{on|off}}",
+      "nl": "Staat klimaatbeheer !{{aan|uit}}"
+    },
+    "args": [
+      {
+        "name": "device",
+        "type": "device",
+        "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|vw-ev|vw-hybrid&capabilities=is_climating"
+      }
+    ],
+    "platforms": ["local"]
+  }
+  

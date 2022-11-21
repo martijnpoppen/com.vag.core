@@ -28,7 +28,9 @@
       "Seat"
     ]
   },
-  "category": ["appliances"],
+  "category": [
+    "localization"
+  ],
   "permissions": ["homey:manager:geolocation"],
   "images": {
     "large": "/assets/images/large.jpg",

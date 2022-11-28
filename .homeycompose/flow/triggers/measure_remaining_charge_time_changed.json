@@ -8,7 +8,7 @@
         {
           "type": "device",
           "name": "device",
-          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|vw-ev|vw-hybrid&capabilities=measure_remaining_charge_time"
+          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|skoda-hybrid|vw-ev|vw-hybrid&capabilities=measure_remaining_charge_time"
         }
       ],
     "tokens": [

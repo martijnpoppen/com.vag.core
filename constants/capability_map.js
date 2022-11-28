@@ -86,7 +86,7 @@ module.exports = {
         is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
         measure_range: `status.rangeStatus.totalRange_km`,
-        measure_distance_driven: `status.odometerMeasurement.odoMeter`,
+        measure_distance_driven: `status.odometerMeasurement.odometer`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`

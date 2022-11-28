@@ -17,7 +17,7 @@
           "en": "Select device",
           "nl": "Selecteer apparaat"
         },
-        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_ventilation"
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|cupra-hybrid|cupra-fuel|skoda-ev|skoda-hybrid|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=remote_ventilation"
       },
       {
         "name": "action_start_stop",

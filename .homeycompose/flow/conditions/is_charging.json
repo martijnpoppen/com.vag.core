@@ -12,7 +12,7 @@
       {
         "name": "device",
         "type": "device",
-        "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|vw-ev|vw-hybrid&capabilities=is_charging"
+        "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|skoda-hybrid|vw-ev|vw-hybrid&capabilities=is_charging"
       }
     ],
     "platforms": ["local"]

@@ -8,7 +8,7 @@
     {
       "type": "device",
       "name": "device",
-      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_range"
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|cupra-hybrid|cupra-fuel|skoda-ev|skoda-hybrid|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_range"
     }
   ],
   "tokens": [

@@ -12,7 +12,7 @@
       {
         "name": "device",
         "type": "device",
-        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_moving"
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|cupra-fuel|skoda-hybrid|skoda-ev|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=is_moving"
       }
     ],
     "platforms": ["local"]

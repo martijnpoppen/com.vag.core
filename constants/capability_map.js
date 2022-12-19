@@ -86,7 +86,9 @@ module.exports = {
         is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
         measure_range: `status.rangeStatus.totalRange_km`,
+        measure_range_FALLBACK: `status.rangeStatus.electricRange`,
         measure_distance_driven: `status.odometerMeasurement.odometer`,
+        measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
@@ -202,7 +204,10 @@ module.exports = {
         measure_percent_battery: `charging.battery.currentSOC_pct`,
         measure_charge_target: `status.services.charging.targetPct`,
         is_plug_connected: `charging.plug.plugConnectionState`,
-        measure_range: `charging.battery.cruisingRangeElectric_km`,
+        measure_range: `status.rangeStatus.totalRange_km`,
+        measure_range_FALLBACK: `status.rangeStatus.electricRange`,
+        measure_distance_driven: `status.odometerMeasurement.odometer`,
+        measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_remaining_charge_time: `charging.charging.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `climatisation.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.services.climatisation.targetTemperatureKelvin`
@@ -373,6 +378,9 @@ module.exports = {
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
         measure_range: `status.rangeStatus.totalRange_km`,
+        measure_range_FALLBACK: `status.rangeStatus.electricRange`,
+        measure_distance_driven: `status.odometerMeasurement.odometer`,
+        measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`

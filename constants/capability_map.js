@@ -80,11 +80,13 @@ module.exports = {
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'vw-ev-id': {
+        locked: `status.isCarLocked`,
         measure_battery: `status.batteryStatus.currentSOC_pct`,
         measure_percent_battery: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
         is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
+        is_home: { latitude: `parkingposition.lat`, longitude: `parkingposition.lon` },
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_range_FALLBACK: `status.rangeStatus.electricRange`,
         measure_distance_driven: `status.odometerMeasurement.odometer`,
@@ -200,6 +202,7 @@ module.exports = {
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'cupra-ev-seatcupra': {
+        locked: `status.isCarLocked`,
         measure_battery: `charging.battery.currentSOC_pct`,
         measure_percent_battery: `charging.battery.currentSOC_pct`,
         measure_charge_target: `status.services.charging.targetPct`,
@@ -287,6 +290,7 @@ module.exports = {
         target_temperature: `climater.settings.targetTemperature.content`
     },
     'skoda-ev-skodae': {
+        locked: `status.isCarLocked`,
         measure_battery: `status.charging.status.battery.stateOfChargeInPercent`,
         measure_percent_battery: `status.charging.status.battery.stateOfChargeInPercent`,
         measure_charge_target: `status.charging.settings.targetStateOfChargeInPercent`,
@@ -373,10 +377,13 @@ module.exports = {
         remote_max_charge_current: `charger.settings.maxChargeCurrent.content`
     },
     'audi-ev-audietron': {
+        locked: `status.isCarLocked`,
         measure_battery: `status.batteryStatus.currentSOC_pct`,
         measure_percent_battery: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
+        is_connected: `status.readinessStatus.connectionState.isOnline`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
+        is_home: { latitude: `parkingposition.lat`, longitude: `parkingposition.lon` },
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_range_FALLBACK: `status.rangeStatus.electricRange`,
         measure_distance_driven: `status.odometerMeasurement.odometer`,

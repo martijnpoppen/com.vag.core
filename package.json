@@ -33,14 +33,11 @@
     "@peculiar/webcrypto": "^1.1.6",
     "axios": "^0.21.1",
     "dottie": "^2.0.2",
+    "json-bigint": "^1.0.0",
     "ngeohash": "^0.6.3",
-    "npm-force-resolutions": "^0.0.10",
     "qs": "^6.10.3",
     "request": "^2.88.2",
     "traverse": "^0.6.6",
     "uuid": "^8.3.2"
-  },
-  "resolutions": {
-    "iobroker.vw-connect/@iobroker/adapter-core": "file:./lib/@iobroker/adapter-core"
   }
 }

@@ -4,18 +4,77 @@ const dottie = require('dottie');
 const { sleep, encrypt } = require('../lib/helpers');
 
 module.exports = class mainDriver extends Homey.Driver {
+    error() {
+        console.log.bind(this, `[error]`).apply(this, arguments);
+        if (arguments && arguments.length) {
+            this.handleErrors(arguments);
+        }
+    }
+
     onInit() {
+        this.deviceError = false;
+
         this.homey.app.log('[Driver] - init', this.id);
         this.homey.app.log(`[Driver] - version`, Homey.manifest.version);
     }
 
     brand() {
-        'Unknown'
+        'Unknown';
     }
 
     dummyLog() {}
 
     async onPair(session) {
+        session.setHandler('showView', async (view) => {
+            this.homey.app.log(`[Driver] ${this.id} - currentView:`, { view, deviceError: this.deviceError });
+
+            if(this.deviceError && (view === 'loading' || view === 'get_data')) {
+                session.showView('error');
+                return true;
+            }
+
+            if(this.deviceError && view === 'login_credentials') {
+                this.deviceError = false;
+
+                this.homey.app.log(`[Driver] ${this.id} - currentView:`, { view, deviceError: this.deviceError });
+            }
+
+            if (view === 'loading') {
+                await sleep(3000);
+
+                session.nextView();
+                return true;
+            }
+
+            if (view === 'pincode') {
+                const skip_array = ['id', 'seatcupra', 'audietron', 'skodae'];
+                if (skip_array.includes(this.config.type)) {
+                    session.nextView();
+                }
+
+                return true;
+            }
+
+            if (view === 'get_data') {
+                this.weConnectData = await waitForResults(this);
+
+                if (!this.weConnectData) {
+                    session.showView('error');
+                    return true;
+                }
+
+                this.weConnectDataTransformed = dottie.transform(this.weConnectData);
+                this.homey.app.log(`[Driver] ${this.id} - weConnectData: `, this.weConnectDataTransformed);
+
+                session.nextView();
+                return true;
+            }
+
+            if (view === 'error' && this.deviceError) {
+                await session.emit('deviceError', this.deviceError);
+            }
+        });
+
         session.setHandler('setType', async (data) => {
             this.config = {
                 type: data.type
@@ -30,7 +89,7 @@ module.exports = class mainDriver extends Homey.Driver {
             try {
                 this.config.username = data.username.toLowerCase();
                 this.config.password = data.password;
-                
+
                 this.homey.app.log(`[Driver] ${this.id} - got config`, { ...this.config, username: 'LOG', password: 'LOG' });
 
                 this._weConnectClient = await VwWeconnect({
@@ -38,7 +97,7 @@ module.exports = class mainDriver extends Homey.Driver {
                     password: this.config.password,
                     type: this.config.type,
                     log: this.dummyLog,
-                    error: this.homey.app.error,
+                    error: this.error,
                     debug: this.dummyLog
                 });
 
@@ -47,49 +106,7 @@ module.exports = class mainDriver extends Homey.Driver {
 
                 return true;
             } catch (error) {
-                console.log('err', error);
-                throw new Error(this.homey.__('pair.error'));
-            }
-        });
-
-        session.setHandler('pincode', async (pincode) => {
-            this.homey.app.log(`[Driver] ${this.id} - pincode`);
-            this.config.pin = pincode.join('');
-
-            return true;
-        });
-
-        session.setHandler('showView', async (view) => {
-            if (view === 'loading') {
-                await sleep(3000);
-                
-
-                session.nextView();
-                return true;
-            }
-
-            if (view === 'pincode') {
-                const skip_array = ['id', 'seatcupra', 'audietron', 'skodae']
-                if(skip_array.includes(this.config.type)) {
-                    session.nextView();
-                }
-
-                return true;
-            }
-
-            if (view === 'get_data') {
-                this.weConnectData = await waitForResults(this);
-
-                if (!this.weConnectData) {
-                    session.showView('login_credentials');
-                    return true;
-                }
-
-                this.weConnectDataTransformed = dottie.transform(this.weConnectData);
-                this.homey.app.log(`[Driver] ${this.id} - weConnectData: `, this.weConnectDataTransformed);
-
-                session.nextView();
-                return true;
+                console.log(error);
             }
         });
 
@@ -107,12 +124,12 @@ module.exports = class mainDriver extends Homey.Driver {
 
                     const generalData = this.weConnectDataTransformed[vin].general;
                     let model = this.deviceType();
-                    
-                    if('model' in generalData) {
+
+                    if ('model' in generalData) {
                         model = generalData.model;
-                    } else if('specification' in generalData) {
+                    } else if ('specification' in generalData) {
                         model = generalData.specification.model;
-                    } else if(generalData && generalData.carportData && generalData.carportData.modelName) {
+                    } else if (generalData && generalData.carportData && generalData.carportData.modelName) {
                         model = generalData.carportData.modelName;
                     }
 
@@ -136,10 +153,35 @@ module.exports = class mainDriver extends Homey.Driver {
                 return results;
             } catch (error) {
                 console.log(error);
-                throw new Error(this.homey.__('pair.error'));
             }
         });
 
+        session.setHandler('list_devices_selection', async (data) => {
+            this.homey.app.log(`[Driver] ${this.id} - list_devices_selection - `, data);
+            this.selectedDevice = data[0];
+            return this.selectedDevice;
+        });
+
+        session.setHandler('pincode', async (pincode) => {
+            this.homey.app.log(`[Driver] ${this.id} - this.selectedDevice`, this.selectedDevice);
+
+            if (!this.selectedDevice) {
+                return false;
+            }
+
+            this.homey.app.log(`[Driver] ${this.id} - pincode`);
+            this.selectedDevice.settings.pin = pincode.join('');
+
+            return true;
+        });
+
+        session.setHandler('add_device', async (data) => {
+            try {
+                return this.selectedDevice;
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        });
 
         async function waitForResults(ctx, retry = 10) {
             for (let i = 0; i < retry; i++) {
@@ -158,6 +200,16 @@ module.exports = class mainDriver extends Homey.Driver {
             }
 
             return Promise.resolve(false);
+        }
+    }
+
+    handleErrors(args) {
+        if (args[0] && typeof args[0] === 'string' && args[0].includes('Login Failed')) {
+            if (!this.deviceError) {
+                this.deviceError = this.homey.__('pair.login_failed');
+            } else {
+                this.log(`[Device] ${this.getName()} - Device error already exists`);
+            }
         }
     }
 };

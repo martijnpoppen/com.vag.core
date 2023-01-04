@@ -9,6 +9,7 @@
     "skoda": "Skoda",
     "skodae": "Skoda (Enyaq)",
     "audi": "Audi",
-    "audietron": "Audi E-tron 2021 or newer"
+    "audietron": "Audi E-tron 2021 or newer",
+    "login_failed": "Login failed.  Make sure you used the correct credentials. Edit your login on the previous page"
   }
 }

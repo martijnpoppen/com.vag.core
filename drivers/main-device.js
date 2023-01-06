@@ -114,6 +114,18 @@ module.exports = class mainDevice extends Homey.Device {
         }
     }
 
+    async isNewType(type) {
+        return (type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra'); 
+    }
+
+    async isSkodaE(type) {
+        return (type === 'skodae'); 
+    }
+
+    async isVwID(type) {
+        return (type === 'id'); 
+    }
+
     // ------------- CapabilityListeners -------------
     async setCapabilityListeners(capabilities) {
         const filtered = capabilities.filter((f) => f.includes('remote_') || f.includes('locked') || f.includes('target_'));
@@ -128,10 +140,14 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const { type, vin, pin } = settings;
 
-            if (type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra' || pin.length) {
+            if (this.isNewType(type) || pin.length) {
                 if ('locked' in value) {
                     const val = value.locked;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
+
+                    if(this.isVwID(type)) {
+                        throw new Error("VW ID doesn't support lock/unlock. Only displaying the status");
+                    }
                 }
 
                 if ('remote_flash' in value) {
@@ -159,7 +175,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
-                    if (type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra') {
+                    if (this.isNewType(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batterycharge`, { ack: false, val: val });
@@ -184,7 +200,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_ventilation' in value) {
                     const val = value.remote_ventilation;
 
-                    if (type === 'skodae') {
+                    if (this.isSkodaE(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.air-conditioning`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilation`, { ack: false, val: val });
@@ -194,7 +210,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_ventilation_v2' in value) {
                     const val = value.remote_ventilation_v2;
 
-                    if (type === 'skodae') {
+                    if (this.isSkodaE(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.air-conditioning`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv2`, { ack: false, val: val });
@@ -204,7 +220,7 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_ventilation_v3' in value) {
                     const val = value.remote_ventilation_v3;
 
-                    if (type === 'skodae') {
+                    if (this.isSkodaE(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.air-conditioning`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.ventilationv3`, { ack: false, val: val });
@@ -219,9 +235,9 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('target_temperature' in value) {
                     const val = value.target_temperature;
 
-                    if (type === 'id' || type === 'audietron' || type === 'seatcupra') {
+                    if (!this.isSkodaE(type) && this.isNewType(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.status.climatisationSettings.targetTemperature_C`, { ack: false, val: val });
-                    } else if (type === 'skodae') {
+                    } else if (!this.isSkodaE(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.targetTemperatureInCelsius`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationTemperature`, { ack: false, val: val });
@@ -310,7 +326,7 @@ module.exports = class mainDevice extends Homey.Device {
 
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
-                        await this.setLocation(lat, lng);
+                        await this.setLocation(lat, lng, isNewType(type));
                     } else if(key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
@@ -320,7 +336,7 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
                         } else if (key.includes('_range') && status > 2000) {
                             await this.setValue(key, status / 1000);
-                        } else if (key.includes('_time') && type === 'skodae') {
+                        } else if (key.includes('_time') && this.isSkodaE(type)) {
                             await this.setValue(key, status / 60);
                         } else {
                             await this.setValue(key, Math.abs(status));
@@ -332,8 +348,10 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, ['on'].includes(status));
                         } else if (type !== 'skodae' && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
-                        }  else if (type === 'skodae' && key.includes('is_charging')) {
+                        }  else if (this.isSkodaE(type) && key.includes('is_charging')) {
                             await this.setValue(key, status !== 'ReadyForCharging');
+                        }  else if (key.includes('locked') && typeof value === 'string') {
+                            await this.setValue(key, status === 'locked');
                         } else {
                             await this.setValue(key, status);
                         }
@@ -370,20 +388,16 @@ module.exports = class mainDevice extends Homey.Device {
         });
     }
 
-    async setLocation(lat, lng, isMoving = false) {
+    async setLocation(lat, lng, isNewType = false) {
         try {
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
-            const carLat = parseFloat(lat / 1000000);
-            const carLng = parseFloat(lng / 1000000);
+            const carLat = isNewType ? lat : parseFloat(lat / 1000000);
+            const carLng = isNewType ? lng : parseFloat(lng / 1000000);
 
             const setLocation = calcCrow(HomeyLat, HomeyLng, carLat, carLng);
 
-            if (isMoving) {
-                await this.setValue('is_home', false);
-            } else {
-                await this.setValue('is_home', setLocation <= 1);
-            }
+            await this.setValue('is_home', setLocation <= 1);
 
             await this.setValue('measure_lat', carLat);
             await this.setValue('measure_lng', carLng);

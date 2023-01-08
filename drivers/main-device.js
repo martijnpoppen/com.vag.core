@@ -326,7 +326,7 @@ module.exports = class mainDevice extends Homey.Device {
 
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
-                        await this.setLocation(lat, lng, isNewType(type));
+                        await this.setLocation(lat, lng, this.isNewType(type));
                     } else if(key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
@@ -338,6 +338,8 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, status / 1000);
                         } else if (key.includes('_time') && this.isSkodaE(type)) {
                             await this.setValue(key, status / 60);
+                        } else if (key.includes('_remaining_climate_time') && this.hasCapability('is_climating')) {
+                            await this.setValue(key, this.getCapabilityValue('is_climating') ? Math.abs(status) : 0);
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
@@ -350,7 +352,7 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
                         }  else if (this.isSkodaE(type) && key.includes('is_charging')) {
                             await this.setValue(key, status !== 'ReadyForCharging');
-                        }  else if (key.includes('locked') && typeof value === 'string') {
+                        }  else if (key.includes('locked') && ['locked'].includes(status)) {
                             await this.setValue(key, status === 'locked');
                         } else {
                             await this.setValue(key, status);

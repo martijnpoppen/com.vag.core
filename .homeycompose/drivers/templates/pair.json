@@ -81,8 +81,11 @@
       }
     },
     {
-      "id": "add_devices",
-      "template": "add_devices"
+        "id": "add_device"
+    },
+    {
+        "id": "done",
+        "template": "done"
     },
     {
         "id": "error",

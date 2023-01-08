@@ -81,6 +81,10 @@ module.exports = class mainDevice extends Homey.Device {
         try {
             this.config = { ...settings, password: decrypt(settings.password) };
 
+            this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isNewType`, this.isNewType(settings.type));
+            this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isSkodaE`, this.isSkodaE(settings.type));
+            this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isVwID`, this.isVwID(settings.type));
+
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient Got config`, { ...this.config, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
 
             if (this._weConnectClient) {
@@ -114,16 +118,16 @@ module.exports = class mainDevice extends Homey.Device {
         }
     }
 
-    async isNewType(type) {
-        return (type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra'); 
+    isNewType(type) {
+        return type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra';
     }
 
-    async isSkodaE(type) {
-        return (type === 'skodae'); 
+    isSkodaE(type) {
+        return type === 'skodae';
     }
 
-    async isVwID(type) {
-        return (type === 'id'); 
+    isVwID(type) {
+        return type === 'id';
     }
 
     // ------------- CapabilityListeners -------------
@@ -145,7 +149,7 @@ module.exports = class mainDevice extends Homey.Device {
                     const val = value.locked;
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
 
-                    if(this.isVwID(type)) {
+                    if (this.isVwID(type)) {
                         throw new Error("VW ID doesn't support lock/unlock. Only displaying the status");
                     }
                 }
@@ -306,7 +310,6 @@ module.exports = class mainDevice extends Homey.Device {
             const deviceInfoTransformed = dottie.transform(deviceInfo);
             const vinData = deviceInfoTransformed[vin];
             const capabilityMapData = `${this.driver.id}-${type}` in capability_map ? capability_map[`${this.driver.id}-${type}`] : capability_map[`${this.driver.id}`];
-            
 
             this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
@@ -327,7 +330,7 @@ module.exports = class mainDevice extends Homey.Device {
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
                         await this.setLocation(lat, lng, this.isNewType(type));
-                    } else if(key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
+                    } else if (key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
                         if (key.includes('_temperature') && status > 2000) {
@@ -350,9 +353,9 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, ['on'].includes(status));
                         } else if (type !== 'skodae' && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
-                        }  else if (this.isSkodaE(type) && key.includes('is_charging')) {
+                        } else if (this.isSkodaE(type) && key.includes('is_charging')) {
                             await this.setValue(key, status !== 'ReadyForCharging');
-                        }  else if (key.includes('locked') && ['locked'].includes(status)) {
+                        } else if (key.includes('locked') && ['locked'].includes(status)) {
                             await this.setValue(key, status === 'locked');
                         } else {
                             await this.setValue(key, status);
@@ -360,7 +363,7 @@ module.exports = class mainDevice extends Homey.Device {
                     }
                 }
 
-                await this.setRemoteValues(vinData)
+                await this.setRemoteValues(vinData);
             } else {
                 const shouldRestart = this.getStoreValue('shouldRestart');
 
@@ -377,15 +380,14 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async setRemoteValues() {
-        remote_map.forEach(c => {
-            if(this.hasCapability(c.default)) {
+        remote_map.forEach((c) => {
+            if (this.hasCapability(c.default)) {
                 const value = this.getCapabilityValue(c.default);
                 const status = value !== c.operator;
-                
+
                 this.log(`[Device] ${this.getName()} - getValue => ${c.capability} => `, value, status);
 
                 this.setValue(c.capability, status);
-                
             }
         });
     }
@@ -410,14 +412,14 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async setValue(key, value, delay = 0) {
-        if(key.includes('_FALLBACK_3')) {
-            key = key.replace('_FALLBACK_3', '')
+        if (key.includes('_FALLBACK_3')) {
+            key = key.replace('_FALLBACK_3', '');
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_3 => ${key} => `, value);
-        } else if(key.includes('_FALLBACK_2')) {
-            key = key.replace('_FALLBACK_2', '')
+        } else if (key.includes('_FALLBACK_2')) {
+            key = key.replace('_FALLBACK_2', '');
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_2 => ${key} => `, value);
-        } else if(key.includes('_FALLBACK')) {
-            key = key.replace('_FALLBACK', '')
+        } else if (key.includes('_FALLBACK')) {
+            key = key.replace('_FALLBACK', '');
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK => ${key} => `, value);
         } else {
             this.log(`[Device] ${this.getName()} - setValue => ${key} => `, value);
@@ -454,7 +456,15 @@ module.exports = class mainDevice extends Homey.Device {
                 });
             }
 
-            if (args[0] && typeof args[0] === 'string' && (args[0].includes('Restart adapter in') || args[0].includes('error while getting $homeregion') || args[0].includes('get skodae status Failed') || args[0].includes('304 No values updated')|| args[0].includes('get seat status Failed'))) {
+            if (
+                args[0] &&
+                typeof args[0] === 'string' &&
+                (args[0].includes('Restart adapter in') ||
+                    args[0].includes('error while getting $homeregion') ||
+                    args[0].includes('get skodae status Failed') ||
+                    args[0].includes('304 No values updated') ||
+                    args[0].includes('get seat status Failed'))
+            ) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
                 const shouldRestart = this.getStoreValue('shouldRestart');

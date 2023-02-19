@@ -355,7 +355,7 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
                         } else if (this.isSkodaE(type) && key.includes('is_charging')) {
                             await this.setValue(key, status !== 'ReadyForCharging');
-                        } else if (key.includes('locked') && ['locked'].includes(status)) {
+                        } else if (key.includes('locked') && ['locked', 'unlocked'].includes(status)) {
                             await this.setValue(key, status === 'locked');
                         } else {
                             await this.setValue(key, status);
@@ -449,22 +449,22 @@ module.exports = class mainDevice extends Homey.Device {
     // ----------------- Errors ------------------
     handleErrors(args) {
         if (this.getAvailable()) {
-            if (this._weConnectClient && args[0] && typeof args[0] === 'string' && args[0].includes('Refresh Token in 10min')) {
+            const stringArgs = this._weConnectClient && args[0] && typeof args[0] === 'string';
+
+            if (stringArgs && args[0].includes('Refresh Token in 10min')) {
                 this.log(`[Device] ${this.getName()} - handleErrors - refreshing token`);
                 this._weConnectClient.refreshToken(true).catch(() => {
                     this.log('Refresh Token was not successful');
                 });
             }
 
-            if (
-                args[0] &&
-                typeof args[0] === 'string' &&
-                (args[0].includes('Restart adapter in') ||
-                    args[0].includes('error while getting $homeregion') ||
-                    args[0].includes('get skodae status Failed') ||
-                    args[0].includes('304 No values updated') ||
-                    args[0].includes('get seat status Failed'))
-            ) {
+            if (stringArgs && args[0].includes('Failed to auto accept')) {
+                this.setUnavailable('[Cannot get new data]: New terms and conditions are available. Please logout in the app on your mobile phone and login again. This will give you the new terms and conditions.');
+            }
+
+            const errors = ['Restart adapter in', 'error while getting $homeregion', 'get skodae status Failed', '304 No values updated', 'get seat status Failed'];
+
+            if (stringArgs && errors.some((e) => args[0].includes(e))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
 
                 const shouldRestart = this.getStoreValue('shouldRestart');

@@ -462,7 +462,7 @@ module.exports = class mainDevice extends Homey.Device {
                 this.setUnavailable('[Cannot get new data]: New terms and conditions are available. Please logout in the app on your mobile phone and login again. This will give you the new terms and conditions.');
             }
 
-            const errors = ['Restart adapter in', 'error while getting $homeregion', 'get skodae status Failed', '304 No values updated', 'get seat status Failed'];
+            const errors = ['Restart adapter in', 'error while getting $homeregion', 'Failed second skoda login', '304 No values updated', 'get seat status Failed', 'get id status Failed', 'get audi data status Failed'];
 
             if (stringArgs && errors.some((e) => args[0].includes(e))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);

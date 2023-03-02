@@ -96,6 +96,8 @@ module.exports = {
         measure_distance_driven: `status.odometerMeasurement.odometer`,
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
+        measure_charge_power: `status.chargingStatus.chargePower_kW`,
+        measure_charge_rate: `status.chargingStatus.chargeRate_kmph`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     },
@@ -126,6 +128,7 @@ module.exports = {
         measure_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         measure_percent_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
+        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
@@ -221,6 +224,8 @@ module.exports = {
         measure_distance_driven: `status.odometerMeasurement.odometer`,
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_remaining_charge_time: `charging.charging.remainingChargingTimeToComplete_min`,
+        measure_charge_power: `charging.charging.chargingStatus.chargePower_kW`,
+        measure_charge_rate: `charging.charging.chargingStatus.chargeRate_kmph`,
         measure_remaining_climate_time: `climatisation.climatisationStatus.remainingClimatisationTime_min`,
         target_temperature: `status.services.climatisation.targetTemperatureKelvin`
     },
@@ -403,6 +408,8 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`,
+        measure_charge_power: `status.chargingStatus.chargePower_kW`,
+        measure_charge_rate: `status.chargingStatus.chargeRate_kmph`,
         target_temperature: `status.climatisationSettings.targetTemperature_C`
     }
 };

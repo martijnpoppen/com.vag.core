@@ -139,6 +139,55 @@
         }
       ]
     },
+    { "type": "group",
+    "label": {
+      "en": "App settings",
+      "nl": "App instellingen"
+    },
+    "children": [
+        {
+            "id": "enable_lock",
+            "type": "checkbox",
+            "label": {
+              "en": "Enable: Lock/Unlock",
+              "nl": "Activeer: Op slot/van slot"
+            },
+            "hint": {
+              "en": "Checking this box will add the option to trigger this functionality (When off the lock will be visible but not interactable)",
+              "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken (Wanneer uit blijft het slot wel zichtbaar maar kan niet bediend worden)"
+            },
+            "value": true
+          },
+          {
+            "id": "measure_inspection_negative",
+            "type": "checkbox",
+            "label": {
+              "en": "Enable: Inspection negative values",
+              "nl": "Activeer: Inspectie negatieve waardes"
+            },
+            
+            "value": false
+          },
+          {
+            "id": "is_home_radius",
+            "type": "number",
+            "label": {
+              "en": "Radius for Is Home check",
+              "nl": "Radius voor is Thuis check"
+            },
+            "hint": {
+                "en": "When Is Home is calculated Homey will check for Homey's location vs the Cars location. This allows to increase the radius (e.g. if your car is not parked close to your home)",
+                "nl": "Als Is Thuis berekend wordt zal Homey matchen tussen Homey's locatie en die van de auto. Deze optie staat toe om de radius te vergroten (bijvoorbeeld als de auto niet dichtbij huis staat)"
+              },
+            "min": 1,
+            "max": 9999,
+            "units": {
+              "en": "kilometers"
+            },
+            "value": 1
+          }          
+        ]
+    },
     {
       "type": "group",
       "label": {
@@ -160,7 +209,22 @@
             "nl": "minuten"
           },
           "value": 5
-        }
+        },
+        {
+            "id": "force_update_interval",
+            "type": "number",
+            "label": {
+              "en": "Force Update interval (recommended: 360)",
+              "nl": "Force Update interval (aanbevolen: 360)"
+            },
+            "min": 1,
+            "max": 3600,
+            "units": {
+              "en": "minutes",
+              "nl": "minuten"
+            },
+            "value": 360
+          }
       ]
     },
     {

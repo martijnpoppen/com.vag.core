@@ -3,6 +3,7 @@
   "capabilities": [
     "measure_battery",
     "measure_range",
+    "measure_estimated_range",
     "remote_battery_charge"
   ]
 }

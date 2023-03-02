@@ -33,6 +33,7 @@
     "@peculiar/webcrypto": "^1.1.6",
     "axios": "^0.21.1",
     "dottie": "^2.0.2",
+    "haversine-distance": "^1.2.1",
     "json-bigint": "^1.0.0",
     "ngeohash": "^0.6.3",
     "qs": "^6.10.3",

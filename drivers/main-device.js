@@ -144,13 +144,16 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const { type, vin, pin } = settings;
 
-            if (this.isNewType(type) || pin.length) {
+            if (this.isNewType(type) || pin.length || 'remote_force_refresh' in value) {
                 if ('locked' in value) {
                     const val = value.locked;
-                    await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
 
-                    if (this.isVwID(type)) {
+                    if (this.isVwID(type) || !settings.enable_lock) {
                         throw new Error("VW ID doesn't support lock/unlock. Only displaying the status");
+                    } else if (!settings.enable_lock) {
+                        throw new Error("Lock/unlock disabled in device setting. Only displaying the status");
+                    } else {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
                     }
                 }
 
@@ -176,13 +179,13 @@ module.exports = class mainDevice extends Homey.Device {
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.maxChargeCurrent`, { ack: false, val: val });
                 }
 
-                if ('remote_battery_charge' in value) {
-                    const val = value.remote_battery_charge;
+                if ('remote_batteryy_charge' in value) {
+                    const val = value.remote_batteryy_charge;
 
                     if (this.isNewType(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
-                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batterycharge`, { ack: false, val: val });
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryycharge`, { ack: false, val: val });
                     }
                 }
 
@@ -282,7 +285,7 @@ module.exports = class mainDevice extends Homey.Device {
                 await this.setVwWeConnectClient();
             }
 
-            if (check || forceUpdate >= 360) {
+            if (check || forceUpdate >= settings.force_update_interval) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
                 await sleep(5000);
@@ -343,6 +346,8 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, status / 60);
                         } else if (key.includes('_remaining_climate_time') && this.hasCapability('is_climating')) {
                             await this.setValue(key, this.getCapabilityValue('is_climating') ? Math.abs(status) : 0);
+                        } else if (key.includes('_inspection') && settings.measure_inspection_negative) {
+                            await this.setValue(key, -Math.abs(status));
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
@@ -363,6 +368,7 @@ module.exports = class mainDevice extends Homey.Device {
                     }
                 }
 
+                await this.setEstimatedRange();
                 await this.setRemoteValues(vinData);
             } else {
                 const shouldRestart = this.getStoreValue('shouldRestart');
@@ -376,6 +382,17 @@ module.exports = class mainDevice extends Homey.Device {
             }
         } catch (error) {
             this.error(error);
+        }
+    }
+
+    async setEstimatedRange() {
+        this.log(`[Device] ${this.getName()} - setEstimatedRange`);
+        if(this.hasCapability('measure_estimated_range')) {
+            this.log(`[Device] ${this.getName()} - setEstimatedRange`);
+
+            const range = this.getCapabilityValue('measure_range');
+            const soc = this.getCapabilityValue('measure_battery');
+            this.setValue('measure_estimated_range', range / (soc / 100));
         }
     }
 
@@ -394,6 +411,7 @@ module.exports = class mainDevice extends Homey.Device {
 
     async setLocation(lat, lng, isNewType = false) {
         try {
+            const settings = this.getSettings();
             const HomeyLat = this.homey.geolocation.getLatitude();
             const HomeyLng = this.homey.geolocation.getLongitude();
             const carLat = isNewType ? lat : parseFloat(lat / 1000000);
@@ -401,7 +419,7 @@ module.exports = class mainDevice extends Homey.Device {
 
             const setLocation = calcCrow(HomeyLat, HomeyLng, carLat, carLng);
 
-            await this.setValue('is_home', setLocation <= 1);
+            await this.setValue('is_home', setLocation <= settings.is_home_radius);
 
             await this.setValue('measure_lat', carLat);
             await this.setValue('measure_lng', carLng);

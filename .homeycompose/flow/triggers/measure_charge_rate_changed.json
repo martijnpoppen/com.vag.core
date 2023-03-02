@@ -1,0 +1,24 @@
+{
+    "id": "measure_charge_rate_changed",
+    "title": {
+      "en": "Charge rate (KM) has changed",
+      "nl": "Laadsnelheid (KM) is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|skoda-hybrid|vw-ev|vw-hybrid&capabilities=measure_charge_rate"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_charge_rate",
+        "title": {
+          "en": "Charge rate",
+          "nl": "Laadsnelheid"
+        },
+        "type": "number"
+      }
+    ]
+  }

@@ -1,0 +1,23 @@
+{
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Estimated range",
+    "nl": "Geschatte actieradius"
+  },
+  "units": {
+    "en": "KM",
+    "nl": "KM"
+  },
+  "insights": true,
+  "desc": {
+    "en": "Estimated range in KM",
+    "nl": "Geschatte actieradius in KM"
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/mileage.svg"
+}

@@ -13,6 +13,7 @@
     "measure_oil_change_days",
     "measure_oil_change_distance",
     "measure_range",
+    "measure_estimated_range",
     "remote_battery_charge"
   ]
 }

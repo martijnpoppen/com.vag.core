@@ -1,0 +1,24 @@
+{
+    "platforms": ["local"],
+    "type": "number",
+    "title": {
+      "en": "Charging speed",
+      "nl": "Oplaadsnelheid"
+    },
+    "units": {
+      "en": "KM P/H",
+      "nl": "KM P/U"
+    },
+    "insights": true,
+    "desc": {
+      "en": "Charging speed in KW",
+      "nl": "Oplaadsnelheid in KW"
+    },
+    "chartType": "spline",
+    "decimals": 2,
+    "getable": true,
+    "setable": false,
+    "uiComponent": "sensor",
+    "icon": "assets/icons/ev-station.svg"
+  }
+  

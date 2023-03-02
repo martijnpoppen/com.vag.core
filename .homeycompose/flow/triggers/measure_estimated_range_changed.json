@@ -1,0 +1,25 @@
+{
+  "id": "measure_estimated_range_changed",
+  "title": {
+    "en": "Estimatd range has changed",
+    "nl": "Geschatte actieradius is veranderd"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|cupra-hybrid|cupra-fuel|skoda-ev|skoda-hybrid|skoda-fuel|vw-ev|vw-fuel|vw-hybrid&capabilities=measure_estimated_range"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "measure_estimated_range",
+      "title": {
+        "en": "Estimated Range",
+        "nl": "Geschatte Actieradius"
+      },
+      "type": "number",
+      "example": 99
+    }
+  ]
+}

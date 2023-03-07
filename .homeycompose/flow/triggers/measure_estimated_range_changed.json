@@ -1,8 +1,8 @@
 {
   "id": "measure_estimated_range_changed",
   "title": {
-    "en": "Estimatd range has changed",
-    "nl": "Geschatte actieradius is veranderd"
+    "en": "Estimated max range has changed",
+    "nl": "Geschatte max actieradius is veranderd"
   },
   "args": [
     {
@@ -15,8 +15,8 @@
     {
       "name": "measure_estimated_range",
       "title": {
-        "en": "Estimated Range",
-        "nl": "Geschatte Actieradius"
+        "en": "Estimated max range",
+        "nl": "Geschatte max actieradius"
       },
       "type": "number",
       "example": 99

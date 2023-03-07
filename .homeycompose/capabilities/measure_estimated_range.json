@@ -2,8 +2,8 @@
   "platforms": ["local"],
   "type": "number",
   "title": {
-    "en": "Estimated range",
-    "nl": "Geschatte actieradius"
+    "en": "Estimated max range",
+    "nl": "Geschatte max actieradius"
   },
   "units": {
     "en": "KM",
@@ -11,8 +11,8 @@
   },
   "insights": true,
   "desc": {
-    "en": "Estimated range in KM",
-    "nl": "Geschatte actieradius in KM"
+    "en": "Estimated max range in KM",
+    "nl": "Geschatte max actieradius in KM"
   },
   "chartType": "spline",
   "decimals": 2,

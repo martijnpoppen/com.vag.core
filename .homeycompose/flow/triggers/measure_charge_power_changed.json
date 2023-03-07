@@ -1,0 +1,24 @@
+{
+    "id": "measure_charge_power_changed",
+    "title": {
+      "en": "Charge power (KW) has changed",
+      "nl": "Laadvermogen (KW) is veranderd"
+    },
+    "args": [
+        {
+          "type": "device",
+          "name": "device",
+          "filter": "driver_id=audi-ev|audi-hybrid|seat-hybrid|cupra-ev|skoda-ev|skoda-hybrid|vw-ev|vw-hybrid&capabilities=measure_charge_power"
+        }
+      ],
+    "tokens": [
+      {
+        "name": "measure_charge_power",
+        "title": {
+          "en": "Charge speed",
+          "nl": "Laadsnelheid"
+        },
+        "type": "number"
+      }
+    ]
+  }

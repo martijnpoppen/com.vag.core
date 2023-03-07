@@ -3,12 +3,13 @@
         font-weight: bold;
     }
 </style>
-
+<header class="homey-header"><h1 class="homey-title" id="title">Error</h1></header>
 <div class="error"></div>
 <div class="text"></div>
 </div>
 <script>
     (function () {
+        var $title = document.getElementById("title");
         var $text = document.querySelector('.text');
         var $next = document.querySelector('#hy-nav-next');
         var $prev = document.querySelector('#hy-nav-prev');
@@ -23,10 +24,8 @@
             if (err) return Homey.error(err);
 
             setTimeout(function () {
-                if (options.title) Homey.setTitle(Homey.__(options.title));
+                if (options.title) title.innerHTML = Homey.__(options.title);
                 if (options.text) $text.innerHTML = Homey.__(options.text);
-
-                $prev.classList += ' hy-button-primary hy-button-fill button';
             }, 0);
         });
     })();

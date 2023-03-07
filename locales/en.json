@@ -2,14 +2,15 @@
   "pair": {
     "vw": "Volkswagen older than 2020",
     "vwv2": "Volkswagen 2020 or newer",
-    "id": "Volkswagen ID cars",
+    "id": "Volkswagen ID cars (new generation)",
     "seat": "Seat",
+    "seatelli": "Seat Elli",
     "seatcupra": "Cupra",
     "cupra": "Cupra",
     "skoda": "Skoda",
     "skodae": "Skoda (Enyaq)",
     "audi": "Audi",
-    "audietron": "Audi E-tron 2021 or newer",
+    "audietron": "Audi E-tron (new generation)",
     "login_failed": "Login failed.  Make sure you used the correct credentials. Edit your login on the previous page"
   }
 }

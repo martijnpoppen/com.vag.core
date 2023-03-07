@@ -2,14 +2,15 @@
     "pair": {
       "vw": "Volkswagen ouder dan 2020",
       "vwv2": "Volkswagen 2020 of nieuwer",
-      "id": "Volkswagen ID auto's",
+      "id": "Volkswagen ID auto's (nieuwe generatie)",
       "seat": "Seat",
+      "seatelli": "Seat Elli",
       "seatcupra": "Cupra",
       "cupra": "Cupra",
       "skoda": "Skoda",
       "skodae": "Skoda (Enyaq)",
       "audi": "Audi",
-      "audietron": "Audi E-tron 2021 of nieuwer"
+      "audietron": "Audi E-tron (nieuwe generatie)"
     }
   }
   

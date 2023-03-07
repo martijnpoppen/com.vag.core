@@ -144,11 +144,17 @@ module.exports = class mainDevice extends Homey.Device {
             const settings = this.getSettings();
             const { type, vin, pin } = settings;
 
-            if (this.isNewType(type) || pin.length || 'remote_force_refresh' in value) {
+            if ('remote_force_refresh' in value) {
+                this.setCapabilityValues(true);
+
+                this.setValue('remote_force_refresh', false, 3000);
+            }
+
+            if (this.isNewType(type) || pin.length) {
                 if ('locked' in value) {
                     const val = value.locked;
 
-                    if (this.isVwID(type) || !settings.enable_lock) {
+                    if (this.isVwID(type)) {
                         throw new Error("VW ID doesn't support lock/unlock. Only displaying the status");
                     } else if (!settings.enable_lock) {
                         throw new Error("Lock/unlock disabled in device setting. Only displaying the status");
@@ -179,13 +185,13 @@ module.exports = class mainDevice extends Homey.Device {
                     await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.maxChargeCurrent`, { ack: false, val: val });
                 }
 
-                if ('remote_batteryy_charge' in value) {
-                    const val = value.remote_batteryy_charge;
+                if ('remote_battery_charge' in value) {
+                    const val = value.remote_battery_charge;
 
                     if (this.isNewType(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
-                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batteryycharge`, { ack: false, val: val });
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batterycharge`, { ack: false, val: val });
                     }
                 }
 
@@ -249,12 +255,6 @@ module.exports = class mainDevice extends Homey.Device {
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationTemperature`, { ack: false, val: val });
                     }
-                }
-
-                if ('remote_force_refresh' in value) {
-                    this.setCapabilityValues(true);
-
-                    this.setValue('remote_force_refresh', false, 3000);
                 }
             } else {
                 throw new Error('S-PIN missing');

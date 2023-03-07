@@ -1,75 +1,36 @@
 <div class="hy-view visible" data-id="login_vag" data-template-id="login_vag"></div>
-<div class="hy-tmpl-login_vag" id="16190758442170.4220669681218383">
-    <style type="text/css">
-        .hy-tmpl-login_vag {
-            position: relative;
-            width: 100%;
-        }
-
-        .radio-toolbar {
-            max-width: 80%;
-        }
-
-        .radio-toolbar input[type="radio"] {
-            display: none;
-        }
-
-        .radio-toolbar label {
-            display: block;
-            background-color: transparent;
-            border: 3px solid;
-            width: 100%;
-            padding: 4px 11px;
-            margin: 8px auto;
-            font-family: Arial;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .radio-toolbar input[type="radio"]:checked+label {
-            border: 3px solid #00c139;
-        }
-    </style>
-    <form class="hy-tmpl-login_vag-form" action="/" method="post">
-        <div class="hy-tmpl-login_vag-row row">
-            <label class="hy-label hy-tmpl-login_vag-label" id="title"></label>
-            <div class="radio-toolbar">
-                <input id="type1" name="type" type="radio" value="skoda" checked>
-                <label for="type1" data-i18n="pair.skoda"></label>
-            </div>
-            <br>
-        </div>
-        <div class="hy-tmpl-login_vag-row row">
-            <input class="hy-button hy-button-primary hy-button-fill hy-tmpl-login_vag-submit button" type="submit"
-                value="">
-        </div>
-    </form>
+<div class="hy-tmpl-login_vag" id="vag-login">
+    <header class="homey-header"><h1 class="homey-title" id="title"></h1></header>
+    <div class="homey-form-group">
+        <select class="homey-form-select" name="car-type" id="car-type">
+            <option value="skoda" data-i18n="pair.skoda"></option>
+        </select>
+      </div>
+      <button id="button" class="homey-button-primary-full"></button>
 </div>
 </div>
 <script>
     (function () {
-        var e = document.getElementById("16190758442170.4220669681218383");
-        var $form = e.querySelector(".hy-tmpl-login_vag-form");
-        var $submit = e.querySelector('input[type="submit"]');
+        var e = document.getElementById("vag-login");
+        var $button = document.getElementById("button")
         var $title = document.getElementById("title");
+        var $carType = document.getElementById("car-type");
         var $m = !1;
 
         Homey.getOptions(function (err, options) {
             if (err) return Homey.error(err);
 
             setTimeout(function () {
-                if (options.title) Homey.setTitle(Homey.__(options.title));
                 if (options.title) $title.innerHTML = Homey.__(options.title);
-                if (options.button) $submit.value = Homey.__(options.button);
+                if (options.button) $button.innerHTML = Homey.__(options.button);
             }, 0);
         });
 
-        $form.addEventListener("submit", function (e) {
+        $button.addEventListener("click", function (e) {
             if (e.preventDefault(), !$m) {
                 $m = !0;
 
-                var $type = document.querySelector('input[name="type"]:checked').value;
+                var $type = $carType.value;
 
                 return Homey.emit("setType", { type: $type }, function (e, o) {
                     console.log(e, o)

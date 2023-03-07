@@ -2,17 +2,17 @@
   "platforms": ["local"],
   "type": "number",
   "title": {
-    "en": "Charging speed",
-    "nl": "Oplaadsnelheid"
+    "en": "Charging power",
+    "nl": "Oplaad vermogen"
   },
   "units": {
-    "en": "KM P/H",
-    "nl": "KM P/U"
+    "en": "KW",
+    "nl": "KW"
   },
   "insights": true,
   "desc": {
-    "en": "Charging speed in KM per Hour",
-    "nl": "Oplaadsnelheid in KM per uur"
+    "en": "Charging power in KW",
+    "nl": "Oplaad vermogen in KW"
   },
   "chartType": "spline",
   "decimals": 2,

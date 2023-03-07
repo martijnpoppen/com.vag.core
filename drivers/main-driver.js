@@ -204,7 +204,7 @@ module.exports = class mainDriver extends Homey.Driver {
     }
 
     handleErrors(args) {
-        if (args[0] && typeof args[0] === 'string' && args[0].includes('Login Failed')) {
+        if (args[0] && typeof args[0] === 'string' && (args[0].includes('Login Failed') || args[0].includes('Please enter password'))) {
             if (!this.deviceError) {
                 this.deviceError = this.homey.__('pair.login_failed');
             } else {

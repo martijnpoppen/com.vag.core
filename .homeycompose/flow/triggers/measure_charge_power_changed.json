@@ -15,8 +15,8 @@
       {
         "name": "measure_charge_power",
         "title": {
-          "en": "Charge speed",
-          "nl": "Laadsnelheid"
+          "en": "Charge power",
+          "nl": "Laadvermogen"
         },
         "type": "number"
       }

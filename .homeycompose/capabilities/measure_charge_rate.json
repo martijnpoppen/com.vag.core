@@ -11,8 +11,8 @@
     },
     "insights": true,
     "desc": {
-      "en": "Charging speed in KW",
-      "nl": "Oplaadsnelheid in KW"
+      "en": "Charging speed in KM P/H",
+      "nl": "Oplaadsnelheid in KM P/U"
     },
     "chartType": "spline",
     "decimals": 2,

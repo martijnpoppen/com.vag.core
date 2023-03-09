@@ -277,6 +277,7 @@ module.exports = class mainDevice extends Homey.Device {
             const type = settings.type;
             const forceUpdate = this.getStoreValue('forceUpdate');
             const shouldRestart = this.getStoreValue('shouldRestart');
+            const forceUpdateInterval = settings.force_update_interval ? settings.force_update_interval : 360;
 
             if (!check && shouldRestart) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - shouldRestart!`);
@@ -285,7 +286,7 @@ module.exports = class mainDevice extends Homey.Device {
                 await this.setVwWeConnectClient();
             }
 
-            if (check || forceUpdate >= settings.force_update_interval) {
+            if (check || forceUpdate >= forceUpdateInterval) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
                 await sleep(5000);

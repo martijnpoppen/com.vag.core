@@ -317,8 +317,10 @@ module.exports = class mainDevice extends Homey.Device {
 
             this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
-            if (settings.debug_logs) {
-                this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, vinData);
+            if (settings.debug_logs && vinData) {
+                this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, JSON.stringify(vinData, null, 4));
+            } else {
+                this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, 'Undefined');
             }
 
             if (vinData && vinData.status) {
@@ -357,10 +359,10 @@ module.exports = class mainDevice extends Homey.Device {
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
                         } else if (key.includes('is_climating') && ['off', 'on'].includes(status)) {
                             await this.setValue(key, ['on'].includes(status));
-                        } else if (type !== 'skodae' && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
+                        } else if (!this.isSkodaE(type) && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
                         } else if (this.isSkodaE(type) && key.includes('is_charging')) {
-                            await this.setValue(key, status !== 'ReadyForCharging');
+                            await this.setValue(key, status !== 'ReadyForCharging' && status !== 'NotReadyForCharging');
                         } else if (key.includes('locked') && ['locked', 'unlocked'].includes(status)) {
                             await this.setValue(key, status === 'locked');
                         } else {

@@ -129,7 +129,6 @@ module.exports = {
         measure_percent_battery: `charger.status.batteryStatusData.stateOfCharge.content`,
         is_connected: `general.isConnect`,
         is_charging: `charger.status.chargingStatusData.chargingState.content`,
-        is_charging: `charger.status.chargingStatusData.chargingState.content`,
         measure_distance_driven: `status.data_${status_types.KILOMETER_STATUS}.field_${status_types.KILOMETER_STATUS}.value`,
         measure_fuel_level: `status.data_${status_types.LEVELS}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,
         measure_fuel_level_FALLBACK: `status.data_${status_types.LEVELS2}.field_${status_types.FUEL_LEVEL_IN_PERCENTAGE}.value`,

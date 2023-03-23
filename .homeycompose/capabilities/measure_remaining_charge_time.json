@@ -19,5 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/battery-full.svg"
+  "icon": "assets/icons/battery-charging.svg"
 }

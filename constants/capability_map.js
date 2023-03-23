@@ -312,7 +312,6 @@ module.exports = {
         measure_range: `status.charging.status.battery.cruisingRangeElectricInMeters`,
         measure_remaining_charge_time: `status.charging.status.charging.remainingToCompleteInSeconds`,
         measure_remaining_climate_time: `status.air-conditioning.status.remainingTimeToReachTargetTemperatureInSeconds`,
-        measure_temperature_outdoor: `status.air-conditioning.settings.targetTemperatureInKelvin`,
         target_temperature: `status.air-conditioning.settings.targetTemperatureInKelvin`
     },
     'audi-fuel': {

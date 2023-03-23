@@ -19,5 +19,5 @@
   "getable": true,
   "setable": false,
   "uiComponent": "sensor",
-  "icon": "assets/icons/mileage.svg"
+  "icon": "assets/icons/dice-5.svg"
 }

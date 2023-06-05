@@ -1,7 +1,7 @@
 const Homey = require('homey');
 const dottie = require('dottie');
 const VwWeconnect = require('../lib/@iobroker/iobroker.vw-connect');
-const { sleep, decrypt, encrypt, calcCrow, get } = require('../lib/helpers');
+const { sleep, decrypt, encrypt, calcCrow, get, getCurrentDatetime } = require('../lib/helpers');
 const capability_map = require('../constants/capability_map');
 const remote_map = require('../constants/remote_map');
 
@@ -28,7 +28,7 @@ module.exports = class mainDevice extends Homey.Device {
     async onInit() {
         try {
             this.log('[Device] - init =>', this.getName());
-            this.setUnavailable(`Starting... - ${this.getName()}`);
+            this.setUnavailable(`Connecting to... - ${this.getName()}`);
 
             await this.initStore();
             await this.checkCapabilities();
@@ -427,6 +427,8 @@ module.exports = class mainDevice extends Homey.Device {
             await this.setValue('measure_lat', carLat);
             await this.setValue('measure_lng', carLng);
             await this.setValue('get_location_url', `https://maps.google.com/maps?q=${carLat},${carLng}&z=17&output=embed`);
+
+            await this.setValue('measure_updated_at', getCurrentDatetime());
         } catch (error) {
             this.log(error);
         }
@@ -457,7 +459,7 @@ module.exports = class mainDevice extends Homey.Device {
 
             await this.setCapabilityValue(key, value);
 
-            if (typeof value === 'boolean' && key.startsWith('is_') && oldVal !== value) {
+            if ((typeof value === 'boolean' && key.startsWith('is_') || key.includes('updated_at')) && oldVal !== value) {
                 await this.homey.flow
                     .getDeviceTriggerCard(`${key}_changed`)
                     .trigger(this, { [`${key}`]: value })

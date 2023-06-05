@@ -4,6 +4,7 @@
     "measure_battery",
     "measure_range",
     "measure_estimated_range",
-    "remote_battery_charge"
+    "remote_battery_charge",
+    "measure_updated_at"
   ]
 }

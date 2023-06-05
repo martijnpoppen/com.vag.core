@@ -1,0 +1,12 @@
+{
+    "platforms": ["local"],
+    "type": "string",
+    "title": {
+      "en": "Last update",
+      "nl": "Laatste update"
+    },
+    "getable": false,
+    "setable": true,
+    "uiComponent": null
+}
+  

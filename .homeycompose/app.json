@@ -1,5 +1,5 @@
 {
-  "id": "com.we-volkswagen.connect",
+  "id": "com.vag.core",
   "version": "0.7.4",
   "compatibility": ">=5.0.0",
   "sdk": 3,
@@ -28,9 +28,7 @@
       "Seat"
     ]
   },
-  "category": [
-    "localization"
-  ],
+  "category": ["localization"],
   "permissions": ["homey:manager:geolocation"],
   "images": {
     "large": "/assets/images/large.jpg",
@@ -58,7 +56,7 @@
   },
   "contributing": {
     "donate": {
-"paypal": {
+      "paypal": {
         "username": "martijnpoppen"
       },
       "bunq": {
@@ -71,5 +69,11 @@
   },
   "source": "https://github.com/martijnpoppen/com.we-volkswagen.connect",
   "homeyCommunityTopicId": 62196,
-  "support": "https://community.homey.app/t/app-pro-we-connect-myaudi-myskoda-my-seat-my-cupra/62196"
+  "support": "https://community.homey.app/t/app-pro-we-connect-myaudi-myskoda-my-seat-my-cupra/62196",
+  "api": {
+    "apiHelperTool": {
+      "method": "post",
+      "path": "/apiHelperTool/"
+    }
+  }
 }

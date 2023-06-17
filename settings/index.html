@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- The '/homey.js' script must be included in your settings view to work -->
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+    <style>
+        #result {
+            max-width: 95vw;
+            width: 98vw;
+            display: block;
+        }
+
+        #copy {
+            display: none;
+        }
+
+        .show {
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="homey-header">
+        <h1 class="homey-title" data-i18n="settings.title">
+            <!-- This will be filled with the translated string with key 'settings.title'. -->
+        </h1>
+        <p class="homey-subtitle" data-i18n="settings.subtitle">
+            <!-- This field will also be translated -->
+        </p>
+    </header>
+
+    <fieldset class="homey-form-fieldset">
+        <legend class="homey-form-legend">Login</legend>
+
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="username">Username</label>
+            <input class="homey-form-input" id="username" type="text" value="" />
+        </div>
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="password">Password</label>
+            <input class="homey-form-input" id="password" type="password" value="" />
+        </div>
+
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="type">Select your Model</label>
+            <select class="homey-form-select" name="type" id="type">
+                <option value="audi">Audi API (audi)</option>
+                <option value="audidata">Audi Data API (audidata)</option>
+                <option value="audietron">Audi Etron API (audietron)</option>
+                <option value="seat">Seat (seat)</option>
+                <option value="seatcupra">Cupra old API (seatcupra)</option>
+                <option value="seatcupra2">Cupra new API (seatcupra2)</option>
+                <option value="skoda">Skoda old API (skoda)</option>
+                <option value="skodae">Skoda new API (skodae)</option>
+                <option value="vw">VW old API (vw)</option>
+                <option value="vwv2">VW new API (vwv2)</option>
+                <option value="id">VW ID (id)</option>
+            </select>
+        </div>
+    </fieldset>
+
+    <button id="save" class="homey-button-primary-full">Retrieve API data</button>
+
+
+    <fieldset class="homey-form-fieldset">
+        <button id="copy" class="homey-button-danger-small">Copy result</button>
+        <code id="result"></code>
+    </fieldset>
+
+    <script type="text/javascript">
+        // a method named 'onHomeyReady' must be present in your code
+        function onHomeyReady (Homey) {
+            // Tell Homey we're ready to be displayed
+            Homey.ready();
+
+            var saveElement = document.getElementById("save");
+            var copyElement = document.getElementById("copy");
+
+
+            saveElement.addEventListener("click", function (e) {
+                var usernameElement = document.getElementById("username");
+                var passwordElement = document.getElementById("password");
+                var typeElement = document.getElementById("type");
+                var resultElement = document.getElementById("result");
+                saveElement.classList.add("is-loading");
+                copyElement.classList.remove("show");
+                result.innerHTML = ""
+
+                if (usernameElement.value === "" || passwordElement.value === "") {
+                    result.innerHTML = "Please fill in your username and password";
+                    saveElement.classList.remove("is-loading");
+                }
+
+                console.log({ username: usernameElement.value, password: passwordElement.value, type: typeElement.value });
+                Homey.api('POST', '/apiHelperTool', { username: usernameElement.value, password: passwordElement.value, type: typeElement.value }, function (err, result) {
+                    console.log(err, result)
+                    if (err) {
+                        saveElement.classList.remove("is-loading");
+                        return Homey.alert(err);
+                    } else {
+                        saveElement.classList.remove("is-loading");
+                        copyElement.classList.add("show");
+                        if (typeof result === "string") {
+                            resultElement.innerHTML = result;
+                            return;
+                        } else {
+                            resultElement.innerHTML = JSON.stringify(result, null, 4);
+                        }
+
+                    }
+                });
+            });
+
+            copyElement.addEventListener("click", function (e) {
+                var resultElement = document.getElementById("result");
+
+                resultElement.select();
+                resultElement.setSelectionRange(0, 99999); // For mobile devices
+
+
+                navigator.clipboard.writeText(resultElement.innerHTML);
+            });
+        }
+    </script>
+</body>
+
+</html>

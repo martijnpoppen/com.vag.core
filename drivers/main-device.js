@@ -188,7 +188,11 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
-                    if (this.isNewType(type)) {
+                    
+                    if (this.isSkodaE(type)) {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.charging.settings.autoUnlockPlugWhenCharged`, { ack: false, val: null });
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
+                    } else if (this.isNewType(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.batterycharge`, { ack: false, val: val });

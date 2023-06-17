@@ -12,5 +12,10 @@
     "audi": "Audi",
     "audietron": "Audi E-tron (new generation)",
     "login_failed": "Login failed.  Make sure you used the correct credentials. Edit your login on the previous page"
+  },
+
+  "settings": {
+    "title": "API Helper tool",
+    "subtitle": "with this tool you can check the response for your car and see the data which is provided by the API. Too many tries might lock your account! Use with caution"
   }
 }

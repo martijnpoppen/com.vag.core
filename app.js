@@ -51,11 +51,13 @@ class App extends Homey.App {
                 return 'No VIN found, please check your credentials and try again';
             }
 
-            await sleep(8000);
+            await sleep(6000);
             await connect.onUnload(() => {});
 
             this.log('[apiHelperTool] - getting Status...');
             const weConnectData = connect.getState();
+
+            await sleep(2000);
 
             if (!weConnectData) {
                 return 'Could not get data, please check your credentials and try again';

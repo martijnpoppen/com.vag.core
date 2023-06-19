@@ -131,6 +131,8 @@ module.exports = class mainDriver extends Homey.Driver {
                         model = generalData.specification.model;
                     } else if (generalData && generalData.carportData && generalData.carportData.modelName) {
                         model = generalData.carportData.modelName;
+                    } else if (generalData && generalData.nickname) {
+                        model = generalData.nickname;
                     }
 
                     const brand = this.brand();

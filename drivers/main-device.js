@@ -101,7 +101,7 @@ module.exports = class mainDevice extends Homey.Device {
                 interval: this.config.update_interval,
                 log: this.log,
                 error: this.error,
-                debug: settings.debug_logs ? this.debug : this.dummyLog
+                debug: true ? this.debug : this.dummyLog
             });
 
             await this._weConnectClient.onReady();
@@ -119,7 +119,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isNewType(type) {
-        return type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra';
+        return type === 'id' || type === 'audietron' || type === 'skodae' || type === 'seatcupra' || type === 'audi';
     }
 
     isSkodaE(type) {
@@ -321,7 +321,7 @@ module.exports = class mainDevice extends Homey.Device {
 
             this.log(`[Device] ${this.getName()} - setCapabilityValues - capabilityMapData`, `${this.driver.id}-${type}`, capabilityMapData);
 
-            if (settings.debug_logs && vinData) {
+            if (true && vinData) {
                 this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, JSON.stringify(vinData, null, 4));
             } else {
                 this.debug(`[Device] ${this.getName()} - setCapabilityValues - vinData`, `${this.driver.id}-${type}`, 'Undefined');

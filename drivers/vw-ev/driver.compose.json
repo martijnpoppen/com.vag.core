@@ -1,5 +1,5 @@
 {
-  "$extends": ["device", "settings", "capabilities-ev", "pair", "battery"],
+  "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-ev", "pair", "battery"],
   "name": {
     "en": "Volkswagen - Electric",
     "nl": "Volkswagen - Elektrisch"

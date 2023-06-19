@@ -1,5 +1,5 @@
 {
-  "$extends": ["device", "settings", "capabilities-fuel", "pair"],
+  "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-fuel", "pair"],
   "name": {
     "en": "Audi - Fuel",
     "nl": "Audi - Brandstof"

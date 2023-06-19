@@ -114,13 +114,14 @@
             });
 
             copyElement.addEventListener("click", function (e) {
-                var resultElement = document.getElementById("result");
-
-                resultElement.select();
-                resultElement.setSelectionRange(0, 99999); // For mobile devices
-
-
-                navigator.clipboard.writeText(resultElement.innerHTML);
+                const element = document.getElementById("result");
+                const storage = document.createElement('textarea');
+                storage.value = element.innerHTML;
+                element.appendChild(storage);
+                storage.select();
+                storage.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                element.removeChild(storage);
             });
         }
     </script>

@@ -1,5 +1,5 @@
 {
-  "$extends": ["device", "settings", "capabilities-hybrid", "pair", "battery"],
+  "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-hybrid", "pair", "battery"],
   "name": {
     "en": "Audi - Hybride",
     "nl": "Audi - Hybrid"

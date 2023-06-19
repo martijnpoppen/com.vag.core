@@ -5,7 +5,7 @@
       "en": "Last update",
       "nl": "Laatste update"
     },
-    "getable": false,
+    "getable": true,
     "setable": true,
     "uiComponent": null
 }

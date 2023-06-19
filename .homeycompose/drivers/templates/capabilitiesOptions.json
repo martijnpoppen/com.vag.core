@@ -1,0 +1,10 @@
+{
+  "capabilitiesOptions": {
+    "measure_range.electric": {
+      "title": {
+        "en": "Battery Range",
+        "nl": "Actieradius Batterij"
+      }
+    }
+  }
+}

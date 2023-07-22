@@ -123,8 +123,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isOverrideType(type) {
-        return type === 'audi';
-    //    return type === 'audi' || type === 'vw' || type === 'vwv2';
+       return type === 'audi' || type === 'vw' || type === 'vwv2' || type === 'seat';
     }
 
     isSkodaE(type) {
@@ -344,7 +343,7 @@ module.exports = class mainDevice extends Homey.Device {
 
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
-                        await this.setLocation(lat, lng, (this.isNewType(type) || this.isOverrideType(type)));
+                        await this.setLocation(lat, lng, (this.isNewType(type)));
                     } else if (key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {

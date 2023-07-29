@@ -119,11 +119,12 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isNewType(type) {
-        return this.isVwID(type) || type === 'audietron' || this.isSkodaE(type) || type === 'seatcupra' || this.isOverrideType(type);
+        return this.isVwID(type) || this.isAudiEtron(type) || this.isSkodaE(type) || this.isSeatCupra(type) || this.isOverrideType(type);
     }
 
     isOverrideType(type) {
-       return type === 'audi' || type === 'vw' || type === 'vwv2' || type === 'seat';
+       return type === 'audi' || type === 'seat';
+    //    type === 'vw' || type === 'vwv2'
     }
 
     isSkodaE(type) {
@@ -132,6 +133,14 @@ module.exports = class mainDevice extends Homey.Device {
 
     isVwID(type) {
         return type === 'id';
+    }
+
+    isAudiEtron(type) {
+        return type === 'audietron';
+    }
+
+    isSeatCupra(type) {
+        return type === 'seatcupra' || type === 'seatcupra2';
     }
 
     // ------------- CapabilityListeners -------------

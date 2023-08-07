@@ -5,6 +5,8 @@ const VwWeconnect = require('./lib/@iobroker/iobroker.vw-connect');
 const { sleep } = require('./lib/helpers');
 const dottie = require('dottie');
 
+const _settingsKey = `${Homey.manifest.id}.settings`;
+
 class App extends Homey.App {
     log() {
         console.log.bind(this, '[log]').apply(this, arguments);
@@ -21,6 +23,81 @@ class App extends Homey.App {
 
         await flowActions.init(this.homey);
         await flowConditions.init(this.homey);
+
+        this.homey.settings.getKeys().forEach((key) => {
+            if (key == _settingsKey) {
+                this.settingsInitialized = true;
+            }
+        });
+
+        await this.initSettings();
+        await this.sendNotifications();
+    }
+
+    async initSettings() {
+        try {
+            if (this.settingsInitialized) {
+                this.log('initSettings - Found settings key', _settingsKey);
+                this.appSettings = this.homey.settings.get(_settingsKey);
+
+                if (!('NOTIFICATIONS' in this.appSettings)) {
+                    await this.updateSettings({
+                        ...this.appSettings,
+                        NOTIFICATIONS: []
+                    });
+                }
+
+                return true;
+            }
+
+            this.log(`initSettings - Initializing ${_settingsKey} with defaults`);
+            
+            await this.updateSettings({
+                NOTIFICATIONS: []
+            });
+
+            return true;
+        } catch (err) {
+            this.error(err);
+        }
+    }
+
+    updateSettings(settings) {
+        this.log('updateSettings - New settings:', { ...settings, USERNAME: 'LOG', PASSWORD: 'LOG' });
+
+        this.appSettings = settings;
+
+        this.log('Saved settings.');
+        this.homey.settings.set(_settingsKey, this.appSettings);
+    }
+
+    async sendNotifications() {
+        try {
+            const ntfy2023080701 = `[${this.homey.manifest.name.en}] (1/3) - Due to changes in the API it might be that your car is not working properly`;
+            const ntfy2023080702 = `[${this.homey.manifest.name.en}] (2/3) - Unfortunately there's no proper fix available for all issues.`;
+            const ntfy2023080703 = `[${this.homey.manifest.name.en}] (3/3)  It might take a while before all issues are fixed. If this version is not working for you, please return to the live version of the app.`;
+
+            if (!this.appSettings.NOTIFICATIONS.includes('ntfy2023080701')) {
+                await this.homey.notifications.createNotification({
+                    excerpt: ntfy2023080703
+                });
+
+                await this.homey.notifications.createNotification({
+                    excerpt: ntfy2023080702
+                });
+
+                await this.homey.notifications.createNotification({
+                    excerpt: ntfy2023080701
+                });
+
+                await this.updateSettings({
+                    ...this.appSettings,
+                    NOTIFICATIONS: [...this.appSettings.NOTIFICATIONS, 'ntfy2023080701', 'ntfy2023080702', 'ntfy2023080703']
+                });
+            }
+        } catch (error) {
+            this.log('sendNotifications - error', console.error());
+        }
     }
 
     dummyLog() {}

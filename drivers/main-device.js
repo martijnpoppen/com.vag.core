@@ -123,8 +123,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isOverrideType(type) {
-       return type === 'audi' || type === 'seat';
-    //    type === 'vw' || type === 'vwv2'
+       return type === 'audi' || type === 'seat' || type === 'vw' || type === 'vwv2';
     }
 
     isSkodaE(type) {

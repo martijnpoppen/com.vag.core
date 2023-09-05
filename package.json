@@ -30,14 +30,15 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "file:./lib/@iobroker/adapter-core",
-    "@peculiar/webcrypto": "^1.1.6",
-    "axios": "^0.21.1",
+    "@peculiar/webcrypto": "^1.4.3",
+    "axios": "^1.5.0",
     "dottie": "^2.0.2",
     "json-bigint": "^1.0.0",
     "ngeohash": "^0.6.3",
-    "qs": "^6.10.3",
+    "qs": "^6.11.2",
     "request": "^2.88.2",
-    "traverse": "^0.6.6",
-    "uuid": "^8.3.2"
+    "traverse": "^0.6.7",
+    "uuid": "^9.0.0"
   }
 }
+

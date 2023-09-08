@@ -193,9 +193,11 @@ module.exports = class mainDriver extends Homey.Driver {
                 ctx.homey.app.log(`[Driver] ${ctx.id} - ctx._weConnectClient.getState() - try: ${i}`);
                 ctx.homey.app.log(`[Driver] ${ctx.id} - info.connection - `, weConnectData['info.connection']);
 
-                if (retry === 7) {
+                if (i > 5 && weConnectData['info.connection']) {
                     await ctx._weConnectClient.onUnload(() => {});
                     return Promise.resolve(weConnectData);
+                } else if (retry === 9) {
+                    return Promise.resolve(false);
                 }
             }
 

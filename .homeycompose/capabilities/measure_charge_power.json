@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Charging power",
-    "nl": "Oplaad vermogen"
+    "nl": "Oplaad vermogen",
+	"it": "Potenza ricarica"
   },
   "units": {
-    "en": "KW",
-    "nl": "KW"
+    "en": "kW",
+    "nl": "kW",
+	"it": "kW"
   },
   "insights": true,
   "desc": {
-    "en": "Charging power in KW",
-    "nl": "Oplaad vermogen in KW"
+    "en": "Charging power in kW",
+    "nl": "Oplaad vermogen in kW",
+	"it": "Potenza ricarica in kW"
   },
   "chartType": "spline",
   "decimals": 2,

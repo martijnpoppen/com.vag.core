@@ -3,7 +3,8 @@
   "type": "number",
   "title": {
     "en": "Outside Temperature",
-    "nl": "Buiten Temperatuur"
+    "nl": "Buiten Temperatuur",
+	"it": "Temperatura esterna"
   },
   "units": {
     "en": "°C"
@@ -11,7 +12,8 @@
   "insights": true,
   "desc": {
     "en": "Outside Temperature in degrees Celsius (°C)",
-    "nl": "Buiten Temperatuur in graden Celsius (°C)"
+    "nl": "Buiten Temperatuur in graden Celsius (°C)",
+	"it": "Temperatura esterna in gradi Celsius (°C)"
   },
   "decimals": 2,
   "chartType": "spline",

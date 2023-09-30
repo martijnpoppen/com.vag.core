@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Remaining climate time",
-    "nl": "Resterende klimaattijd"
+    "nl": "Resterende klimaattijd",
+	"it": "Tempo di climatizzazione residuo"
   },
   "units": {
     "en": "min",
-    "nl": "min"
+    "nl": "min",
+	"it": "min"
   },
   "insights": true,
   "desc": {
     "en": "Remaining climate time in min",
-    "nl": "Resterende klimaattijd in min"
+    "nl": "Resterende klimaattijd in min",
+	"it": "Tempo di climatizzazione residuo in min"
   },
   "chartType": "spline",
   "decimals": 2,

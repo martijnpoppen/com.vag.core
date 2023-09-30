@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Estimated max range",
-    "nl": "Geschatte max actieradius"
+    "nl": "Geschatte max actieradius",
+	"it": "Autonomia massima stimata"
   },
   "units": {
-    "en": "KM",
-    "nl": "KM"
+    "en": "km",
+    "nl": "km",
+	"it": "km"
   },
   "insights": true,
   "desc": {
-    "en": "Estimated max range in KM",
-    "nl": "Geschatte max actieradius in KM"
+    "en": "Estimated max range in km",
+    "nl": "Geschatte max actieradius in km",
+	"it": "Autonomia massima stimata in km"
   },
   "chartType": "spline",
   "decimals": 2,

@@ -3,7 +3,8 @@
   "type": "boolean",
   "title": {
     "en": "Plug connected",
-    "nl": "Stekker verbonden"
+    "nl": "Stekker verbonden",
+	"it": "Presa collegata"
   },
   "getable": true,
   "setable": false,

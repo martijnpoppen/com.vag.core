@@ -3,16 +3,19 @@
     "type": "number",
     "title": {
       "en": "Charging speed",
-      "nl": "Oplaadsnelheid"
+      "nl": "Oplaadsnelheid",
+	  "it": "Velocità ricarica"
     },
     "units": {
-      "en": "KM P/H",
-      "nl": "KM P/U"
+      "en": "km P/H",
+      "nl": "km P/U",
+	  "it": "km/h"
     },
     "insights": true,
     "desc": {
-      "en": "Charging speed in KM P/H",
-      "nl": "Oplaadsnelheid in KM P/U"
+      "en": "Charging speed in km P/H",
+      "nl": "Oplaadsnelheid in km P/U",
+	  "it": "Velocità di ricarica in km/h"
     },
     "chartType": "spline",
     "decimals": 2,

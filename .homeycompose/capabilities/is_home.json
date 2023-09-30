@@ -2,7 +2,8 @@
   "type": "boolean",
   "title": {
     "en": "Is vehicle at home",
-    "nl": "Is voertuig thuis"
+    "nl": "Is voertuig thuis",
+	"it": "Veicolo a casa"
   },
   "getable": true,
   "setable": false,

@@ -3,7 +3,8 @@
   "type": "boolean",
   "title": {
     "en": "Is charging",
-    "nl": "Aan het opladen"
+    "nl": "Aan het opladen",
+	"it": "In carica"
   },
   "getable": true,
   "setable": false,

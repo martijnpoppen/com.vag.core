@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Battery level",
-    "nl": "Batterij niveau"
+    "nl": "Batterij niveau",
+	"it": "Livello batteria"
   },
   "units": {
     "en": "%",
-    "nl": "%"
+    "nl": "%",
+	"it": "%"
   },
   "insights": true,
   "desc": {
     "en": "Battery level in %",
-    "nl": "Batterij niveau in %"
+    "nl": "Batterij niveau in %",
+	"it": "Livello batteria in %"
   },
   "chartType": "spline",
   "decimals": 2,

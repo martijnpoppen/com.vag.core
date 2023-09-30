@@ -3,12 +3,14 @@
   "type": "number",
   "title": {
     "en": "Latitude",
-    "nl": "Latitude"
+    "nl": "Latitude",
+	"it": "Latitudine"
   },
   "insights": false,
   "desc": {
     "en": "Latitude",
-    "nl": "Latitude"
+    "nl": "Latitude",
+	"it": "Latitudine"
   },
   "getable": true,
   "setable": false,

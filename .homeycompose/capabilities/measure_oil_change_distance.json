@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Oil change",
-    "nl": "Olie verversen"
+    "nl": "Olie verversen",
+	"it": "Cambio Olio"
   },
   "units": {
-    "en": "KM",
-    "nl": "KM"
+    "en": "km",
+    "nl": "km",
+	"it": "km"
   },
   "insights": true,
   "desc": {
-    "en": "Oil change in KM",
-    "nl": "Olie verversen in KM"
+    "en": "Oil change in km",
+    "nl": "Olie verversen in km",
+	"it": "Cambio Olio in km"
   },
   "chartType": "spline",
   "decimals": 2,

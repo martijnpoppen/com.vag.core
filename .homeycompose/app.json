@@ -7,11 +7,13 @@
   "brandColor": "#000000",
   "name": {
     "en": "VAG Connect",
-    "nl": "VAG Connect"
+    "nl": "VAG Connect",
+	"it": "VAG Connect"
   },
   "description": {
     "en": "Simply stay connected",
-    "nl": "Blijf in verbinding"
+    "nl": "Blijf in verbinding",
+	"it": "Rimanere semplicemente connessi"
   },
   "tags": {
     "en": [
@@ -51,6 +53,9 @@
       },
       {
         "name": "🇳🇱 Martijn Poppen"
+      },
+	  {
+        "name": "🇮🇹 Roberto Greco"
       }
     ]
   },

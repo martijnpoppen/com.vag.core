@@ -1,0 +1,21 @@
+{
+  "pair": {
+    "vw": "Volkswagen 2019 o precedenti",
+    "vwv2": "Volkswagen 2020 o successive",
+    "id": "Volkswagen ID (nuova generazione)",
+    "seat": "Seat",
+    "seatelli": "Seat Elli",
+    "seatcupra": "Cupra",
+    "cupra": "Cupra",
+    "skoda": "Skoda",
+    "skodae": "Skoda (Enyaq)",
+    "audi": "Audi",
+    "audietron": "Audi E-tron (nuova generazione)",
+    "login_failed": "Accesso non riuscito. Controlla che le credenziali siano corrette. Modifica i dati di accesso nella pagina precedente"
+  },
+
+  "settings": {
+    "title": "API Helper tool",
+    "subtitle": "Con questo strumento è possibile verificare la risposta per la propria auto e vedere i dati forniti dall'API. Troppi tentativi potrebbero bloccare l'account! Usare con cautela"
+  }
+}

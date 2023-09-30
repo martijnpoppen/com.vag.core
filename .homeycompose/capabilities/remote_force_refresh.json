@@ -3,7 +3,8 @@
   "type": "boolean",
   "title": {
     "en": "Force refresh",
-    "nl": "Geforceerd verversen"
+    "nl": "Geforceerd verversen",
+	"it": "Forza aggiornamento"
   },
   "getable": true,
   "setable": true,

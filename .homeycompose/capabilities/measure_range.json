@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Range",
-    "nl": "Actieradius"
+    "nl": "Actieradius",
+	"it": "Autonomia"
   },
   "units": {
-    "en": "KM",
-    "nl": "KM"
+    "en": "km",
+    "nl": "km",
+	"it": "km"
   },
   "insights": true,
   "desc": {
-    "en": "Range in KM",
-    "nl": "Actieradius in KM"
+    "en": "Range in km",
+    "nl": "Actieradius in km",
+	"it": "Autonomia in km"
   },
   "chartType": "spline",
   "decimals": 2,

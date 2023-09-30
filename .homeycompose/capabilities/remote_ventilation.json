@@ -3,7 +3,8 @@
   "type": "boolean",
   "title": {
     "en": "Start/Stop ventilation",
-    "nl": "Start/Stop ventileren"
+    "nl": "Start/Stop ventileren",
+	"it": "Avvia/Ferma ventilazione"
   },
   "getable": true,
   "setable": true,

@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Max. Charge current",
-    "nl": "Max. Laadvermogen"
+    "nl": "Max. Laadvermogen",
+	"it": "Intensità massima di ricarica"
   },
   "units": {
     "en": "A",
-    "nl": "A"
+    "nl": "A",
+	"it": "A"
   },
   "insights": true,
   "desc": {
     "en": "Max. Charge current in Ampere",
-    "nl": "Max. Laadvermogen in Ampere"
+    "nl": "Max. Laadvermogen in Ampere",
+	"it": "Intensità massima di ricarica in Ampere"
   },
   "chartType": "spline",
   "decimals": 2,

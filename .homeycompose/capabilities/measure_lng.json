@@ -3,12 +3,14 @@
     "type": "number",
     "title": {
       "en": "Longitude",
-      "nl": "Longitude"
+      "nl": "Longitude",
+	  "it": "Longitudine"
     },
     "insights": false,
     "desc": {
       "en": "Longitude",
-      "nl": "Longitude"
+      "nl": "Longitude",
+	  "it": "Longitudine"
     },
     "getable": true,
     "setable": false,

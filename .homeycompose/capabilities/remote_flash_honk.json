@@ -3,7 +3,8 @@
   "type": "boolean",
   "title": {
     "en": "Start Flash & Honk",
-    "nl": "Start Flits & Toeteren"
+    "nl": "Start Flits & Toeteren",
+	"it": "Avvia Clacson e Lampeggio"
   },
   "getable": true,
   "setable": true,

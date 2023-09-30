@@ -3,7 +3,8 @@
   "type": "boolean",
   "title": {
     "en": "Start/Stop Flash",
-    "nl": "Start/Stop Flits"
+    "nl": "Start/Stop Flits",
+	"it": "Avvia/Ferma Lampeggio"
   },
   "getable": true,
   "setable": true,

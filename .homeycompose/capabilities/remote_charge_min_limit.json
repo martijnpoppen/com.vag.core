@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Min. Charge limit",
-    "nl": "Min. Laad limiet"
+    "nl": "Min. Laad limiet",
+	"it": "Limite minimo di ricarica"
   },
   "units": {
     "en": "%",
-    "nl": "%"
+    "nl": "%",
+	"it": "%"
   },
   "insights": true,
   "desc": {
     "en": "Min. Charge limit in %",
-    "nl": "Min. Laad limiet in %"
+    "nl": "Min. Laad limiet in %",
+	"it": "Limite minimo di ricarica in %"
   },
   "chartType": "spline",
   "decimals": 2,

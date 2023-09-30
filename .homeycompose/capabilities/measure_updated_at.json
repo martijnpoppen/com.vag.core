@@ -3,7 +3,8 @@
     "type": "string",
     "title": {
       "en": "Last update",
-      "nl": "Laatste update"
+      "nl": "Laatste update",
+	  "it": "Ultimo aggiornamento"
     },
     "getable": true,
     "setable": true,

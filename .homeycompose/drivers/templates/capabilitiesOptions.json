@@ -3,7 +3,8 @@
     "measure_range.electric": {
       "title": {
         "en": "Battery Range",
-        "nl": "Actieradius Batterij"
+        "nl": "Actieradius Batterij",
+		"it": "Autonomia batteria"
       }
     }
   }

@@ -3,7 +3,8 @@
     "type": "string",
     "title": {
       "en": "Location url",
-      "nl": "Locatie url"
+      "nl": "Locatie url",
+	  "it": "URL di Localizzazione"
     },
     "insights": false,
     "getable": true,

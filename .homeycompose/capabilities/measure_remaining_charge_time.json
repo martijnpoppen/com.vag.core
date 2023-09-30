@@ -3,16 +3,19 @@
   "type": "number",
   "title": {
     "en": "Remaining charge time",
-    "nl": "Resterende laadtijd"
+    "nl": "Resterende laadtijd",
+	"it": "Tempo di ricarica residuo"
   },
   "units": {
     "en": "min",
-    "nl": "min"
+    "nl": "min",
+	"it": "min"
   },
   "insights": true,
   "desc": {
     "en": "Remaining charge time in min",
-    "nl": "Resterende laadtijd in min"
+    "nl": "Resterende laadtijd in min",
+	"it": "Tempo di ricarica residuo in min"
   },
   "chartType": "spline",
   "decimals": 2,

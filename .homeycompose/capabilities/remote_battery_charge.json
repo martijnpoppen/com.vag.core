@@ -4,7 +4,7 @@
   "title": {
     "en": "Start/Stop charge",
     "nl": "Start/Stop laden",
-	"it": "Avvia/Ferma ricarica"
+    "it": "Avvia/Ferma ricarica"
   },
   "getable": true,
   "setable": true,

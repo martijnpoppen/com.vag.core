@@ -1,13 +1,13 @@
 {
-    "platforms": ["local"],
-    "type": "string",
-    "title": {
-      "en": "Last update",
-      "nl": "Laatste update",
-	  "it": "Ultimo aggiornamento"
-    },
-    "getable": true,
-    "setable": true,
-    "uiComponent": null
+  "platforms": ["local"],
+  "type": "string",
+  "title": {
+    "en": "Last update",
+    "nl": "Laatste update",
+    "it": "Ultimo aggiornamento"
+  },
+  "getable": true,
+  "setable": true,
+  "uiComponent": null
 }
   

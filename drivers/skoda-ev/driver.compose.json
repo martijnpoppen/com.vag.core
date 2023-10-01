@@ -1,8 +1,9 @@
 {
-    "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-ev", "pair", "battery"],
-    "name": {
-      "en": "Skoda - Electric",
-      "nl": "Skoda - Elektrisch"
-    }
+  "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-ev", "pair", "battery"],
+  "name": {
+    "en": "Skoda - Electric",
+    "nl": "Skoda - Elektrisch",
+    "it": "Skoda - Elettrica"
   }
+}
   

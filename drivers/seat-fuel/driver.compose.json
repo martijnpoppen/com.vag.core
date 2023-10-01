@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-fuel", "pair"],
   "name": {
     "en": "Seat - Fuel",
-    "nl": "Seat - Brandstof"
+    "nl": "Seat - Brandstof",
+    "it": "Seat - Standard"
   }
 }

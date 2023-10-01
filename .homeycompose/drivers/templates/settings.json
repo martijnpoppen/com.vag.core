@@ -4,7 +4,8 @@
       "type": "group",
       "label": {
         "en": "Car options",
-        "nl": "Auto opties"
+        "nl": "Auto opties",
+        "it": "Opzioni Auto"
       },
       "children": [
         {
@@ -12,11 +13,13 @@
           "type": "checkbox",
           "label": {
             "en": "Setting: Climatisation",
-            "nl": "Instelling: Klimatiseren"
+            "nl": "Instelling: Klimatiseren",
+            "it": "Impostazione: Climatizzazione"
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": true
         },
@@ -29,7 +32,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -42,7 +46,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -55,7 +60,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": true
         },
@@ -68,7 +74,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -81,7 +88,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -94,7 +102,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -107,7 +116,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -120,7 +130,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -133,7 +144,8 @@
           },
           "hint": {
             "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Selezionando questa casella si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         }

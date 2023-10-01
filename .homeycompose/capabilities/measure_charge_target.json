@@ -4,18 +4,18 @@
   "title": {
     "en": "Charge target",
     "nl": "Laaddoel",
-	"it": "Obiettivo ricarica"
+    "it": "Obiettivo ricarica"
   },
   "units": {
     "en": "%",
     "nl": "%",
-	"it": "%"
+    "it": "%"
   },
   "insights": true,
   "desc": {
     "en": "Charge target in %",
     "nl": "Laaddoel in %",
-	"it": "Obiettivo di ricarica in %"
+    "it": "Obiettivo di ricarica in %"
   },
   "chartType": "spline",
   "decimals": 2,

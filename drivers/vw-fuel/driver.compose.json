@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-fuel", "pair"],
   "name": {
     "en": "Volkswagen - Fuel",
-    "nl": "Volkswagen - Brandstof"
+    "nl": "Volkswagen - Brandstof",
+    "it": "Volkswagen - Standard"
   }
 }

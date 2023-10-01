@@ -3,7 +3,7 @@
   "title": {
     "en": "Is vehicle moving",
     "nl": "Voertuig in beweging",
-	"it": "Veicolo in movimento"
+    "it": "Veicolo in movimento"
   },
   "getable": true,
   "setable": false,

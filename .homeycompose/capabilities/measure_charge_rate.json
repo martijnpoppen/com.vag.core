@@ -1,27 +1,27 @@
 {
-    "platforms": ["local"],
-    "type": "number",
-    "title": {
-      "en": "Charging speed",
-      "nl": "Oplaadsnelheid",
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Charging speed",
+    "nl": "Oplaadsnelheid",
 	  "it": "Velocità ricarica"
-    },
-    "units": {
-      "en": "km P/H",
-      "nl": "km P/U",
+  },
+  "units": {
+    "en": "km P/H",
+    "nl": "km P/U",
 	  "it": "km/h"
-    },
-    "insights": true,
-    "desc": {
-      "en": "Charging speed in km P/H",
-      "nl": "Oplaadsnelheid in km P/U",
+  },
+  "insights": true,
+  "desc": {
+    "en": "Charging speed in km P/H",
+    "nl": "Oplaadsnelheid in km P/U",
 	  "it": "Velocità di ricarica in km/h"
-    },
-    "chartType": "spline",
-    "decimals": 2,
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "icon": "assets/icons/ev-station.svg"
-  }
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/ev-station.svg"
+}
   

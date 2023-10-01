@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-hybrid", "pair", "battery"],
   "name": {
     "en": "Volkswagen - Hybrid",
-    "nl": "Volkswagen - Hybride"
+    "nl": "Volkswagen - Hybride",
+    "it": "Volkswagen - Ibrida"
   }
 }

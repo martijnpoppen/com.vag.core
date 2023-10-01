@@ -1,8 +1,9 @@
 {
-    "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-ev", "pair", "battery"],
-    "name": {
-      "en": "Audi - Electric",
-      "nl": "Audi - Elektrisch"
-    }
+  "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-ev", "pair", "battery"],
+  "name": {
+    "en": "Audi - Electric",
+    "nl": "Audi - Elektrisch",
+    "it": "Audi - Elettrica"
   }
+}
   

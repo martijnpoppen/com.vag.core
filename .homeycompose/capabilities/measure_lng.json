@@ -1,20 +1,20 @@
 {
-    "platforms": ["local"],
-    "type": "number",
-    "title": {
-      "en": "Longitude",
-      "nl": "Longitude",
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Longitude",
+    "nl": "Longitude",
 	  "it": "Longitudine"
-    },
-    "insights": false,
-    "desc": {
-      "en": "Longitude",
-      "nl": "Longitude",
+  },
+  "insights": false,
+  "desc": {
+    "en": "Longitude",
+    "nl": "Longitude",
 	  "it": "Longitudine"
-    },
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "icon": "assets/icons/geo-alt-fill.svg"
-  }
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/geo-alt-fill.svg"
+}
   

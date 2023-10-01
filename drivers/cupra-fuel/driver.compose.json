@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-fuel", "pair"],
   "name": {
     "en": "Cupra - Fuel",
-    "nl": "Cupra - Brandstof"
+    "nl": "Cupra - Brandstof",
+    "it": "Cupra - Standard"
   }
 }

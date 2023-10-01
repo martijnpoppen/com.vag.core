@@ -4,7 +4,7 @@
   "title": {
     "en": "Start/Stop Flash",
     "nl": "Start/Stop Flits",
-	"it": "Avvia/Ferma Lampeggio"
+    "it": "Avvia/Ferma Lampeggio"
   },
   "getable": true,
   "setable": true,

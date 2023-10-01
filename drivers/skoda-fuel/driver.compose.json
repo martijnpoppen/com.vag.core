@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-fuel", "pair"],
   "name": {
     "en": "Skoda - Fuel",
-    "nl": "Skoda - Brandstof"
+    "nl": "Skoda - Brandstof",
+    "it": "Skoda - Standard"
   }
 }

@@ -4,7 +4,7 @@
   "title": {
     "en": "Start/Stop ventilation",
     "nl": "Start/Stop ventileren",
-	"it": "Avvia/Ferma ventilazione"
+    "it": "Avvia/Ferma ventilazione"
   },
   "getable": true,
   "setable": true,

@@ -1,27 +1,27 @@
 {
-    "platforms": ["local"],
-    "type": "number",
-    "title": {
-      "en": "Oil change",
-      "nl": "Olie verversen",
+  "platforms": ["local"],
+  "type": "number",
+  "title": {
+    "en": "Oil change",
+    "nl": "Olie verversen",
 	  "it": "Cambio Olio"
-    },
-    "units": {
-      "en": "days",
-      "nl": "dagen",
+  },
+  "units": {
+    "en": "days",
+    "nl": "dagen",
 	  "it": "giorni"
-    },
-    "insights": true,
-    "desc": {
-      "en": "Oil change in Days",
-      "nl": "Olie verversen in Dagen",
+  },
+  "insights": true,
+  "desc": {
+    "en": "Oil change in Days",
+    "nl": "Olie verversen in Dagen",
 	  "it": "Cambio Olio in Giorni"
-    },
-    "chartType": "spline",
-    "decimals": 2,
-    "getable": true,
-    "setable": false,
-    "uiComponent": "sensor",
-    "icon": "assets/icons/droplet-fill.svg"
-  }
+  },
+  "chartType": "spline",
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "assets/icons/droplet-fill.svg"
+}
   

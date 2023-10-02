@@ -3,7 +3,7 @@
   "title": {
     "en": "Is climatisation on",
     "nl": "Staat klimaatbeheer aan",
-	"it": "Climatizzatore acceso"
+    "it": "Climatizzatore acceso"
   },
   "getable": true,
   "setable": false,

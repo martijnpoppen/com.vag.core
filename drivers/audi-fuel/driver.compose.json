@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-fuel", "pair"],
   "name": {
     "en": "Audi - Fuel",
-    "nl": "Audi - Brandstof"
+    "nl": "Audi - Brandstof",
+    "it": "Audi - Standard"
   }
 }

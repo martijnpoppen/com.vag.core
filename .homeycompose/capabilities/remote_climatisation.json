@@ -4,7 +4,7 @@
   "title": {
     "en": "Start/Stop climatisation",
     "nl": "Start/Stop klimatiseren",
-	"it": "Avvia/Ferma climatizzazione"
+    "it": "Avvia/Ferma climatizzazione"
   },
   "getable": true,
   "setable": true,

@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-hybrid", "pair", "battery"],
   "name": {
     "en": "Cupra - Hybrid",
-    "nl": "Cupra - Hybride"
+    "nl": "Cupra - Hybride",
+    "it": "Cupra - Ibrida"
   }
 }

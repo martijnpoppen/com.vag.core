@@ -4,18 +4,18 @@
   "title": {
     "en": "Driven mileage",
     "nl": "Gereden afstand",
-	"it": "Chilometraggio totale"
+    "it": "Chilometraggio totale"
   },
   "units": {
     "en": "km",
     "nl": "km",
-	"it": "km"
+    "it": "km"
   },
   "insights": true,
   "desc": {
     "en": "Driven mileage in km",
     "nl": "Gereden afstand in km",
-	"it": "Chilometraggio totale in km"
+    "it": "Chilometraggio totale in km"
   },
   "chartType": "spline",
   "decimals": 2,

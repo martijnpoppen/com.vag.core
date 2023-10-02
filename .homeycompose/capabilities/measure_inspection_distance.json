@@ -4,18 +4,18 @@
   "title": {
     "en": "Inspection",
     "nl": "Inspectie",
-	"it": "Ispezione"
+    "it": "Ispezione"
   },
   "units": {
     "en": "km",
     "nl": "km",
-	"it": "km"
+    "it": "km"
   },
   "insights": true,
   "desc": {
     "en": "Inspection in km",
     "nl": "Inspectie in km",
-	"it": "Ispezione in km"
+    "it": "Ispezione in km"
   },
   "chartType": "spline",
   "decimals": 2,

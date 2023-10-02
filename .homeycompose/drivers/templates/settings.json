@@ -3,20 +3,23 @@
     {
       "type": "group",
       "label": {
-        "en": "Car options",
-        "nl": "Auto opties"
+        "en": "CAR FEATURES",
+        "nl": "AUTO FUNCTIES",
+        "it": "FUNZIONALITÀ VEICOLO"
       },
       "children": [
         {
           "id": "remote_climatisation",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Climatisation",
-            "nl": "Instelling: Klimatiseren"
+            "en": "Climatisation",
+            "nl": "Klimatiseren",
+            "it": "Climatizzazione"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": true
         },
@@ -24,12 +27,14 @@
           "id": "remote_climatisation_v2",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Climatisation V2",
-            "nl": "Instelling: Klimatiseren V2"
+            "en": "Climatisation (V2)",
+            "nl": "Klimatiseren (V2)",
+            "it": "Climatizzazione (V2)"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -37,12 +42,14 @@
           "id": "remote_climatisation_v3",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Climatisation V3",
-            "nl": "Instelling: Klimatiseren V3"
+            "en": "Climatisation (V3)",
+            "nl": "Klimatiseren (V3)",
+            "it": "Climatizzazione (V3)"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -50,12 +57,14 @@
           "id": "remote_ventilation",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Ventilation",
-            "nl": "Instelling: Ventileren"
+            "en": "Ventilation",
+            "nl": "Ventileren",
+            "it": "Ventilazione"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": true
         },
@@ -63,12 +72,14 @@
           "id": "remote_ventilation_v2",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Ventilation V2",
-            "nl": "Instelling: Ventileren V2"
+            "en": "Ventilation (V2)",
+            "nl": "Ventileren (V2)",
+            "it": "Ventilazione (V2)"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -76,12 +87,14 @@
           "id": "remote_ventilation_v3",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Ventilation V3",
-            "nl": "Instelling: Ventileren V3"
+            "en": "Ventilation (V3)",
+            "nl": "Ventileren (V3)",
+            "it": "Ventilazione (V3)"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -89,12 +102,14 @@
           "id": "remote_window_heating",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Window heating",
-            "nl": "Instelling: Raam verwarming"
+            "en": "Window heating",
+            "nl": "Raam verwarming",
+            "it": "Sbrinamento finestrini"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -102,12 +117,14 @@
           "id": "remote_force_refresh",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Force Refresh",
-            "nl": "Instelling: Geforceerd verversen"
+            "en": "Force refresh",
+            "nl": "Geforceerd verversen",
+            "it": "Forza aggiornamento"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -115,12 +132,14 @@
           "id": "remote_flash",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Flash",
-            "nl": "Instelling: Flitsen"
+            "en": "Flash",
+            "nl": "Flitsen",
+            "it": "Lampeggio"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         },
@@ -128,12 +147,14 @@
           "id": "remote_flash_honk",
           "type": "checkbox",
           "label": {
-            "en": "Setting: Flash & Honk",
-            "nl": "Instelling: Flitsen & Toeteren"
+            "en": "Flash & Honk",
+            "nl": "Flitsen & Toeteren",
+            "it": "Clacson & Lampeggio"
           },
           "hint": {
-            "en": "Checking this box will add the option to trigger this functionality",
-            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken"
+            "en": "Enabling this setting will add the option to trigger this feature",
+            "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken",
+            "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità"
           },
           "value": false
         }
@@ -141,20 +162,23 @@
     },
     { "type": "group",
     "label": {
-      "en": "App settings",
-      "nl": "App instellingen"
+      "en": "ADVANCED",
+      "nl": "GEVANCEERD",
+      "it": "AVANZATE"
     },
     "children": [
         {
             "id": "enable_lock",
             "type": "checkbox",
             "label": {
-              "en": "Enable: Lock/Unlock",
-              "nl": "Activeer: Op slot/van slot"
+              "en": "Lock/Unlock",
+              "nl": "Op slot/van slot",
+              "it": "Blocco/Sblocco"
             },
             "hint": {
-              "en": "Checking this box will add the option to trigger this functionality (When off the lock will be visible but not interactable)",
-              "nl": "Het aanzetten van deze instelling zal de optie toevoegen om deze functionaliteit te gebruiken (Wanneer uit blijft het slot wel zichtbaar maar kan niet bediend worden)"
+              "en": "Enabling this setting will add the option to trigger this feature. When off, the lock button will be visible but not interactable",
+              "nl": "Als u dit vakje aanvinkt, wordt de optie toegevoegd om deze functionaliteit te activeren. Als deze is uitgeschakeld, is de vergrendelknop zichtbaar maar niet interactief",
+              "it": "Abilitando questa impostazione si aggiunge l'opzione per attivare questa funzionalità. Quando disabilitata, il pulsante di blocco sarà visibile ma non azionabile"
             },
             "value": true
           },
@@ -162,10 +186,15 @@
             "id": "measure_inspection_negative",
             "type": "checkbox",
             "label": {
-              "en": "Enable: Inspection negative values",
-              "nl": "Activeer: Inspectie negatieve waardes"
+              "en": "Inspection negative values",
+              "nl": "Inspectie negatieve waardes",
+              "it": "Valori negativi Ispezione"
             },
-            
+            "hint": {
+              "en": "Enabling this setting will change Inspection values (days and km) to negative",
+              "nl": "Door deze instelling worden de inspectiewaarden (dagen en km) omgekeerd naar negatieve waardes",
+              "it": "Abilitando questa impostazione, i valori dei parametri Ispezione (giorni e km) verranno mostrati in negativo"
+            },
             "value": false
           },
           {
@@ -173,17 +202,21 @@
             "type": "number",
             "label": {
               "en": "Radius for Is Home check",
-              "nl": "Radius voor is Thuis check"
+              "nl": "Radius voor is Thuis check",
+              "it": "Area Veicolo a casa"
             },
             "hint": {
-                "en": "When Is Home is calculated Homey will check for Homey's location vs the Cars location. This allows to increase the radius (e.g. if your car is not parked close to your home)",
-                "nl": "Als Is Thuis berekend wordt zal Homey matchen tussen Homey's locatie en die van de auto. Deze optie staat toe om de radius te vergroten (bijvoorbeeld als de auto niet dichtbij huis staat)"
+                "en": "When Is Home is calculated Homey will check for Homey's location vs the Cars location. Increasing the radius is useful if your car is not parked close to your home",
+                "nl": "Als Is Thuis berekend wordt zal Homey matchen tussen Homey's locatie en die van de auto. Deze optie staat toe om de radius te vergroten (bijvoorbeeld als de auto niet dichtbij huis staat)",
+                "it": "Per la funzionalità 'Veicolo a casa', Homey confronta la localizzazione dell'Hub Homey con la posizione GPS del veicolo. Aumentare il raggio dell'area è utile se l'automobile non è parcheggiata nelle immediate vicinanze"
               },
             "min": 0.01,
             "max": 5,
             "steps": 0.01,
             "units": {
-              "en": "kilometers"
+              "en": "km",
+              "nl": "km",
+              "it": "km"
             },
             "value": 1
           }          
@@ -192,8 +225,9 @@
     {
       "type": "group",
       "label": {
-        "en": "General settings",
-        "nl": "Algemene instellingen"
+        "en": "GENERAL",
+        "nl": "Algemene instellingen",
+        "it": "GENERALI"
       },
       "children": [
         {
@@ -201,13 +235,15 @@
           "type": "number",
           "label": {
             "en": "Update interval",
-            "nl": "Update interval"
+            "nl": "Update interval",
+            "it": "Intervallo aggiornamento"
           },
           "min": 1,
           "max": 3600,
           "units": {
             "en": "minutes",
-            "nl": "minuten"
+            "nl": "minuten",
+            "it": "minuti"
           },
           "value": 5
         },
@@ -216,13 +252,15 @@
             "type": "number",
             "label": {
               "en": "Force Update interval (recommended: 360)",
-              "nl": "Force Update interval (aanbevolen: 360)"
+              "nl": "Force Update interval (aanbevolen: 360)",
+              "it": "Forza Intervallo aggiornamento (consigliato: 360)"
             },
             "min": 1,
             "max": 3600,
             "units": {
               "en": "minutes",
-              "nl": "minuten"
+              "nl": "minuten",
+              "it": "minuti"
             },
             "value": 360
           }
@@ -231,8 +269,9 @@
     {
       "type": "group",
       "label": {
-        "en": "Dev settings",
-        "nl": "Dev instellingen"
+        "en": "DEVELOPER",
+        "nl": "DEVELOPER",
+        "it": "SVILUPPATORE"
       },
       "children": [
         {
@@ -240,11 +279,13 @@
           "type": "checkbox",
           "label": {
             "en": "Enable Debug",
-            "nl": "Schakel Debug in"
+            "nl": "Schakel Debug in",
+            "it": "Abilita Debug"
           },
           "hint": {
-            "en": "Checking this box will enable extra logging for the app developer ",
-            "nl": "Het aanzetten van deze instelling zal extra logs aanmaken voor de app ontwikkelaar"
+            "en": "Checking this box will enable extra logging for the app developer",
+            "nl": "Het aanzetten van deze instelling zal extra logs aanmaken voor de app ontwikkelaar",
+            "it": "Abilitando questa impostazione si aiuta lo sviluppatore dell'app ad identificare e risolvere eventuali anomalie"
           },
           "value": false
         }
@@ -253,16 +294,18 @@
     {
       "type": "group",
       "label": {
-        "en": "Login settings",
-        "nl": "Login instellingen"
+        "en": "ACCOUNT",
+        "nl": "ACCOUNT",
+        "it": "ACCOUNT"
       },
       "children": [
         {
           "id": "username",
           "type": "text",
           "label": {
-            "en": "Login",
-            "nl": "Login"
+            "en": "Username",
+            "nl": "Login",
+            "it": "Nome utente"
           },
           "value": ""
         },
@@ -271,7 +314,8 @@
           "type": "password",
           "label": {
             "en": "Password",
-            "nl": "Wachtwoord"
+            "nl": "Wachtwoord",
+            "it": "Password"
           },
           "value": ""
         },
@@ -280,7 +324,8 @@
           "type": "password",
           "label": {
             "en": "S-PIN",
-            "nl": "S-PIN"
+            "nl": "S-PIN",
+            "it": "S-PIN"
           },
           "value": ""
         },
@@ -289,7 +334,8 @@
           "type": "label",
           "label": {
             "en": "Type",
-            "nl": "Type"
+            "nl": "Type",
+            "it": "Tipologia"
           },
           "value": ""
         }

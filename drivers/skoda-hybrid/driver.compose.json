@@ -2,6 +2,7 @@
   "$extends": ["device", "settings", "capabilitiesOptions", "capabilities-hybrid", "pair", "battery"],
   "name": {
     "en": "Skoda - Hybrid",
-    "nl": "Skoda - Hybride"
+    "nl": "Skoda - Hybride",
+    "it": "Skoda - Ibrida"
   }
 }

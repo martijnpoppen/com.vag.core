@@ -5,11 +5,13 @@
       "options": {
         "title": {
           "en": "Select type",
-          "nl": "Selecteer type"
+          "nl": "Selecteer type",
+          "it": "Seleziona tipologia"
         },
         "button": {
           "en": "Save & next",
-          "nl": "Opslaan & volgende"
+          "nl": "Opslaan & volgende",
+          "it": "Salva & Prosegui"
         }
       }
     },
@@ -19,23 +21,28 @@
       "options": {
         "usernameLabel": {
           "en": "Username",
-          "nl": "Gebruikersnaam"
+          "nl": "Gebruikersnaam",
+          "it": "Nome utente"
         },
         "usernamePlaceholder": {
           "en": "example: admin",
-          "nl": "bijvoorbeeld: admin"
+          "nl": "bijvoorbeeld: admin",
+          "it": "esempio: admin"
         },
         "usernameValue": {
           "en": "admin",
-          "nl": "admin"
+          "nl": "admin",
+          "it": "admin"
         },
         "passwordLabel": {
           "en": "Password",
-          "nl": "Wachtwoord"
+          "nl": "Wachtwoord",
+          "it": "Password"
         },
         "passwordPlaceholder": {
           "en": "Password",
-          "nl": "Wachtwoord"
+          "nl": "Wachtwoord",
+          "it": "Password"
         },
         "logo": "../../../assets/icon.svg"
       }
@@ -50,7 +57,8 @@
       "options": {
         "text": {
           "en": "Getting Data from server",
-          "nl": "Data ophalen van server"
+          "nl": "Data ophalen van server",
+          "it": "Recupero i dati dal server"
         }
       }
     },
@@ -71,7 +79,8 @@
       "options": {
         "title": {
           "en": "Enter S-PIN:",
-          "nl": "Voer S-PIN in:"
+          "nl": "Voer S-PIN in:",
+          "it": "Inserire S-PIN:"
         },
         "type": "number",
         "length": 4
@@ -95,11 +104,13 @@
         "options": {
           "title": {
             "en": "Error",
-            "nl": "Error"
+            "nl": "Error",
+            "it": "Errore"
           },
           "text": {
             "en": "<hr><br><br>To change the login click 'previous'.<hr><br><br>",
-            "nl": "<hr><br><br>Om opnieuw in te loggen, klik 'vorige'.<hr><br><br>"
+            "nl": "<hr><br><br>Om opnieuw in te loggen, klik 'vorige'.<hr><br><br>",
+            "it": "<hr><br><br>Premi 'indietro' per modificare i dati di accesso.<hr><br><br>"
           }
         }
       }

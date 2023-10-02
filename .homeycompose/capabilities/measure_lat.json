@@ -4,13 +4,13 @@
   "title": {
     "en": "Latitude",
     "nl": "Latitude",
-	"it": "Latitudine"
+    "it": "Latitudine"
   },
   "insights": false,
   "desc": {
     "en": "Latitude",
     "nl": "Latitude",
-	"it": "Latitudine"
+    "it": "Latitudine"
   },
   "getable": true,
   "setable": false,

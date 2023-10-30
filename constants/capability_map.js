@@ -310,6 +310,7 @@ module.exports = {
         is_plug_connected: `status.charging.status.plug.connectionState`,
         is_charging: `status.charging.status.charging.state`,
         measure_range: `status.charging.status.battery.cruisingRangeElectricInMeters`,
+        measure_distance_driven: `status.vehicle-status.remote.mileageInKm`,
         measure_remaining_charge_time: `status.charging.status.charging.remainingToCompleteInSeconds`,
         measure_remaining_climate_time: `status.air-conditioning.status.remainingTimeToReachTargetTemperatureInSeconds`,
         target_temperature: `status.air-conditioning.settings.targetTemperatureInKelvin`

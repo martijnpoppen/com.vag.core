@@ -85,6 +85,7 @@ module.exports = {
         measure_percent_battery: `status.batteryStatus.currentSOC_pct`,
         measure_charge_target: `status.chargingSettings.targetSOC_pct`,
         is_connected: `status.readinessStatus.connectionState.isOnline`,
+        is_charging: `status.chargingStatus.chargingState`,
         is_plug_connected: `status.plugStatus.plugConnectionState`,
         is_home: { latitude: `parkingposition.lat`, longitude: `parkingposition.lon` },
         measure_lat: `parkingposition.lat`,

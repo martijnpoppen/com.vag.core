@@ -119,11 +119,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isNewType(type) {
-        return this.isVwID(type) || this.isAudiEtron(type) || this.isSkodaE(type) || this.isSeatCupra(type) || this.isOverrideType(type);
-    }
-
-    isOverrideType(type) {
-       return type === 'audi';
+        return this.isVwID(type) || this.isAudiEtron(type) || this.isSkodaE(type) || this.isSeatCupra(type);
     }
 
     isSkodaE(type) {
@@ -135,7 +131,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isAudiEtron(type) {
-        return type === 'audietron';
+        return type === 'audietron' || type === 'audi';
     }
 
     isSeatCupra(type) {
@@ -170,9 +166,11 @@ module.exports = class mainDevice extends Homey.Device {
                         throw new Error("VW ID doesn't support lock/unlock. Only displaying the status");
                     } else if (!settings.enable_lock) {
                         throw new Error("Lock/unlock disabled in device setting. Only displaying the status");
+                    } else if(this.isNewType(type)) {
+                        await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.access`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
-                    }
+                    }           
                 }
 
                 if ('remote_flash' in value) {
@@ -356,31 +354,53 @@ module.exports = class mainDevice extends Homey.Device {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
                         if (key.includes('_temperature') && status > 2000) {
+                            
                             await this.setValue(key, Math.round((status / 10 - 273.15) * 2) / 2);
+
                         } else if (key.includes('_temperature') && status > 200) {
+                            
                             await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
+
                         } else if (key.includes('_range') && status > 2000) {
+                            
                             await this.setValue(key, status / 1000);
+
                         } else if (key.includes('_time') && this.isSkodaE(type)) {
+                            
                             await this.setValue(key, status / 60);
+
                         } else if (key.includes('_remaining_climate_time') && this.hasCapability('is_climating')) {
+                            
                             await this.setValue(key, this.getCapabilityValue('is_climating') ? Math.abs(status) : 0);
+
                         } else if (key.includes('_inspection') && settings.measure_inspection_negative) {
+                            
                             await this.setValue(key, -Math.abs(status));
+
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
                     } else if (status || status !== null) {
                         if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
+                            
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
+
                         } else if (key.includes('is_climating') && ['off', 'on'].includes(status)) {
+                            
                             await this.setValue(key, ['on'].includes(status));
-                        } else if (!this.isSkodaE(type) && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
+                            
+                        } else if (!this.isNewType(type) && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
+                            
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
-                        } else if (this.isSkodaE(type) && key.includes('is_charging')) {
-                            await this.setValue(key, status !== 'ReadyForCharging' && status !== 'NotReadyForCharging');
+
+                        } else if ((this.isNewType(type)) && key.includes('is_charging')) {
+                            
+                            await this.setValue(key, status.toLowerCase() !== 'readyforcharging' && status.toLowerCase() !== 'notreadyforcharging');
+
                         } else if (key.includes('locked') && ['locked', 'unlocked'].includes(status)) {
+                            
                             await this.setValue(key, status === 'locked');
+
                         } else {
                             await this.setValue(key, status);
                         }

@@ -78,7 +78,8 @@
   "api": {
     "apiHelperTool": {
       "method": "post",
-      "path": "/apiHelperTool/"
+      "path": "/apiHelperTool/",
+      "public": true
     }
   }
 }

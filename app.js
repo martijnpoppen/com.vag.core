@@ -63,7 +63,7 @@ class App extends Homey.App {
     }
 
     updateSettings(settings) {
-        this.log('updateSettings - New settings:', { ...settings, USERNAME: 'LOG', PASSWORD: 'LOG' });
+        this.log('updateSettings - New settings:', { ...settings });
 
         this.appSettings = settings;
 
@@ -113,34 +113,31 @@ class App extends Homey.App {
                 debug: this.dummyLog
             });
 
-            this.log('[apiHelperTool] - getting data...');
             await connect.onReady();
-            await sleep(5000);
-            await connect.onUnload(() => {});
+            await sleep(6000);
 
             if (!connect) {
                 return 'Nothing found, please check your credentials and try again';
             }
 
+            this.log('[apiHelperTool] - getting Status...');
             this.log('[apiHelperTool] - got VIN...', connect.vinArray, connect.vinArray.length);
 
             if (connect.vinArray.length === 0) {
                 return 'No VIN found, please check your credentials and try again';
             }
 
-            await sleep(6000);
-            await connect.onUnload(() => {});
-
-            this.log('[apiHelperTool] - getting Status...');
             const weConnectData = connect.getState();
-
-            await sleep(2000);
 
             if (!weConnectData) {
                 return 'Could not get data, please check your credentials and try again';
-            }
+            } 
 
+            this.log('[apiHelperTool] - getting Data...');
+            await sleep(4000);
             const deviceInfoTransformed = dottie.transform(weConnectData);
+            console.log(deviceInfoTransformed)
+            connect.onUnload(() => {});
 
             return deviceInfoTransformed;
         } catch (error) {

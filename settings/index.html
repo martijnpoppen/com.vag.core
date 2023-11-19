@@ -18,30 +18,148 @@
         .show {
             display: block !important;
         }
+        
+        .hide {
+            display: none !important;
+        }
+
+        .underline {
+            font-weight: bold;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
-    <header class="homey-header">
+    <header id="settings" class="homey-header show">
         <h1 class="homey-title">
             This page is removed
         </h1>
         <p class="homey-subtitle">You can add your car via add new device</p>
-        <p class="homey-subtitle" id="api-helper">If you're looking for the API Helper tool please ask for info on the
+        <p class="homey-subtitle underline">If you're looking for the API Helper tool please ask for info on the
             forum</p>
 
     </header>
+    <header id="api_helper_header" class="homey-header hide">
+        <h1 class="homey-title" data-i18n="settings.title">
+            <!-- This will be filled with the translated string with key 'settings.title'. -->
+        </h1>
+        <p class="homey-subtitle" data-i18n="settings.subtitle">
+            <!-- This field will also be translated -->
+        </p>
+    </header>
+    <section id="api_helper" class="hide">
+        <fieldset class="homey-form-fieldset">
+            <legend class="homey-form-legend">Login</legend>
+
+            <div class="homey-form-group">
+                <label class="homey-form-label" for="username">Username</label>
+                <input class="homey-form-input" id="username" type="text" value="" />
+            </div>
+            <div class="homey-form-group">
+                <label class="homey-form-label" for="password">Password</label>
+                <input class="homey-form-input" id="password" type="password" value="" />
+            </div>
+
+            <div class="homey-form-group">
+                <label class="homey-form-label" for="type">Select your Model</label>
+                <select class="homey-form-select" name="type" id="type">
+                    <option value="audietron">Audi API</option>
+                    <option value="seat">Seat (seat)</option>
+                    <option value="seatcupra">Cupra old API (seatcupra)</option>
+                    <option value="seatcupra2">Cupra new API (seatcupra2)</option>
+                    <option value="skoda">Skoda old API (skoda)</option>
+                    <option value="skodae">Skoda new API (skodae)</option>
+                    <option value="id">VW</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <button id="save" class="homey-button-primary-full">Retrieve API data</button>
+
+
+        <fieldset class="homey-form-fieldset">
+            <button id="copy" class="homey-button-danger-small">Copy result</button>
+            <code id="result"></code>
+        </fieldset>
+    </section>
     <script>
         function onHomeyReady (Homey) {
             const _settingsKey = `com.eufylife.security.settings`;
             Homey.ready();
 
+            var apiHelperHeaderEl = document.getElementById("api_helper_header");
+            var apiHelperEl = document.getElementById("api_helper");
+            var settingsEl = document.getElementById("settings");
             var saveElement = document.getElementById("api-helper");
 
 
 
             saveElement.addEventListener("click", function (e) {
-                document.location = document.location + '/api-helper.html'
+                apiHelperHeaderEl.classList.add("show");
+                apiHelperHeaderEl.classList.remove("hide");
+                apiHelperEl.classList.add("show");
+                apiHelperEl.classList.remove("hide");
+                settingsEl.classList.add("hide");
+                settingsEl.classList.remove("show");
+                InitApiHelper(Homey);
+            });
+        }
+
+        function InitApiHelper(Homey) {
+            var saveElement = document.getElementById("save");
+            var copyElement = document.getElementById("copy");
+
+
+            saveElement.addEventListener("click", function (e) {
+                var usernameElement = document.getElementById("username");
+                var passwordElement = document.getElementById("password");
+                var typeElement = document.getElementById("type");
+                var resultElement = document.getElementById("result");
+                saveElement.classList.add("is-loading");
+                copyElement.classList.remove("show");
+                result.innerHTML = ""
+
+                if (usernameElement.value === "" || passwordElement.value === "") {
+                    result.innerHTML = "Please fill in your username and password";
+                    saveElement.classList.remove("is-loading");
+                }
+
+                console.log({ username: usernameElement.value, password: passwordElement.value, type: typeElement.value });
+                Homey.api('POST', '/apiHelperTool', { username: usernameElement.value, password: passwordElement.value, type: typeElement.value }, function (err, result) {
+                    console.log(err, result)
+                    if (err) {
+                        saveElement.classList.remove("is-loading");
+                        return Homey.alert(err);
+                    } else {
+                        if (typeof result === "string") {
+                            resultElement.innerHTML = result;
+                            return;
+                        }
+                    }
+                });
+
+                Homey.on('apiHelpertool', function (result) {
+                    saveElement.classList.remove("is-loading");
+                    copyElement.classList.add("show");
+                    if (typeof result === "string") {
+                            resultElement.innerHTML = result;
+                            return;
+                        } else {
+                            resultElement.innerHTML = JSON.stringify(result, null, 4);
+                        }
+                });
+            });
+
+            copyElement.addEventListener("click", function (e) {
+                const element = document.getElementById("result");
+                const storage = document.createElement('textarea');
+                storage.value = element.innerHTML;
+                element.appendChild(storage);
+                storage.select();
+                storage.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                element.removeChild(storage);
             });
         }
 

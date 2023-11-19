@@ -51,7 +51,7 @@ class App extends Homey.App {
             }
 
             this.log(`initSettings - Initializing ${_settingsKey} with defaults`);
-            
+
             await this.updateSettings({
                 NOTIFICATIONS: []
             });
@@ -131,18 +131,31 @@ class App extends Homey.App {
 
             if (!weConnectData) {
                 return 'Could not get data, please check your credentials and try again';
-            } 
+            }
 
-            this.log('[apiHelperTool] - getting Data...');
-            await sleep(4000);
-            const deviceInfoTransformed = dottie.transform(weConnectData);
-            console.log(deviceInfoTransformed)
-            connect.onUnload(() => {});
-
-            return deviceInfoTransformed;
+            this.getWeConnectData(connect, weConnectData)
+            return true;
+            
         } catch (error) {
             return 'Something went wrong, this might be due to multiple reasons. You can send a report to the app developer to check the status of the API helper tool.';
         }
+    }
+
+    async getWeConnectData(connect, weConnectData) {
+        try {
+            this.log('[getWeConnectData] - getting Data...');
+            await sleep(4000);
+            const deviceInfoTransformed = dottie.transform(weConnectData);
+            console.log(deviceInfoTransformed);
+    
+            await this.homey.api.realtime("apiHelpertool", deviceInfoTransformed);
+            
+            await sleep(5000);
+            connect.onUnload(() => {});
+        } catch (error) {
+            await this.homey.api.realtime("apiHelpertool", 'Something went wrong, this might be due to multiple reasons. You can send a report to the app developer to check the status of the API helper tool.');
+        }
+       
     }
 }
 

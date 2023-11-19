@@ -84,6 +84,8 @@ module.exports = class mainDevice extends Homey.Device {
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isNewType`, this.isNewType(settings.type));
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isSkodaE`, this.isSkodaE(settings.type));
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isVwID`, this.isVwID(settings.type));
+            this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isAudi`, this.isVwID(settings.type));
+            this.log(`[Device] - ${this.getName()} => setVwWeConnectClient - isVw`, this.isVw(settings.type));
 
             this.log(`[Device] - ${this.getName()} => setVwWeConnectClient Got config`, { ...this.config, username: 'LOG', password: 'LOG', pin: 'LOG', vin: 'LOG' });
 
@@ -119,7 +121,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isNewType(type) {
-        return this.isVwID(type) || this.isAudiEtron(type) || this.isSkodaE(type) || this.isSeatCupra(type);
+        return this.isVw(type) || this.isVwID(type) || this.isAudiEtron(type) || this.isSkodaE(type) || this.isSeatCupra(type);
     }
 
     isSkodaE(type) {
@@ -128,6 +130,10 @@ module.exports = class mainDevice extends Homey.Device {
 
     isVwID(type) {
         return type === 'id';
+    }
+
+    isVw(type) {
+        return type === 'vw' || type === 'vwv2'
     }
 
     isAudiEtron(type) {

@@ -36,7 +36,7 @@
             This page is removed
         </h1>
         <p class="homey-subtitle">You can add your car via add new device</p>
-        <p class="homey-subtitle underline">If you're looking for the API Helper tool please ask for info on the
+        <p class="homey-subtitle underline" id="setApiHelper">If you're looking for the API Helper tool please ask for info on the
             forum</p>
 
     </header>
@@ -91,7 +91,7 @@
             var apiHelperHeaderEl = document.getElementById("api_helper_header");
             var apiHelperEl = document.getElementById("api_helper");
             var settingsEl = document.getElementById("settings");
-            var saveElement = document.getElementById("api-helper");
+            var saveElement = document.getElementById("setApiHelper");
 
 
 
@@ -102,7 +102,9 @@
                 apiHelperEl.classList.remove("hide");
                 settingsEl.classList.add("hide");
                 settingsEl.classList.remove("show");
-                InitApiHelper(Homey);
+
+                InitApiHelper(Homey);    
+                
             });
         }
 

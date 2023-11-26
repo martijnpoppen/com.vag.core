@@ -1,0 +1,43 @@
+
+{
+    "id": "remote_set_interval",
+    "title": {
+      "en": "Set update interval",
+      "nl": "Stel update interval in"
+    },
+    "titleFormatted": {
+        "en": "Set update interval to [[update_interval]] minutes",
+        "nl": "Stel update interval in naar [[update_interval]] minuten"
+    },
+    "args": [
+      {
+        "type": "device",
+        "name": "device",
+        "placeholder": {
+          "en": "Select device",
+          "nl": "Selecteer apparaat"
+        },
+        "filter": "driver_id=audi-ev|audi-fuel|audi-hybrid|seat-fuel|seat-hybrid|cupra-ev|cupra-hybrid|cupra-fuel|skoda-ev|skoda-hybrid|skoda-fuel|vw-ev|vw-fuel|vw-hybrid"
+      },
+      {
+        "name": "update_interval",
+        "type": "number",
+        "label": {
+          "en": "Update interval",
+          "nl": "Update interval",
+          "it": "Intervallo aggiornamento"
+        },
+        "min": 1,
+        "max": 3600,
+        "units": {
+          "en": "minutes",
+          "nl": "minuten",
+          "it": "minuti"
+        },
+        "value": 5
+      }
+    ],
+    "platforms": [
+      "local"
+    ]
+}

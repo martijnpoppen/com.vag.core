@@ -276,6 +276,16 @@ module.exports = class mainDevice extends Homey.Device {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.climatisationTemperature`, { ack: false, val: val });
                     }
                 }
+
+                if ('remote_set_interval' in value) {
+                    const val = value.remote_set_interval;
+                    await this.setSettings({ update_interval: val });
+
+                    this.log(`[Device] ${this.getName()} - remote_set_interval - shouldRestart!`);
+                    this.clearIntervals();
+
+                    await this.setVwWeConnectClient();
+                }
             } else {
                 throw new Error('S-PIN missing');
             }
@@ -309,10 +319,13 @@ module.exports = class mainDevice extends Homey.Device {
             if (check || forceUpdate >= forceUpdateInterval) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
-                await sleep(5000);
-                await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
+                if(!this.isNewType(type)) {
+                    await sleep(5000);
+                    await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
                     this.log('force status update Failed', `${this.driver.id}-${type}`);
-                });
+                    });
+                }
+
                 await sleep(5000);
                 await this._weConnectClient.updateStatus('setCapabilityValues force');
                 await sleep(10000);
@@ -620,6 +633,9 @@ module.exports = class mainDevice extends Homey.Device {
         if (!forceUpdate) {
             this.setStoreValue('forceUpdate', 0).catch(this.error);
         }
+
+        // Disable force interval - fallback to default
+        await this.setSettings({ force_update_interval: 360 });
 
         this.setRestart(false);
     }

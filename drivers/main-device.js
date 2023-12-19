@@ -133,7 +133,7 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     isVw(type) {
-        return type === 'vw' || type === 'vwv2'
+        return type === 'vw' || type === 'vwv2';
     }
 
     isAudiEtron(type) {
@@ -171,12 +171,12 @@ module.exports = class mainDevice extends Homey.Device {
                     if (this.isVwID(type)) {
                         throw new Error("VW ID doesn't support lock/unlock. Only displaying the status");
                     } else if (!settings.enable_lock) {
-                        throw new Error("Lock/unlock disabled in device setting. Only displaying the status");
-                    } else if(this.isNewType(type)) {
+                        throw new Error('Lock/unlock disabled in device setting. Only displaying the status');
+                    } else if (this.isNewType(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.access`, { ack: false, val: val });
                     } else {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.lock`, { ack: false, val: val });
-                    }           
+                    }
                 }
 
                 if ('remote_flash' in value) {
@@ -204,7 +204,6 @@ module.exports = class mainDevice extends Homey.Device {
                 if ('remote_battery_charge' in value) {
                     const val = value.remote_battery_charge;
 
-                    
                     if (this.isSkodaE(type)) {
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.charging.settings.autoUnlockPlugWhenCharged`, { ack: false, val: null });
                         await this._weConnectClient.onStateChange(`vw-connect.0.${vin}.remote.charging`, { ack: false, val: val });
@@ -319,10 +318,10 @@ module.exports = class mainDevice extends Homey.Device {
             if (check || forceUpdate >= forceUpdateInterval) {
                 this.log(`[Device] ${this.getName()} - setCapabilityValues - forceUpdate`);
 
-                if(!this.isNewType(type)) {
+                if (!this.isNewType(type)) {
                     await sleep(5000);
                     await this._weConnectClient.requestStatusUpdate(vin).catch(() => {
-                    this.log('force status update Failed', `${this.driver.id}-${type}`);
+                        this.log('force status update Failed', `${this.driver.id}-${type}`);
                     });
                 }
 
@@ -362,64 +361,44 @@ module.exports = class mainDevice extends Homey.Device {
 
                     this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
 
+                    this.setValue('is_connected', true);
+
                     if (key.includes('is_home')) {
                         const lat = get(vinData, value.latitude, 0);
                         const lng = get(vinData, value.longitude, 0);
 
                         this.log(`[Device] ${this.getName()} - getPos => ${key} => `, lat, lng);
 
-                        await this.setLocation(lat, lng, (this.isNewType(type)));
+                        await this.setLocation(lat, lng, this.isNewType(type));
                     } else if (key.includes('lng') || key.includes('lat') || key.includes('get_location')) {
                         this.log(`[Device] ${this.getName()} - Skip => ${key}`);
                     } else if ((status || status !== null) && typeof status == 'number') {
                         if (key.includes('_temperature') && status > 2000) {
-                            
                             await this.setValue(key, Math.round((status / 10 - 273.15) * 2) / 2);
-
                         } else if (key.includes('_temperature') && status > 200) {
-                            
                             await this.setValue(key, Math.round((status - 273.15) * 2) / 2);
-
                         } else if (key.includes('_range') && status > 2000) {
-                            
                             await this.setValue(key, status / 1000);
-
                         } else if (key.includes('_time') && this.isSkodaE(type)) {
-                            
                             await this.setValue(key, status / 60);
-
                         } else if (key.includes('_remaining_climate_time') && this.hasCapability('is_climating')) {
-                            
                             await this.setValue(key, this.getCapabilityValue('is_climating') ? Math.abs(status) : 0);
-
                         } else if (key.includes('_inspection') && settings.measure_inspection_negative) {
-                            
                             await this.setValue(key, -Math.abs(status));
-
                         } else {
                             await this.setValue(key, Math.abs(status));
                         }
                     } else if (status || status !== null) {
                         if (key.includes('_plug_connected') && ['Connected', 'connected', 'Disconnected', 'disconnected'].includes(status)) {
-                            
                             await this.setValue(key, ['Connected', 'connected'].includes(status));
-
                         } else if (key.includes('is_climating') && ['off', 'on'].includes(status)) {
-                            
                             await this.setValue(key, ['on'].includes(status));
-                            
                         } else if (!this.isNewType(type) && key.includes('is_charging') && ['Charging', 'charging', 'off', 'Off'].includes(status)) {
-                            
                             await this.setValue(key, ['Charging', 'charging'].includes(status));
-
-                        } else if ((this.isNewType(type)) && key.includes('is_charging')) {
-                            
+                        } else if (this.isNewType(type) && key.includes('is_charging')) {
                             await this.setValue(key, status.toLowerCase() !== 'readyforcharging' && status.toLowerCase() !== 'notreadyforcharging');
-
                         } else if (key.includes('locked') && ['locked', 'unlocked'].includes(status)) {
-                            
                             await this.setValue(key, status === 'locked');
-
                         } else {
                             await this.setValue(key, status);
                         }
@@ -429,23 +408,19 @@ module.exports = class mainDevice extends Homey.Device {
                 await this.setEstimatedRange();
                 await this.setRemoteValues(vinData);
             } else {
-                const shouldRestart = this.getStoreValue('shouldRestart');
+                this.setValue('is_connected', false);
 
-                if (!shouldRestart) {
-                    this.log(`[Device] ${this.getName()} - Try to Restart Adapter`);
-                    this.setRestart(true);
-                } else {
-                    this.log(`[Device] ${this.getName()} - Restart Adapter already scheduled`);
-                }
+                this.log(`[Device] ${this.getName()} - No status found in Vindata. Connected = false`);
             }
         } catch (error) {
+            this.setValue('is_connected', false);
             this.error(error);
         }
     }
 
     async setEstimatedRange() {
         this.log(`[Device] ${this.getName()} - setEstimatedRange`);
-        if(this.hasCapability('measure_estimated_range')) {
+        if (this.hasCapability('measure_estimated_range')) {
             this.log(`[Device] ${this.getName()} - setEstimatedRange`);
 
             const range = this.getCapabilityValue('measure_range');
@@ -514,7 +489,7 @@ module.exports = class mainDevice extends Homey.Device {
 
             await this.setCapabilityValue(key, value);
 
-            if ((typeof value === 'boolean' && key.startsWith('is_') || key.includes('updated_at')) && oldVal !== value) {
+            if (((typeof value === 'boolean' && key.startsWith('is_')) || key.includes('updated_at')) && oldVal !== value) {
                 await this.homey.flow
                     .getDeviceTriggerCard(`${key}_changed`)
                     .trigger(this, { [`${key}`]: value })
@@ -534,13 +509,27 @@ module.exports = class mainDevice extends Homey.Device {
                 this._weConnectClient.refreshToken(true).catch(() => {
                     this.log('Refresh Token was not successful');
                 });
+                this.setValue('is_connected', false);
             }
 
             if (stringArgs && args[0].includes('Failed to auto accept')) {
-                this.setUnavailable('[Cannot get new data]: New terms and conditions are available. Please logout in the app on your mobile phone and login again. This will give you the new terms and conditions.');
+                this.setValue('is_connected', false);
+                this.setUnavailable(
+                    '[Cannot get new data]: New terms and conditions are available. Please logout in the app on your mobile phone and login again. This will give you the new terms and conditions.'
+                );
             }
 
-            const errors = ['Restart adapter in', 'error while getting $homeregion', 'Failed second skoda login', 'get skodae status Failed', '304 No values updated', 'get seat status Failed', 'get id status Failed', 'get audi data status Failed', 'https://api.connect.skoda-auto.cz/api/'];
+            const errors = [
+                'Restart adapter in',
+                'error while getting $homeregion',
+                'Failed second skoda login',
+                'get skodae status Failed',
+                '304 No values updated',
+                'get seat status Failed',
+                'get id status Failed',
+                'get audi data status Failed',
+                'https://api.connect.skoda-auto.cz/api/'
+            ];
 
             if (stringArgs && errors.some((e) => args[0].includes(e))) {
                 this.log(`[Device] ${this.getName()} - handleErrors Try to Restart Adapter`);
@@ -549,6 +538,7 @@ module.exports = class mainDevice extends Homey.Device {
 
                 if (!shouldRestart) {
                     this.log(`[Device] ${this.getName()} - Try to Restart Adapter`);
+                    this.setValue('is_connected', false);
                     this.setRestart(true);
                 } else {
                     this.log(`[Device] ${this.getName()} - Restart Adapter already scheduled`);

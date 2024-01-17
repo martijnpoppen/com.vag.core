@@ -1,10 +1,15 @@
 {
   "platforms": ["local"],
-  "type": "string",
+  "type": "number",
   "title": {
     "en": "Last update",
     "nl": "Laatste update",
     "it": "Ultimo aggiornamento"
+  },
+  "units": {
+    "en": "min",
+    "nl": "min",
+    "it": "min"
   },
   "getable": true,
   "setable": true,

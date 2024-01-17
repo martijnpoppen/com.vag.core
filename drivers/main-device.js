@@ -1,7 +1,7 @@
 const Homey = require('homey');
 const dottie = require('dottie');
 const VwWeconnect = require('../lib/@iobroker/iobroker.vw-connect');
-const { sleep, decrypt, encrypt, calcCrow, get, getCurrentDatetime } = require('../lib/helpers');
+const { sleep, decrypt, encrypt, calcCrow, get, getCurrentTimeStamp } = require('../lib/helpers');
 const capability_map = require('../constants/capability_map');
 const remote_map = require('../constants/remote_map');
 
@@ -407,6 +407,8 @@ module.exports = class mainDevice extends Homey.Device {
 
                 await this.setEstimatedRange();
                 await this.setRemoteValues(vinData);
+
+                await this.setValue('measure_updated_at', getCurrentTimeStamp());
             } else {
                 this.setValue('is_connected', false);
 
@@ -457,8 +459,6 @@ module.exports = class mainDevice extends Homey.Device {
             await this.setValue('measure_lat', carLat);
             await this.setValue('measure_lng', carLng);
             await this.setValue('get_location_url', `https://maps.google.com/maps?q=${carLat},${carLng}&z=17&output=embed`);
-
-            await this.setValue('measure_updated_at', getCurrentDatetime());
         } catch (error) {
             this.log(error);
         }

@@ -204,22 +204,24 @@ module.exports = {
     },
     'cupra-ev-seatcupra': {
         locked: `status.accessStatus.doorLockStatus`,
-        measure_battery: `status.engines.primary.level`,
-        measure_percent_battery: `status.engines.primary.level`,
+        measure_battery: `status.engines.primary.levelPct`,
+        measure_percent_battery: `status.engines.primary.levelPct`,
         measure_charge_target: `status.services.charging.targetPct`,
         is_plug_connected: `charging.plug.plugConnectionState`,
         measure_range: `status.rangeStatus.totalRange_km`,
         measure_range_FALLBACK: `status.rangeStatus.electricRange`,
         measure_range_FALLBACK_2: `status.batteryStatus.cruisingRangeElectric_km`,
-        measure_range_FALLBACK_3: `status.engines.primary.range.value`,
+        measure_range_FALLBACK_3: `status.engines.primary.rangeKm`,
         measure_distance_driven: `status.odometerMeasurement.odometer`,
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.measurements.mileageKm`,
+        measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
         measure_remaining_charge_time: `charging.charging.remainingChargingTimeToComplete_min`,
+        measure_remaining_charge_time_FALLBACK: `charging.services.charging.remainingTime`,
         measure_charge_power: `charging.charging.chargePower_kW`,
         measure_charge_rate: `charging.charging.chargeRate_kmph`,
         measure_remaining_climate_time: `climatisation.climatisationStatus.remainingClimatisationTime_min`,
-        target_temperature: `status.services.climatisation.targetTemperatureKelvin`
+        target_temperature: `status.services.climatisation.targetTemperatureCelsius`
     },
     'skoda-fuel': {
         locked: `status.isCarLocked`,

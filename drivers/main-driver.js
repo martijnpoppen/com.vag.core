@@ -11,6 +11,14 @@ module.exports = class mainDriver extends Homey.Driver {
         }
     }
 
+    log() {
+        console.log.bind(this, `[log]`).apply(this, arguments);
+    }
+
+    debug() {
+        console.log.bind(this, `[debug]`).apply(this, arguments);
+    }
+
     onInit() {
         this.deviceError = false;
 
@@ -96,9 +104,9 @@ module.exports = class mainDriver extends Homey.Driver {
                     username: this.config.username,
                     password: this.config.password,
                     type: this.config.type,
-                    log: this.dummyLog,
+                    log: this.log,
                     error: this.error,
-                    debug: this.dummyLog
+                    debug: this.debug
                 });
 
                 await this._weConnectClient.onReady();

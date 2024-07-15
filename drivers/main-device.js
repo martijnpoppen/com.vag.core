@@ -30,14 +30,32 @@ module.exports = class mainDevice extends Homey.Device {
             this.log('[Device] - init =>', this.getName());
             this.setUnavailable(`Connecting to... - ${this.getName()}`);
 
+            const settings = await this.updateCarType();
+
             await this.initStore();
-            await this.checkCapabilities();
-            await this.setVwWeConnectClient();
+            await this.checkCapabilities(settings);
+            await this.setVwWeConnectClient(settings);
 
             await this.setAvailable();
         } catch (error) {
             this.log(`[Device] ${this.getName()} - OnInit Error`, error);
         }
+    }
+
+    async updateCarType() {
+        const settings = this.getSettings();
+        const type = settings.type;
+        const driverType = this.driver.id;
+
+        if (type === 'seat' && (driverType === 'cupra-hybrid' || driverType === 'cupra-fuel')) {
+            this.log(`[Device] ${this.getName()} - updateCarType - set type to seatcupra`);
+
+            await this.setSettings({ type: 'seatcupra' });
+
+            return { ...settings, type: 'seatcupra' };
+        }
+
+        return settings;
     }
 
     // ------------- Settings -------------
@@ -512,7 +530,7 @@ module.exports = class mainDevice extends Homey.Device {
                 this.setValue('is_connected', false);
             }
 
-            if (stringArgs && args[0].includes('Failed to auto accept')) {
+            if (stringArgs && (args[0].includes('Failed to auto accept') || args[0].includes('Failed to get new terms and conditions'))) {
                 this.setValue('is_connected', false);
                 this.setUnavailable(
                     '[Cannot get new data]: New terms and conditions are available. Please logout in the app on your mobile phone and login again. This will give you the new terms and conditions.'

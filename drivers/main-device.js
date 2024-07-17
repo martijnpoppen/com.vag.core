@@ -47,12 +47,12 @@ module.exports = class mainDevice extends Homey.Device {
         const type = settings.type;
         const driverType = this.driver.id;
 
-        if (type === 'seat' && (driverType === 'cupra-hybrid' || driverType === 'cupra-fuel')) {
+        if ((type === 'seatcupra' || type === 'seat') && (driverType === 'cupra-hybrid' || driverType === 'cupra-fuel')) {
             this.log(`[Device] ${this.getName()} - updateCarType - set type to seatcupra`);
 
-            await this.setSettings({ type: 'seatcupra' });
+            await this.setSettings({ type: 'cupra' });
 
-            return { ...settings, type: 'seatcupra' };
+            return { ...settings, type: 'cupra' };
         }
 
         return settings;
@@ -374,12 +374,12 @@ module.exports = class mainDevice extends Homey.Device {
             }
 
             if (vinData && vinData.status) {
+                this.setValue('is_connected', true);
+
                 for (const [key, value] of Object.entries(capabilityMapData)) {
                     const status = get(vinData, value, null);
 
                     this.log(`[Device] ${this.getName()} - getValue => ${key} => `, status);
-
-                    this.setValue('is_connected', true);
 
                     if (key.includes('is_home')) {
                         const lat = get(vinData, value.latitude, 0);

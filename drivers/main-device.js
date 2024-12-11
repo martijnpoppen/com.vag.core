@@ -483,7 +483,15 @@ module.exports = class mainDevice extends Homey.Device {
     }
 
     async setValue(key, value, delay = 0) {
-        if (key.includes('_FALLBACK_3')) {
+        if (key.includes('_FALLBACK_5')) {
+            key = key.replace('_FALLBACK_5', '');
+            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_5 => ${key} => `, value);
+        }
+        else if (key.includes('_FALLBACK_4')) {
+            key = key.replace('_FALLBACK_4', '');
+            this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_4 => ${key} => `, value);
+        }
+        else if (key.includes('_FALLBACK_3')) {
             key = key.replace('_FALLBACK_3', '');
             this.log(`[Device] ${this.getName()} - setValue - _FALLBACK_3 => ${key} => `, value);
         } else if (key.includes('_FALLBACK_2')) {

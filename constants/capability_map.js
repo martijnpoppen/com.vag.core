@@ -47,6 +47,7 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.maintenanceStatus.mileage_km`,
         measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
+        measure_distance_driven_FALLBACK_4: `mileage.mileageKm`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`
     },
@@ -72,6 +73,7 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.maintenanceStatus.mileage_km`,
         measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
+        measure_distance_driven_FALLBACK_4: `mileage.mileageKm`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`
     },
@@ -218,6 +220,7 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.measurements.mileageKm`,
         measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
+        measure_distance_driven_FALLBACK_4: `mileage.mileageKm`,
         measure_remaining_charge_time: `charging.charging.remainingChargingTimeToComplete_min`,
         measure_remaining_charge_time_FALLBACK: `charging.services.charging.remainingTime`,
         measure_charge_power: `charging.charging.chargePower_kW`,
@@ -332,6 +335,7 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.maintenanceStatus.mileage_km`,
         measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
+        measure_distance_driven_FALLBACK_4: `mileage.mileageKm`,
     },
     'audi-hybrid': {
         locked: `status.accessStatus.doorLockStatus`,
@@ -359,6 +363,7 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.maintenanceStatus.mileage_km`,
         measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
+        measure_distance_driven_FALLBACK_4: `mileage.mileageKm`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`
     },
@@ -384,6 +389,7 @@ module.exports = {
         measure_distance_driven_FALLBACK: `status.odometerStatus.odometer`,
         measure_distance_driven_FALLBACK_2: `status.maintenanceStatus.mileage_km`,
         measure_distance_driven_FALLBACK_3: `status.mileage.mileageKm`,
+        measure_distance_driven_FALLBACK_4: `mileage.mileageKm`,
         measure_remaining_charge_time: `status.chargingStatus.remainingChargingTimeToComplete_min`,
         measure_remaining_climate_time: `status.climatisationStatus.remainingClimatisationTime_min`
     },

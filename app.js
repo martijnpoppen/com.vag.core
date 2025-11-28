@@ -73,26 +73,17 @@ class App extends Homey.App {
 
     async sendNotifications() {
         try {
-            const ntfy2023080701 = `[${this.homey.manifest.name.en}] (1/3) - Due to changes in the API it might be that your car is not working properly`;
-            const ntfy2023080702 = `[${this.homey.manifest.name.en}] (2/3) - Unfortunately there's no proper fix available for all issues.`;
-            const ntfy2023080703 = `[${this.homey.manifest.name.en}] (3/3)  It might take a while before all issues are fixed. If this version is not working for you, please return to the live version of the app.`;
+            const ntfy20250303 = `[${this.homey.manifest.name.en}] Message from Developer:\n\nThis app is removed from the Homey App Store. It will remain available for existing users but will no longer receive updates / support.  \n\nFor more info see: https://tinyurl.com/homey-vag  \n\nThank you for your understanding`;
 
-            if (!this.appSettings.NOTIFICATIONS.includes('ntfy2023080701')) {
+            if (!this.appSettings.NOTIFICATIONS.includes('ntfy20250303')) {
                 await this.homey.notifications.createNotification({
-                    excerpt: ntfy2023080703
+                    excerpt: ntfy20250303
                 });
 
-                await this.homey.notifications.createNotification({
-                    excerpt: ntfy2023080702
-                });
-
-                await this.homey.notifications.createNotification({
-                    excerpt: ntfy2023080701
-                });
-
+              
                 await this.updateSettings({
                     ...this.appSettings,
-                    NOTIFICATIONS: [...this.appSettings.NOTIFICATIONS, 'ntfy2023080701', 'ntfy2023080702', 'ntfy2023080703']
+                    NOTIFICATIONS: [...this.appSettings.NOTIFICATIONS, 'ntfy20250303']
                 });
             }
         } catch (error) {

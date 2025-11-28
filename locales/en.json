@@ -11,7 +11,7 @@
     "skodae": "Skoda (Enyaq)",
     "audi": "Audi",
     "audietron": "Audi E-tron (new generation)",
-    "login_failed": "Login failed. Make sure you used the correct credentials. Edit your login on the previous page"
+    "login_failed": "Login failed. Make sure you used the correct credentials. <br><br> It might be that you have to accept the terms and conditions in the app first. You can do this by logging out and in again in the app on your phone."
   },
 
   "settings": {

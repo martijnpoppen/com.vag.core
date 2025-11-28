@@ -11,7 +11,7 @@
     "skodae": "Skoda (Enyaq)",
     "audi": "Audi",
     "audietron": "Audi E-tron (nuova generazione)",
-    "login_failed": "Accesso non riuscito. Controlla che le credenziali siano corrette. Modifica i dati di accesso nella pagina precedente"
+    "login_failed": "Accesso non riuscito. Controlla che le credenziali siano corrette. <br><br> Potrebbe essere necessario accettare i termini e le condizioni nell'applicazione. Puoi farlo disconnettendoti e riconnettendoti nell'applicazione sul tuo telefono."
   },
 
   "settings": {

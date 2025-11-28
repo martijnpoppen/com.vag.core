@@ -10,7 +10,8 @@
       "skoda": "Skoda",
       "skodae": "Skoda (Enyaq)",
       "audi": "Audi",
-      "audietron": "Audi E-tron (nieuwe generatie)"
+      "audietron": "Audi E-tron (nieuwe generatie)",
+      "login_failed": "Inloggen mislukt. Zorg ervoor dat je de juiste inloggegevens hebt gebruikt. <br><br> Het kan zijn dat je eerst de algemene voorwaarden in de app moet accepteren. Dit kun je doen door uit te loggen en weer in te loggen in de app op je telefoon."
     }
   }
   
